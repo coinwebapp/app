@@ -1,0 +1,3064 @@
+<!DOCTYPE html> 
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dispute Center | MetaEscrow</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+    /* ===========================================================
+   METAESCROW DISPUTE CENTER
+   Responsive Dashboard
+=========================================================== */
+
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    font-size:16px;
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#f4f7fb;
+
+    color:#111827;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    line-height:1.6;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+button,
+input,
+textarea,
+select{
+
+    font:inherit;
+
+}
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+
+    --primary:#ff8a00;
+
+    --primary-dark:#e56f00;
+
+    --success:#22c55e;
+
+    --danger:#ef4444;
+
+    --info:#3b82f6;
+
+    --text:#1f2937;
+
+    --muted:#6b7280;
+
+    --border:#e5e7eb;
+
+    --background:#f4f7fb;
+
+    --card:#ffffff;
+
+    --radius:18px;
+
+    --shadow:
+        0 10px 30px rgba(0,0,0,.06);
+
+    --transition:.30s;
+
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.dashboard{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    background:var(--background);
+
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.dashboard-main{
+
+    display:flex;
+
+    flex-direction:column;
+
+    width:100%;
+
+    min-width:0;
+
+    padding:clamp(18px,2vw,35px);
+
+}
+
+/* ===========================================================
+   HEADER
+=========================================================== */
+
+.dashboard-header{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    min-width:0;
+
+}
+
+.sidebar-toggle{
+
+    display:none;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    box-shadow:var(--shadow);
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    transition:var(--transition);
+
+}
+
+.sidebar-toggle:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.breadcrumb{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--muted);
+
+    font-size:.9rem;
+
+    margin-bottom:6px;
+
+}
+
+.header-left h1{
+
+    font-size:clamp(1.6rem,2vw,2.2rem);
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.header-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.notify-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.notify-btn:hover{
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+.user-box{
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:8px 16px;
+
+    border-radius:50px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.user-box img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.user-box span{
+
+    font-weight:600;
+
+}
+
+/* ===========================================================
+   DISPUTE PAGE
+=========================================================== */
+
+.dispute-page{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+/* ===========================================================
+   TOP BAR
+=========================================================== */
+
+.dispute-top{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.dispute-top h2{
+
+    font-size:clamp(1.7rem,2vw,2.4rem);
+
+    font-weight:700;
+
+}
+
+.dispute-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.status.open{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+/* ===========================================================
+   TABS
+=========================================================== */
+
+.dispute-tabs{
+
+    width:100%;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+}
+
+.tab-btn{
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.tab-btn:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+.tab-btn.active{
+
+    background:var(--primary);
+
+    border-color:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ===========================================================
+   MAIN GRID
+=========================================================== */
+
+.dispute-grid{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+
+        minmax(320px,1.1fr)
+
+        minmax(420px,1.5fr)
+
+        minmax(300px,.9fr);
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+/* ===========================================================
+   PANELS
+=========================================================== */
+
+.left-panel,
+
+.middle-panel,
+
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    min-width:0;
+
+}
+
+/* ===========================================================
+   CARDS
+=========================================================== */
+
+.card,
+
+.chat-card{
+
+    width:100%;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    padding:28px;
+
+}
+
+.card h3{
+
+    margin-bottom:16px;
+
+    font-size:1.05rem;
+
+    font-weight:700;
+
+}
+
+.card p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+}
+
+/* ===========================================================
+   FORM ELEMENTS
+=========================================================== */
+
+.card select,
+.card textarea,
+.card input{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    background:#fafafa;
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    font-size:.95rem;
+
+    color:var(--text);
+
+    transition:all .3s ease;
+
+    margin-bottom:22px;
+
+}
+
+.card select:hover,
+.card textarea:hover,
+.card input:hover{
+
+    border-color:#d1d5db;
+
+}
+
+.card select:focus,
+.card textarea:focus,
+.card input:focus{
+
+    border-color:var(--primary);
+
+    background:#fff;
+
+    box-shadow:0 0 0 4px rgba(255,138,0,.10);
+
+}
+
+.card textarea{
+
+    resize:vertical;
+
+    min-height:180px;
+
+    line-height:1.7;
+
+}
+
+/* ===========================================================
+   EVIDENCE UPLOAD
+=========================================================== */
+
+.upload-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+
+    gap:18px;
+
+    margin-bottom:18px;
+
+}
+
+.upload-box{
+
+    min-height:130px;
+
+    border:2px dashed #d1d5db;
+
+    border-radius:16px;
+
+    background:#fafafa;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.upload-box:hover{
+
+    border-color:var(--primary);
+
+    background:#fff7ef;
+
+    color:var(--primary);
+
+    transform:translateY(-3px);
+
+}
+
+.upload-box i{
+
+    font-size:2rem;
+
+}
+
+.upload-box span{
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.upload-note{
+
+    color:var(--muted);
+
+    font-size:.88rem;
+
+    margin-bottom:22px;
+
+}
+
+/* ===========================================================
+   BUTTON
+=========================================================== */
+
+.submit-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#ff8a00,#ff6a00);
+
+    color:#fff;
+
+    font-weight:600;
+
+    font-size:1rem;
+
+    transition:all .3s ease;
+
+}
+
+.submit-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(255,138,0,.22);
+
+}
+
+.submit-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ===========================================================
+   LEFT PANEL POLISH
+=========================================================== */
+
+.left-panel .card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.left-panel .card h3{
+
+    margin-top:6px;
+
+}
+
+.left-panel .card h3:first-child{
+
+    margin-top:0;
+
+}
+
+/* ===========================================================
+   CHAT CARD
+=========================================================== */
+
+.chat-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:clamp(550px,75vh,850px);
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+.chat-messages{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:28px;
+
+    background:#f8fafc;
+
+    scroll-behavior:smooth;
+
+}
+
+.chat-messages::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.chat-messages::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.chat-messages::-webkit-scrollbar-thumb{
+
+    background:#d1d5db;
+
+    border-radius:20px;
+
+}
+
+/* ===========================================================
+   MESSAGE
+=========================================================== */
+
+.message{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:16px;
+
+    margin-bottom:24px;
+
+}
+
+.message:last-child{
+
+    margin-bottom:0;
+
+}
+
+.message img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+}
+
+.message-content{
+
+    flex:1;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.message-content:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.message-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:10px;
+
+}
+
+.message-header h4{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.message-header span{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+}
+
+.message-content p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+/* ===========================================================
+   YOUR MESSAGE
+=========================================================== */
+
+.message.you{
+
+    flex-direction:row-reverse;
+
+}
+
+.message.you .message-content{
+
+    background:#fff7ef;
+
+    border:1px solid rgba(255,138,0,.15);
+
+}
+
+.message.you .message-header{
+
+    flex-direction:row-reverse;
+
+}
+
+/* ===========================================================
+   CHAT INPUT
+=========================================================== */
+
+.chat-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:22px;
+
+    border-top:1px solid var(--border);
+
+    background:#fff;
+
+}
+
+.chat-input input{
+
+    flex:1;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    transition:.3s;
+
+}
+
+.chat-input input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(255,138,0,.10);
+
+}
+
+.chat-input button{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#ff8a00,#ff6a00);
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.chat-input button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 25px rgba(255,138,0,.25);
+
+}
+
+.chat-input button:active{
+
+    transform:scale(.96);
+
+}
+
+/* ===========================================================
+   CHAT RESPONSIVE
+=========================================================== */
+
+@media (max-width:768px){
+
+    .chat-card{
+
+        height:70vh;
+
+    }
+
+    .chat-messages{
+
+        padding:20px;
+
+    }
+
+    .message{
+
+        gap:12px;
+
+    }
+
+    .message img{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+    .message-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .chat-input{
+
+        padding:18px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .chat-card{
+
+        height:65vh;
+
+    }
+
+    .chat-input{
+
+        gap:10px;
+
+    }
+
+    .chat-input button{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:16px;
+
+    }
+
+}
+
+
+/* ===========================================================
+   RIGHT PANEL
+=========================================================== */
+
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+/* ===========================================================
+   ADMIN CARD
+=========================================================== */
+
+.right-panel .card{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.right-panel h3{
+
+    font-size:1.05rem;
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+.right-panel p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+    font-size:.95rem;
+
+    margin-bottom:22px;
+
+}
+
+.resolution-date{
+
+    font-size:clamp(1.8rem,2vw,2.5rem);
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+}
+
+/* ===========================================================
+   TIMELINE
+=========================================================== */
+
+.timeline{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    margin-top:10px;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:13px;
+
+    top:8px;
+
+    bottom:8px;
+
+    width:2px;
+
+    background:#e5e7eb;
+
+}
+
+.timeline-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.timeline-dot{
+
+    width:28px;
+
+    height:28px;
+
+    border-radius:50%;
+
+    border:3px solid #d1d5db;
+
+    background:#fff;
+
+    flex-shrink:0;
+
+}
+
+.timeline-dot.active{
+
+    background:var(--primary);
+
+    border-color:var(--primary);
+
+}
+
+.timeline-dot.success{
+
+    background:var(--success);
+
+    border-color:var(--success);
+
+}
+
+.timeline-item.pending .timeline-dot{
+
+    background:#fff;
+
+    border-color:#d1d5db;
+
+}
+
+.timeline-content{
+
+    flex:1;
+
+}
+
+.timeline-content h4{
+
+    font-size:.98rem;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    margin-bottom:6px;
+
+}
+
+.timeline-content span{
+
+    font-size:.85rem;
+
+    color:var(--muted);
+
+}
+
+/* ===========================================================
+   HOVER EFFECTS
+=========================================================== */
+
+.card,
+.chat-card{
+
+    transition:.3s ease;
+
+}
+
+.card:hover,
+.chat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.08);
+
+}
+
+/* ===========================================================
+   DESKTOP (1600px+)
+=========================================================== */
+
+@media (min-width:1600px){
+
+    .dashboard{
+
+        grid-template-columns:300px 1fr;
+
+    }
+
+    .dashboard-main{
+
+        padding:40px;
+
+    }
+
+    .dispute-grid{
+
+        grid-template-columns:
+            minmax(380px,1.1fr)
+            minmax(620px,1.6fr)
+            minmax(360px,.9fr);
+
+    }
+
+}
+
+/* ===========================================================
+   LAPTOP
+=========================================================== */
+
+@media (max-width:1400px){
+
+    .dispute-grid{
+
+        grid-template-columns:
+            minmax(300px,1fr)
+            minmax(380px,1.4fr)
+            minmax(280px,.9fr);
+
+    }
+
+}
+
+/* ===========================================================
+   TABLET
+=========================================================== */
+
+@media (max-width:1100px){
+
+    .dispute-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .left-panel,
+    .middle-panel,
+    .right-panel{
+
+        width:100%;
+
+    }
+
+    .chat-card{
+
+        height:650px;
+
+    }
+
+}
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width:768px){
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .sidebar{
+
+        position:fixed;
+
+        left:-100%;
+
+        width:280px;
+
+        z-index:9999;
+
+        transition:.35s;
+
+    }
+
+    .sidebar.active{
+
+        left:0;
+
+    }
+
+    .dashboard-main{
+
+        padding:18px;
+
+    }
+
+    .sidebar-toggle{
+
+        display:flex;
+
+    }
+
+    .dashboard-header{
+
+        gap:18px;
+
+    }
+
+    .header-user{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    .dispute-top{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .dispute-tabs{
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+        padding-bottom:8px;
+
+        scrollbar-width:none;
+
+    }
+
+    .dispute-tabs::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+    .tab-btn{
+
+        white-space:nowrap;
+
+    }
+
+}
+
+/* ===========================================================
+   SMALL PHONES
+=========================================================== */
+
+@media (max-width:480px){
+
+    html{
+
+        font-size:15px;
+
+    }
+
+    .dashboard-main{
+
+        padding:14px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .user-box span{
+
+        display:none;
+
+    }
+
+    .upload-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .resolution-date{
+
+        font-size:1.8rem;
+
+    }
+
+}
+
+/* ===========================================================
+   EXTRA SMALL DEVICES (320px)
+=========================================================== */
+
+@media (max-width:340px){
+
+    html{
+
+        font-size:14px;
+
+    }
+
+    .dashboard-main{
+
+        padding:10px;
+
+    }
+
+    .card{
+
+        padding:16px;
+
+    }
+
+    .chat-input{
+
+        flex-direction:column;
+
+    }
+
+    .chat-input input{
+
+        width:100%;
+
+    }
+
+    .chat-input button{
+
+        width:100%;
+
+        height:52px;
+
+        border-radius:12px;
+
+    }
+
+}
+
+/* ==========================
+   TOAST
+========================== */
+
+.toast{
+
+position:fixed;
+
+top:20px;
+
+right:20px;
+
+background:#111827;
+
+color:#fff;
+
+padding:14px 18px;
+
+border-radius:10px;
+
+font-size:14px;
+
+opacity:0;
+
+transform:translateY(-15px);
+
+transition:.3s;
+
+z-index:99999;
+
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+@media(max-width:768px){
+
+.toast{
+
+left:15px;
+
+right:15px;
+
+top:15px;
+
+text-align:center;
+
+}
+
+}
+
+.upload-box.uploaded{
+
+    border-color:#22c55e;
+
+    background:#ecfdf5;
+
+}
+
+.upload-box.uploaded i{
+
+    color:#22c55e;
+
+}
+
+.submit-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================================
+   JAVASCRIPT CLASSES
+========================================== */
+
+.hidden-card{
+
+    opacity:0;
+
+    transform:translateY(25px);
+
+    transition:all .6s ease;
+
+}
+
+.show-card{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.upload-box.uploaded{
+
+    border-color:#22c55e;
+
+    background:#ecfdf5;
+
+}
+
+.upload-box.uploaded i{
+
+    color:#22c55e;
+
+}
+
+.toast{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    background:#111827;
+
+    color:#fff;
+
+    padding:14px 20px;
+
+    border-radius:12px;
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:.3s;
+
+    z-index:99999;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+button.pressed{
+
+    transform:scale(.98);
+
+}
+
+@media(max-width:768px){
+
+.toast{
+
+left:15px;
+
+right:15px;
+
+top:15px;
+
+text-align:center;
+
+}
+
+}
+
+
+/* ==========================================
+   TRANSACTION SUMMARY
+========================================== */
+
+.transaction-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.05);
+
+}
+
+.transaction-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    gap:20px;
+
+}
+
+.transaction-header h2{
+
+    font-size:1.6rem;
+
+    margin-bottom:6px;
+
+}
+
+.transaction-header p{
+
+    color:var(--muted);
+
+}
+
+.transaction-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.info-box{
+
+    background:#fafafa;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    transition:.3s;
+
+}
+
+.info-box:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-3px);
+
+}
+
+.info-box small{
+
+    display:block;
+
+    color:var(--muted);
+
+    margin-bottom:8px;
+
+}
+
+.info-box strong{
+
+    display:block;
+
+    color:var(--text);
+
+    font-size:1rem;
+
+    word-break:break-all;
+
+}
+
+.info-box.full{
+
+    grid-column:1 / -1;
+
+}
+
+@media(max-width:768px){
+
+.transaction-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.transaction-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.info-box.full{
+
+grid-column:auto;
+
+}
+
+}
+
+.tab-content{
+
+    display:none;
+
+    animation:fade .35s ease;
+
+}
+
+.tab-content.active{
+
+    display:block;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}  
+
+/* ===============================
+MODERN FLOATING BOTTOM NAV
+=============================== */
+
+.dashboard-main{
+    padding-bottom:110px;
+}
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:18px;
+
+    width:calc(100% - 28px);
+
+    max-width:560px;
+
+    height:74px;
+
+    background:rgba(255,255,255,.88);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    border-radius:26px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.08),
+    0 2px 10px rgba(0,0,0,.05);
+
+    z-index:5000;
+
+    padding:0 8px;
+
+    padding-bottom:env(safe-area-inset-bottom);
+}
+
+.bottom-nav a{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#9ca3af;
+
+    transition:.35s;
+
+    gap:5px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.nav-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.35s;
+
+}
+
+.nav-icon i{
+
+    font-size:20px;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#ff7b00;
+
+}
+
+.bottom-nav a:hover .nav-icon{
+
+    transform:translateY(-2px);
+
+}
+
+.bottom-nav a.active{
+
+    color:#ff7b00;
+
+}
+
+.bottom-nav a.active .nav-icon{
+
+    background:linear-gradient(
+        135deg,
+        #ff9d2f,
+        #ff6200);
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 24px rgba(255,98,0,.35);
+
+    transform:translateY(-12px) scale(1.05);
+
+}
+
+.bottom-nav a.active span{
+
+    margin-top:-6px;
+
+}
+
+.bottom-nav a:active{
+
+    transform:scale(.95);
+
+}
+
+/* Small notification badge */
+
+.nav-badge{
+
+    position:absolute;
+
+    top:8px;
+
+    right:16px;
+
+    width:9px;
+
+    height:9px;
+
+    background:#ff3b30;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+}
+
+/* Desktop */
+
+@media(min-width:992px){
+
+.bottom-nav{
+
+    max-width:620px;
+
+}
+
+}
+
+/* Small phones */
+
+@media(max-width:420px){
+
+.bottom-nav{
+
+    width:calc(100% - 18px);
+
+    height:70px;
+
+    border-radius:22px;
+
+}
+
+.nav-icon{
+
+    width:40px;
+
+    height:40px;
+
+}
+
+.nav-icon i{
+
+    font-size:18px;
+
+}
+
+.bottom-nav span{
+
+    font-size:10px;
+
+}
+
+}
+
+a {
+    cursor: none;
+}
+</style>
+        
+</head>
+
+<body>
+    
+    <nav class="bottom-nav">
+
+    <a href="dispute.html" class="active">
+        <div class="nav-icon">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 640 640"><path d="M73 39.1C63.6 29.7 48.4 29.7 39.1 39.1C29.8 48.5 29.7 63.7 39 73.1L567 601.1C576.4 610.5 591.6 610.5 600.9 601.1C610.2 591.7 610.3 576.5 600.9 567.2L312.9 279.2L327.1 265C331.3 260.8 336.6 258.5 342 258.1C348.8 257.5 355.8 259.8 361 265L537.6 440L608 384L608 96L496 160L472.2 144.1C456.4 133.6 437.9 128 418.9 128L348.5 128C347.4 128 346.2 128 345.1 128.1C328.2 129 312.3 136.6 300.9 149.2L245.1 211.3L211.1 177.3L255.4 128.1L215.7 128.1C200.4 128.1 185.6 131.7 172.2 138.5L73 39.1zM32 133.8L32 384L188.4 514.3C211.4 533.5 240.4 544 270.3 544L286 544L279 537C269.6 527.6 269.6 512.4 279 503.1C288.4 493.8 303.6 493.7 312.9 503.1L353.9 544.1L362.9 544.1C385.1 544.1 406.7 538.3 425.7 527.7L32 133.8z"/></svg>
+        </div>
+        <span>Dispute</span>
+    </a>
+
+    <a href="create-escrow.html">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
+  <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
+</svg>
+        </div>
+        <span>Create</span>
+    </a>
+
+    <a href="dashboard.html">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-check" viewBox="0 0 16 16">
+  <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708z"/>
+  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.707l.547.547 1.17-1.951a.5.5 0 1 1 .858.514"/>
+</svg>
+        </div>
+        <span>Escrows</span>
+    </a>
+
+    <a href="#">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
+  <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584l.013-.012.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354-.012.012A6.97 6.97 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/>
+</svg>
+        </div>
+        <span>Alerts</span>
+    </a>
+
+    <a href="#">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-exclamation" viewBox="0 0 16 16">
+  <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+  <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+</svg>
+        </div>
+        
+        <span>Profile</span>
+    </a>
+
+</nav>
+
+<div class="sidebar-overlay"></div>
+
+<div class="dashboard">
+
+<!-- ==========================
+MAIN CONTENT
+========================== -->
+
+<main class="dashboard-main">
+
+<section class="dispute-page">
+    
+    <!-- ==========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <div class="dispute-top">
+
+        <div>
+
+            <h2>Dispute Center</h2>
+
+        </div>
+
+        <div class="dispute-status">
+
+            <span>Status:</span>
+
+            <span class="status open">
+
+                Open
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         TABS
+    ========================================== -->
+
+    <div class="dispute-tabs">
+
+    <button class="tab-btn active" data-tab="details">
+        Escrow Details
+    </button>
+
+    <button class="tab-btn" data-tab="messages">
+        Messages
+    </button>
+
+    <button class="tab-btn" data-tab="evidence">
+        Evidence
+    </button>
+
+    <button class="tab-btn" data-tab="decision">
+        Admin Decision
+    </button>
+
+</div>
+
+<!-- ==========================================
+     ESCROW DETAILS TAB
+========================================== -->
+
+<div class="tab-content active" id="details">
+
+    <div class="transaction-card">
+
+        <div class="transaction-header">
+
+            <div>
+
+                <h2>Transaction Summary</h2>
+
+                <p>Complete information about this escrow transaction.</p>
+
+            </div>
+
+            <span class="status open">
+
+                Under Dispute
+
+            </span>
+
+        </div>
+
+        <div class="transaction-grid">
+
+            <div class="info-box">
+
+                <small>Escrow ID</small>
+
+                <strong>MES-2400001</strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>Amount</small>
+
+                <strong>1,250 USDT</strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>Network</small>
+
+                <strong>ERC-20</strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>Seller</small>
+
+                <strong>John Doe</strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>Buyer</small>
+
+                <strong>Michael Smith</strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>Date Created</small>
+
+                <strong>May 21, 2024</strong>
+
+            </div>
+
+            <div class="info-box full">
+
+                <small>Wallet Address</small>
+
+                <strong>
+
+                    0x4A25B9A5B5B83A923D45A9B81245D82B7B42D11F
+
+                </strong>
+
+            </div>
+
+            <div class="info-box full">
+
+                <small>Transaction Hash</small>
+
+                <strong>
+
+                    0xd72f81f83c84ab72d832fd21f8cb61c92aa881bb7124f14dc45ea7bc8af23392
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MESSAGES TAB
+========================================== -->
+
+<div class="tab-content" id="messages">
+
+    <div class="chat-card">
+
+        <!-- Chat Messages -->
+
+        <div class="chat-messages">
+
+            <div class="message">
+
+                <img src="https://i.pravatar.cc/60?img=5" alt="Seller">
+
+                <div class="message-content">
+
+                    <div class="message-header">
+
+                        <h4>Seller (You)</h4>
+
+                        <span>May 21, 10:30 AM</span>
+
+                    </div>
+
+                    <p>
+
+                        I have not received the design files.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="message">
+
+                <img src="https://i.pravatar.cc/60?img=12" alt="Buyer">
+
+                <div class="message-content">
+
+                    <div class="message-header">
+
+                        <h4>Buyer</h4>
+
+                        <span>May 21, 10:35 AM</span>
+
+                    </div>
+
+                    <p>
+
+                        I will send them shortly.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="message">
+
+                <img src="https://i.pravatar.cc/60?img=5" alt="Seller">
+
+                <div class="message-content">
+
+                    <div class="message-header">
+
+                        <h4>Seller (You)</h4>
+
+                        <span>May 21, 10:40 AM</span>
+
+                    </div>
+
+                    <p>
+
+                        It has been over three days.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Input -->
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                placeholder="Type your message...">
+
+            <button>
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     EVIDENCE TAB
+========================================== -->
+
+<div class="tab-content" id="evidence">
+
+    <div class="card">
+
+        <h3>Reason for Dispute</h3>
+
+        <select>
+
+            <option selected>Item not delivered</option>
+
+            <option>Wrong item received</option>
+
+            <option>Payment issue</option>
+
+            <option>Scam / Fraud</option>
+
+            <option>Other</option>
+
+        </select>
+
+        <h3>Describe the Issue</h3>
+
+        <textarea rows="8">
+
+Buyer did not deliver the promised design files after payment.
+
+        </textarea>
+
+        <h3>Upload Evidence</h3>
+
+        <div class="upload-grid">
+
+            <div class="upload-box">
+
+                <i class="fa-regular fa-image"></i>
+
+                <span>Upload Images</span>
+
+            </div>
+
+            <div class="upload-box">
+
+                <i class="fa-regular fa-file-pdf"></i>
+
+                <span>Upload PDF</span>
+
+            </div>
+
+            <div class="upload-box">
+
+                <i class="fa-solid fa-video"></i>
+
+                <span>Upload Video</span>
+
+            </div>
+
+        </div>
+
+        <p class="upload-note">
+
+            Accepted: Images, Videos and PDF documents.
+
+        </p>
+
+        <button class="submit-btn">
+
+            Submit Evidence
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     ADMIN DECISION TAB
+========================================== -->
+
+<div class="tab-content" id="decision">
+
+    <div class="card">
+
+        <h3>Admin Information</h3>
+
+        <p>
+
+            Our dispute resolution team will carefully review all submitted evidence before making a final decision.
+
+        </p>
+
+        <h3>Expected Resolution</h3>
+
+        <h2 class="resolution-date">
+
+            May 28, 2024
+
+        </h2>
+
+        <h3>Dispute Timeline</h3>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot active"></div>
+
+                <div class="timeline-content">
+
+                    <h4>Dispute Opened</h4>
+
+                    <span>May 21, 10:30 AM</span>
+
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot success"></div>
+
+                <div class="timeline-content">
+
+                    <h4>Evidence Submitted</h4>
+
+                    <span>May 21, 10:45 AM</span>
+
+                </div>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot success"></div>
+
+                <div class="timeline-content">
+
+                    <h4>Admin Review</h4>
+
+                    <span>In Progress</span>
+
+                </div>
+
+            </div>
+
+            <div class="timeline-item pending">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h4>Final Decision</h4>
+
+                    <span>Pending</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script> 
+   /*====================================================
+    METAESCROW DISPUTE CENTER
+====================================================*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /*=========================================
+        ELEMENTS
+    =========================================*/
+
+    const sidebar = document.querySelector(".sidebar");
+
+    const sidebarToggle = document.querySelector(".sidebar-toggle");
+
+    const overlay = document.querySelector(".sidebar-overlay");
+
+    const tabs = document.querySelectorAll(".tab-btn");
+
+    const sections = document.querySelectorAll(".tab-content");
+
+    const chatInput = document.querySelector(".chat-input input");
+
+    const sendButton = document.querySelector(".chat-input button");
+
+    const chatContainer = document.querySelector(".chat-messages");
+
+    const uploadBoxes = document.querySelectorAll(".upload-box");
+
+    const submitEvidence = document.querySelector(".submit-btn");
+
+
+
+    /*=========================================
+        SIDEBAR
+    =========================================*/
+
+    if (sidebarToggle) {
+
+        sidebarToggle.addEventListener("click", () => {
+
+            sidebar.classList.toggle("active");
+
+            overlay.classList.toggle("active");
+
+        });
+
+    }
+
+    if (overlay) {
+
+        overlay.addEventListener("click", () => {
+
+            sidebar.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        });
+
+    }
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 768) {
+
+            sidebar.classList.remove("active");
+
+            overlay.classList.remove("active");
+
+        }
+
+    });
+
+
+
+    /*=========================================
+        TAB SWITCHING
+    =========================================*/
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            tabs.forEach(button => {
+
+                button.classList.remove("active");
+
+            });
+
+            sections.forEach(section => {
+
+                section.classList.remove("active");
+
+            });
+
+            tab.classList.add("active");
+
+            const target = document.getElementById(tab.dataset.tab);
+
+            if (target) {
+
+                target.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+
+
+    /*=========================================
+        TOAST
+    =========================================*/
+
+    function showToast(message) {
+
+        const toast = document.createElement("div");
+
+        toast.className = "toast";
+
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => {
+
+            toast.classList.add("show");
+
+        });
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+            toast.addEventListener("transitionend", () => {
+
+                toast.remove();
+
+            }, { once: true });
+
+        }, 2500);
+
+    }
+    
+    /*=========================================
+        CHAT FUNCTIONS
+    =========================================*/
+
+    function getCurrentTime() {
+
+        const now = new Date();
+
+        return now.toLocaleTimeString([], {
+
+            hour: "2-digit",
+
+            minute: "2-digit"
+
+        });
+
+    }
+
+    function scrollChatToBottom() {
+
+        if (chatContainer) {
+
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        }
+
+    }
+
+    function createMessage(text, sender = "You") {
+
+        if (!chatContainer || text.trim() === "") {
+
+            return;
+
+        }
+
+        const message = document.createElement("div");
+
+        message.classList.add("message");
+
+        if (sender === "You") {
+
+            message.classList.add("you");
+
+        }
+
+        const avatar = document.createElement("img");
+
+        avatar.src = sender === "You"
+            ? "https://i.pravatar.cc/60?img=5"
+            : "https://i.pravatar.cc/60?img=12";
+
+        avatar.alt = sender;
+
+        const content = document.createElement("div");
+
+        content.className = "message-content";
+
+        const header = document.createElement("div");
+
+        header.className = "message-header";
+
+        const name = document.createElement("h4");
+
+        name.textContent = sender;
+
+        const time = document.createElement("span");
+
+        time.textContent = getCurrentTime();
+
+        const paragraph = document.createElement("p");
+
+        paragraph.textContent = text;
+
+        header.appendChild(name);
+
+        header.appendChild(time);
+
+        content.appendChild(header);
+
+        content.appendChild(paragraph);
+
+        message.appendChild(avatar);
+
+        message.appendChild(content);
+
+        chatContainer.appendChild(message);
+
+        scrollChatToBottom();
+
+    }
+
+    /*=========================================
+        SEND MESSAGE
+    =========================================*/
+
+    if (sendButton && chatInput) {
+
+        sendButton.addEventListener("click", () => {
+
+            const message = chatInput.value.trim();
+
+            if (!message) {
+
+                chatInput.focus();
+
+                return;
+
+            }
+
+            createMessage(message);
+
+            chatInput.value = "";
+
+            chatInput.focus();
+
+            showToast("Message sent");
+
+        });
+
+    }
+
+    /*=========================================
+        ENTER TO SEND
+    =========================================*/
+
+    if (chatInput) {
+
+        chatInput.addEventListener("keydown", (event) => {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendButton.click();
+
+            }
+
+        });
+
+    }
+
+    /*=========================================
+        AUTO SCROLL
+    =========================================*/
+
+    scrollChatToBottom();
+    
+    /*=========================================
+        FILE UPLOAD
+    =========================================*/
+
+    uploadBoxes.forEach((box) => {
+
+        const input = document.createElement("input");
+
+        input.type = "file";
+
+        input.hidden = true;
+
+        input.multiple = true;
+
+        input.accept = "image/*,.pdf,.doc,.docx,.zip";
+
+        box.appendChild(input);
+
+        box.addEventListener("click", () => {
+
+            input.click();
+
+        });
+
+        input.addEventListener("change", () => {
+
+            if (!input.files.length) return;
+
+            box.classList.add("uploaded");
+
+            const label = box.querySelector("span");
+
+            if (label) {
+
+                if (input.files.length === 1) {
+
+                    label.textContent = input.files[0].name;
+
+                } else {
+
+                    label.textContent = `${input.files.length} files selected`;
+
+                }
+
+            }
+
+            showToast("Evidence selected.");
+
+        });
+
+    });
+
+
+
+    /*=========================================
+        SUBMIT EVIDENCE
+    =========================================*/
+
+    if (submitEvidence) {
+
+        submitEvidence.addEventListener("click", () => {
+
+            submitEvidence.disabled = true;
+
+            const originalText = submitEvidence.textContent;
+
+            submitEvidence.textContent = "Submitting...";
+
+            setTimeout(() => {
+
+                submitEvidence.disabled = false;
+
+                submitEvidence.textContent = originalText;
+
+                showToast("Evidence submitted successfully.");
+
+            }, 1800);
+
+        });
+
+    }
+
+
+
+    /*=========================================
+        CARD ANIMATION
+    =========================================*/
+
+    const cards = document.querySelectorAll(".card, .chat-card");
+
+    if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show-card");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+
+            threshold: 0.15
+
+        });
+
+        cards.forEach((card) => {
+
+            card.classList.add("hidden-card");
+
+            observer.observe(card);
+
+        });
+
+    }
+
+
+
+    /*=========================================
+        ACTIVE SIDEBAR LINK
+    =========================================*/
+
+    const sidebarLinks = document.querySelectorAll(".sidebar-menu a");
+
+    sidebarLinks.forEach((link) => {
+
+        link.addEventListener("click", () => {
+
+            sidebarLinks.forEach((item) => {
+
+                item.classList.remove("active");
+
+            });
+
+            link.classList.add("active");
+
+        });
+
+    });
+
+
+
+    /*=========================================
+        PAGE READY
+    =========================================*/
+
+    console.log("MetaEscrow Dispute Center Loaded Successfully.");
+
+});
+</script>
+
+</body>
+
+</html>

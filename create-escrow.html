@@ -1,0 +1,1326 @@
+<!DOCTYPE html>  
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Create Escrow | MetaEscrow</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<style>
+   /*======================================
+DASHBOARD LAYOUT
+======================================*/
+
+.dashboard{
+    min-height:100vh;
+    display:block;
+    background:#f8fafc;
+}
+
+.dashboard-main{
+    width:100%;
+    padding-bottom:90px; /* space for bottom nav */
+}
+/*======================================
+HEADER
+======================================*/
+
+.dashboard-header{
+
+    background:#fff;
+
+    padding:1.5rem 2rem;
+
+    border-bottom:1px solid #ececec;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:2rem;
+
+    flex-wrap:wrap;
+    
+    border-bottom-right-radius: 20px;
+    
+    border-bottom-left-radius: 20px;
+
+}
+
+.breadcrumb{
+
+    color:#6b7280;
+
+    font-size:.9rem;
+
+    margin-bottom:.5rem;
+
+}
+
+.dashboard-header h1{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+}
+
+.header-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+.notify-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:#fff4ec;
+
+    color:var(--primary);
+
+}
+
+.user-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.75rem;
+
+}
+
+.user-box img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.user-box span{
+
+    font-weight:600;
+
+}
+
+/*======================================
+CONTENT AREA
+======================================*/
+
+.escrow-form-section{
+
+    padding:2rem;
+
+}
+
+/*======================================
+CREATE ESCROW FORM
+======================================*/
+
+.escrow-form{
+
+    width:100%;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:2rem;
+
+}
+
+.form-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:1.25rem;
+
+    min-width:0;
+
+}
+
+/*======================================
+FORM GROUP
+======================================*/
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.55rem;
+
+}
+
+.form-group label{
+
+    font-size:.92rem;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+/*======================================
+INPUTS
+======================================*/
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    min-height:54px;
+
+    padding:0 1rem;
+
+    border:1px solid #dcdfe4;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    outline:none;
+
+    font-size:.96rem;
+
+    transition:.25s;
+
+    font-family:inherit;
+
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+    min-height:180px;
+
+    padding:1rem;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(255,123,0,.12);
+
+}
+
+/*======================================
+PLACEHOLDER
+======================================*/
+
+::placeholder{
+
+    color:#9ca3af;
+
+}
+
+/*======================================
+WALLET NOTICE
+======================================*/
+
+.wallet-info{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:1rem;
+
+    background:#eef6ff;
+
+    border:1px solid #cfe4ff;
+
+    padding:1rem;
+
+    border-radius:16px;
+
+}
+
+.wallet-info i{
+
+    color:#2563eb;
+
+    margin-top:3px;
+
+    font-size:1.1rem;
+
+}
+
+.wallet-info p{
+
+    color:#374151;
+
+    font-size:.95rem;
+
+    line-height:1.5;
+
+}
+
+/*======================================
+SUBMIT BUTTON
+======================================*/
+
+.submit-btn{
+
+    width:100%;
+
+    min-height:56px;
+
+    margin-top:.5rem;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #ff9a31,
+        #ff6200);
+
+    color:#fff;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(255,98,0,.25);
+
+}
+
+/*======================================
+TABLETS
+======================================*/
+
+@media (min-width:768px){
+
+.form-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/*======================================
+LAPTOPS
+======================================*/
+
+@media (min-width:1024px){
+
+.form-grid{
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:2.5rem;
+
+}
+
+}
+
+/*======================================
+LARGE DESKTOP
+======================================*/
+
+@media (min-width:1440px){
+
+.escrow-form-section{
+
+    padding:2.5rem 3rem;
+
+}
+
+.form-grid{
+
+    gap:3rem;
+
+}
+
+}
+
+/*======================================
+RESPONSIVE SIDEBAR
+Mobile First
+======================================*/
+
+/* Hide mobile button on desktop */
+
+.sidebar-toggle{
+
+    display:none;
+
+}
+
+/*=============================
+TABLETS
+=============================*/
+
+@media (max-width:991px){
+
+.dashboard{
+
+    grid-template-columns:1fr;
+
+}
+
+/*--------------------
+Sidebar
+--------------------*/
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:-100%;
+
+    width:280px;
+
+    max-width:85vw;
+
+    height:100vh;
+
+    background:#fff;
+
+    z-index:1200;
+
+    transition:left .35s ease;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.18);
+
+    overflow-y:auto;
+
+}
+
+.sidebar.show{
+
+    left:0;
+
+}
+
+/*--------------------
+Content
+--------------------*/
+
+.dashboard-main{
+
+    width:100%;
+
+    min-width:0;
+
+}
+
+/*--------------------
+Header
+--------------------*/
+
+.dashboard-header{
+
+    padding:1rem;
+
+}
+
+.dashboard-header h1{
+
+    font-size:1.6rem;
+
+}
+
+/*--------------------
+User
+--------------------*/
+
+.user-box span{
+
+    display:none;
+
+}
+
+/*--------------------
+Toggle Button
+--------------------*/
+
+.sidebar-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#fff4ec;
+
+    color:var(--primary);
+
+    font-size:1.1rem;
+
+}
+
+/*--------------------
+Overlay
+--------------------*/
+
+.sidebar-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:1100;
+
+}
+
+.sidebar-overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+}
+
+/*=============================
+SMALL PHONES
+=============================*/
+
+@media (max-width:600px){
+
+.dashboard-header{
+
+    gap:1rem;
+
+}
+
+.dashboard-header h1{
+
+    font-size:1.35rem;
+
+}
+
+.breadcrumb{
+
+    font-size:.8rem;
+
+}
+
+.escrow-form-section{
+
+    padding:1rem;
+
+}
+
+.logo-box{
+
+    width:42px;
+
+    height:42px;
+
+}
+
+.sidebar{
+
+    width:260px;
+
+}
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+    font-size:16px;
+
+}
+
+/* Prevents iPhone zoom */
+
+.submit-btn{
+
+    min-height:54px;
+
+}
+
+}
+
+/*=============================
+EXTRA SMALL DEVICES
+=============================*/
+
+@media (max-width:360px){
+
+.dashboard-header{
+
+    padding:.8rem;
+
+}
+
+.user-box img{
+
+    width:38px;
+
+    height:38px;
+
+}
+
+.notify-btn{
+
+    width:40px;
+
+    height:40px;
+
+}
+
+.sidebar{
+
+    width:240px;
+
+}
+
+}
+
+/*=============================
+LARGE SCREENS
+=============================*/
+
+@media (min-width:1600px){
+
+.dashboard{
+
+    grid-template-columns:300px 1fr;
+
+}
+
+.dashboard-header{
+
+    padding:2rem 3rem;
+
+}
+
+.escrow-form-section{
+
+    padding:3rem;
+
+}
+
+}
+
+/*======================================
+GLOBAL RESPONSIVE FIXES
+======================================*/
+
+*{
+
+    min-width:0;
+
+}
+
+.dashboard,
+
+.dashboard-main,
+
+.form-grid,
+
+.form-column{
+
+    min-width:0;
+
+}
+
+input,
+
+select,
+
+textarea,
+
+button{
+
+    max-width:100%;
+
+}
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+body{
+
+    overflow-x:hidden;
+
+}
+
+
+/*======================================
+HEADER LEFT
+======================================*/
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+}
+
+/*======================================
+DESKTOP
+======================================*/
+
+@media (min-width:992px){
+
+.sidebar-toggle{
+
+display:none;
+
+}
+
+.sidebar-overlay{
+
+display:none;
+
+}
+
+}
+
+/*======================================
+MOBILE
+======================================*/
+
+@media (max-width:991px){
+
+.header-left{
+
+flex:1;
+
+}
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#f8fafc;
+}
+
+:root{
+--primary:#ff7b00;
+...
+}
+
+.container{...}
+
+.logo-box{...}
+
+button{
+border:none;
+cursor: none;
+}
+
+a{
+text-decoration:none;
+}
+
+ul{
+list-style:none;
+}
+
+
+/* ===============================
+MODERN FLOATING BOTTOM NAV
+=============================== */
+
+.dashboard-main{
+    padding-bottom:110px;
+}
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:18px;
+
+    width:calc(100% - 28px);
+
+    max-width:560px;
+
+    height:74px;
+
+    background:rgba(255,255,255,.88);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    border-radius:26px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.08),
+    0 2px 10px rgba(0,0,0,.05);
+
+    z-index:5000;
+
+    padding:0 8px;
+
+    padding-bottom:env(safe-area-inset-bottom);
+}
+
+.bottom-nav a{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#9ca3af;
+
+    transition:.35s;
+
+    gap:5px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.nav-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.35s;
+
+}
+
+.nav-icon i{
+
+    font-size:20px;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#ff7b00;
+
+}
+
+.bottom-nav a:hover .nav-icon{
+
+    transform:translateY(-2px);
+
+}
+
+.bottom-nav a.active{
+
+    color:#ff7b00;
+
+}
+
+.bottom-nav a.active .nav-icon{
+
+    background:linear-gradient(
+        135deg,
+        #ff9d2f,
+        #ff6200);
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 24px rgba(255,98,0,.35);
+
+    transform:translateY(-12px) scale(1.05);
+
+}
+
+.bottom-nav a.active span{
+
+    margin-top:-6px;
+
+}
+
+.bottom-nav a:active{
+
+    transform:scale(.95);
+
+}
+
+/* Small notification badge */
+
+.nav-badge{
+
+    position:absolute;
+
+    top:8px;
+
+    right:16px;
+
+    width:9px;
+
+    height:9px;
+
+    background:#ff3b30;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+}
+
+/* Desktop */
+
+@media(min-width:992px){
+
+.bottom-nav{
+
+    max-width:620px;
+
+}
+
+}
+
+/* Small phones */
+
+@media(max-width:420px){
+
+.bottom-nav{
+
+    width:calc(100% - 18px);
+
+    height:70px;
+
+    border-radius:22px;
+
+}
+
+.nav-icon{
+
+    width:40px;
+
+    height:40px;
+
+}
+
+.nav-icon i{
+
+    font-size:18px;
+
+}
+
+.bottom-nav span{
+
+    font-size:10px;
+
+}
+
+}
+
+a {
+    cursor: none;
+}
+</style>
+
+<body>
+
+<nav class="bottom-nav">
+
+    <a href="dispute.html">
+        <div class="nav-icon">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 640 640"><path d="M73 39.1C63.6 29.7 48.4 29.7 39.1 39.1C29.8 48.5 29.7 63.7 39 73.1L567 601.1C576.4 610.5 591.6 610.5 600.9 601.1C610.2 591.7 610.3 576.5 600.9 567.2L312.9 279.2L327.1 265C331.3 260.8 336.6 258.5 342 258.1C348.8 257.5 355.8 259.8 361 265L537.6 440L608 384L608 96L496 160L472.2 144.1C456.4 133.6 437.9 128 418.9 128L348.5 128C347.4 128 346.2 128 345.1 128.1C328.2 129 312.3 136.6 300.9 149.2L245.1 211.3L211.1 177.3L255.4 128.1L215.7 128.1C200.4 128.1 185.6 131.7 172.2 138.5L73 39.1zM32 133.8L32 384L188.4 514.3C211.4 533.5 240.4 544 270.3 544L286 544L279 537C269.6 527.6 269.6 512.4 279 503.1C288.4 493.8 303.6 493.7 312.9 503.1L353.9 544.1L362.9 544.1C385.1 544.1 406.7 538.3 425.7 527.7L32 133.8z"/></svg>
+            </div>
+        <span>Dispute</span>
+    </a>
+
+    <a href="create-escrow.html" class="active">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
+  <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
+</svg>
+        </div>
+        <span>Create</span>
+    </a>
+
+    <a href="dashboard.html">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-check" viewBox="0 0 16 16">
+  <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708z"/>
+  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.707l.547.547 1.17-1.951a.5.5 0 1 1 .858.514"/>
+</svg>
+        </div>
+        <span>Escrows</span>
+    </a>
+
+    <a href="#">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
+  <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584l.013-.012.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354-.012.012A6.97 6.97 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/>
+</svg>
+        </div>
+        <span>Alerts</span>
+    </a>
+
+    <a href="#">
+        <div class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-exclamation" viewBox="0 0 16 16">
+  <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+  <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+</svg>
+        </div>
+        
+        <span>Profile</span>
+    </a>
+
+</nav>
+
+<div class="sidebar-overlay"></div>
+    
+<div class="dashboard">
+
+
+<!-- =======================
+MAIN CONTENT
+======================= -->
+
+<div class="dashboard-main">
+
+<!-- HEADER -->
+
+<header class="dashboard-header">
+
+<div class="header-left">
+
+
+<div>
+
+<h1>Create Escrow</h1>
+
+
+
+</div>
+
+</div>
+
+<div class="header-user">
+
+<button class="notify-btn">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+</svg>
+
+</button>
+
+<div class="user-box">
+
+<img src="img/profile.jpeg" alt="">
+
+<span>John Doe</span>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- FORM -->
+
+<section class="escrow-form-section">
+
+<form class="escrow-form">
+
+<div class="form-grid">
+
+<!-- LEFT COLUMN -->
+
+<div class="form-column">
+
+<div class="form-group">
+
+<label>Your Name</label>
+
+<input
+type="text"
+placeholder="John Doe">
+
+</div>
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+placeholder="john@example.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Select Cryptocurrency</label>
+
+<select>
+
+<option>USDT (Tether)</option>
+
+<option>Bitcoin (BTC)</option>
+
+<option>Ethereum (ETH)</option>
+
+<option>BNB</option>
+
+<option>Solana (SOL)</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Payment Amount</label>
+
+<input
+type="number"
+placeholder="1250">
+
+</div>
+
+<div class="form-group">
+
+<label>Network</label>
+
+<select>
+
+<option>Ethereum (ERC20)</option>
+
+<option>TRON (TRC20)</option>
+
+<option>BSC (BEP20)</option>
+
+<option>Solana</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Escrow Expiration</label>
+
+<select>
+
+<option>1 Day</option>
+
+<option>3 Days</option>
+
+<option>7 Days</option>
+
+<option>14 Days</option>
+
+<option>30 Days</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- RIGHT COLUMN -->
+
+<div class="form-column">
+
+<div class="form-group">
+
+<label>Release Condition</label>
+
+<select>
+
+<option>Goods Delivered</option>
+
+<option>Service Completed</option>
+
+<option>Buyer Approval</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea
+rows="6"
+placeholder="Describe this transaction..."></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Reference Number <a>(Optional)</a></label>
+
+<input
+type="text"
+placeholder="INV-2044">
+
+</div>
+
+<div class="wallet-info">
+
+<i class="fa-solid fa-circle-info"></i>
+
+<p>
+
+You'll connect your wallet after creating the escrow.
+
+</p>
+
+</div>
+
+<button class="submit-btn" type="submit"><a href="escrow-details.html">Create Escrow</a></button>
+
+</div>
+
+</div>
+
+</form>
+
+</section>
+
+</div>
+
+</div>
+
+<script>
+ 
+ 
+    
+</script>
+
+</body>
+
+</html>

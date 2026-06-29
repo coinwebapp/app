@@ -1,0 +1,1098 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Complete Payment | MetaEscrow</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+    /*==================================================
+    COMPLETE PAYMENT PAGE
+==================================================*/
+
+:root{
+
+    --primary:#ff8a00;
+    --primary-dark:#ff6b00;
+
+    --success:#22c55e;
+
+    --text:#111827;
+
+    --muted:#6b7280;
+
+    --border:#e5e7eb;
+
+    --background:#f6f7fb;
+
+    --white:#ffffff;
+
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+
+    --radius:20px;
+
+    --transition:.35s ease;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+}
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor: none;
+
+    font-family:inherit;
+
+}
+
+input{
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+/*==================================================
+PAGE
+==================================================*/
+
+.payment-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+}
+
+.payment-container{
+
+    width:100%;
+
+    max-width:1400px;
+
+    background:var(--white);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/*==================================================
+HEADER
+==================================================*/
+
+.payment-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.back-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    transition:var(--transition);
+    
+    cursor: none;
+
+}
+
+.back-btn:hover{
+
+    color:var(--primary);
+
+}
+
+.back-btn i{
+
+    font-size:18px;
+
+}
+
+.escrow-number{
+
+    font-weight:700;
+
+    font-size:1rem;
+
+    color:var(--muted);
+
+}
+
+/*==================================================
+TITLE
+==================================================*/
+
+.payment-title{
+
+    margin-bottom:35px;
+
+}
+
+.payment-title h1{
+
+    font-size:clamp(2rem,3vw,3rem);
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+/*==================================================
+PAYMENT GRID
+==================================================*/
+
+.payment-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:32px;
+
+    align-items:start;
+
+    margin-bottom:35px;
+
+}
+
+/*==================================================
+PAYMENT CARD
+==================================================*/
+
+.payment-card{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.payment-summary{
+
+    padding:30px;
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #f1f5f9;
+
+}
+
+.summary-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.summary-row span{
+
+    color:var(--muted);
+
+    font-size:15px;
+
+}
+
+.summary-row strong{
+
+    color:var(--text);
+
+    font-size:16px;
+
+    font-weight:600;
+
+    text-align:right;
+
+}
+
+.summary-row.total{
+
+    margin-top:5px;
+
+}
+
+.summary-row.total strong{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+/*==================================================
+NETWORK
+==================================================*/
+
+.network-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:22px 30px;
+
+    border-top:1px solid var(--border);
+
+    border-bottom:1px solid var(--border);
+
+    background:#fcfcfd;
+
+}
+
+.network-box span{
+
+    color:var(--muted);
+
+}
+
+.network-box strong{
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+/*==================================================
+WALLET
+==================================================*/
+
+.wallet-section{
+
+    padding:30px;
+
+}
+
+.wallet-section label{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+    color:var(--muted);
+
+}
+
+.wallet-box{
+
+    display:flex;
+
+    align-items:center;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    background:#fafafa;
+
+}
+
+.wallet-box input{
+
+    flex:1;
+
+    border:none;
+
+    background:transparent;
+
+    padding:18px;
+
+    font-size:15px;
+
+    color:var(--text);
+
+}
+
+.wallet-box button{
+
+    width:64px;
+
+    height:58px;
+
+    background:#fff;
+
+    border-left:1px solid var(--border);
+
+    transition:var(--transition);
+
+}
+
+.wallet-box button:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==================================================
+QR CARD
+==================================================*/
+
+.qr-payment-card{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.qr-wrapper{
+
+    width:220px;
+
+    height:220px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:16px;
+
+    margin-bottom:18px;
+
+}
+
+.qr-wrapper img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+.qr-payment-card p{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:var(--muted);
+
+}
+
+/*==================================================
+PAYMENT ACTIONS
+==================================================*/
+
+.payment-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.payment-actions button{
+
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.payment-actions button i{
+
+    font-size:18px;
+
+}
+
+.payment-actions button img{
+
+    width:24px;
+
+    height:24px;
+
+    object-fit:contain;
+
+}
+
+/*==================================================
+COPY BUTTON
+==================================================*/
+
+.outline-btn{
+
+    background:#fff;
+
+    border:2px solid var(--border);
+
+    color:var(--text);
+
+}
+
+.outline-btn:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+/*==================================================
+METAMASK BUTTON
+==================================================*/
+
+.metamask-btn{
+
+    background:#f97316;
+
+    color:#fff;
+
+}
+
+.metamask-btn:hover{
+
+    background:#ea580c;
+
+    transform:translateY(-2px);
+
+}
+
+/*==================================================
+PAID BUTTON
+==================================================*/
+
+.paid-btn{
+
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+
+    color:#fff;
+
+    box-shadow:0 10px 25px rgba(255,138,0,.25);
+
+}
+
+.paid-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 35px rgba(255,138,0,.35);
+
+}
+
+.paid-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/*==================================================
+NOTICE
+==================================================*/
+
+.payment-note{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    padding:24px;
+
+    background:#fff7ed;
+
+    border:1px solid #fed7aa;
+
+    border-radius:18px;
+
+}
+
+.payment-note i{
+
+    color:var(--primary);
+
+    font-size:24px;
+
+    margin-top:2px;
+
+    flex-shrink:0;
+
+}
+
+.payment-note p{
+
+    color:#7c2d12;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+/*==================================================
+TABLET
+==================================================*/
+
+@media(max-width:992px){
+
+    .payment-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .qr-payment-card{
+
+        max-width:400px;
+
+        margin:auto;
+
+        width:100%;
+
+    }
+
+}
+
+/*==================================================
+MOBILE
+==================================================*/
+
+@media(max-width:768px){
+
+    .payment-page{
+
+        padding:20px;
+
+    }
+
+    .payment-container{
+
+        padding:24px;
+
+        border-radius:20px;
+
+    }
+
+    .payment-actions{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .payment-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .network-box{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .summary-row{
+
+        flex-direction:column;
+
+        gap:8px;
+
+    }
+
+    .summary-row strong{
+
+        text-align:left;
+
+    }
+
+    .wallet-box{
+
+        flex-direction:column;
+
+    }
+
+    .wallet-box input{
+
+        width:100%;
+
+        word-break:break-all;
+
+    }
+
+    .wallet-box button{
+
+        width:100%;
+
+        border-left:none;
+
+        border-top:1px solid var(--border);
+
+    }
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media(max-width:480px){
+
+    .payment-page{
+
+        padding:14px;
+
+    }
+
+    .payment-container{
+
+        padding:18px;
+
+    }
+
+    .payment-title h1{
+
+        font-size:1.8rem;
+
+    }
+
+    .qr-wrapper{
+
+        width:180px;
+
+        height:180px;
+
+    }
+
+    .payment-actions button{
+
+        height:56px;
+
+        font-size:15px;
+
+    }
+
+    .summary-row.total strong{
+
+        font-size:20px;
+
+    }
+
+}
+
+/*==================================================
+LARGE DESKTOP
+==================================================*/
+
+@media(min-width:1600px){
+
+    .payment-container{
+
+        max-width:1500px;
+
+    }
+
+}
+
+.toast{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    background:#111827;
+
+    color:#fff;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:.3s;
+
+    z-index:99999;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+@media(max-width:768px){
+
+.toast{
+
+left:15px;
+
+right:15px;
+
+top:15px;
+
+text-align:center;
+
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="payment-page">
+
+<div class="payment-container">
+
+<!--==========================
+TOP BAR
+===========================-->
+
+<div class="payment-header">
+
+<a href="javascript:history.back()"
+class="back-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+<span>Back</span>
+
+</a>
+
+<div class="escrow-number">
+
+ME-2024-000123
+
+</div>
+
+</div>
+
+<!--==========================
+TITLE
+===========================-->
+
+<div class="payment-title">
+
+</div>
+
+<!--==========================
+CONTENT
+===========================-->
+
+<div class="payment-grid">
+    
+    <!--==================================
+PAYMENT DETAILS
+===================================-->
+
+<div class="payment-card">
+
+    <div class="payment-summary">
+
+        <strong>
+
+            Ethereum (ERC20)
+
+        </strong>
+
+    </div>
+
+    <div class="wallet-section">
+
+        <label>
+
+            Send Payment To
+
+        </label>
+
+        <div class="wallet-box">
+
+            <input
+
+                id="walletAddress"
+
+                type="text"
+
+                readonly
+
+                value="0xA1b2C3d4E5f6077hAi9J0k1L2m3N4o5P6q7R8s9t0">
+
+            <button id="copyAddress">
+
+                <i class="fa-regular fa-copy"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--==================================
+QR CODE
+===================================-->
+
+<div class="qr-payment-card">
+
+    <div class="qr-wrapper">
+
+        <img
+
+        src="images/qrcode.png"
+
+        alt="QR Code">
+
+    </div>
+
+    <p>
+
+        Scan to Pay
+
+    </p>
+
+</div>
+
+</div>
+
+<!--==================================
+BOTTOM BUTTONS
+===================================-->
+
+<div class="payment-actions">
+
+    <button
+    id="copyWallet"
+    class="outline-btn">
+
+        <i class="fa-regular fa-copy"></i>
+
+        <span>
+
+            Copy Address
+
+        </span>
+
+    </button>
+
+    <button
+    class="metamask-btn">
+
+        <img
+
+        src="images/metamask.png"
+
+        alt="MetaMask">
+
+        <span>
+
+            Open in MetaMask
+
+        </span>
+
+    </button>
+
+    <button
+    id="paidButton"
+    class="paid-btn">
+
+        I've Paid
+
+    </button>
+
+</div>
+
+
+<!--==========================
+FOOTER NOTE
+===========================-->
+
+<div class="payment-note">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <p>
+
+        Send the exact amount shown above using the selected network. Once your payment is detected on the blockchain, your escrow status will automatically update. This may take a few minutes depending on network confirmations.
+
+    </p>
+
+  </div>
+
+</div>
+
+    </div>
+
+  </body>
+
+</html>
