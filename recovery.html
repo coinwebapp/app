@@ -24,15 +24,15 @@
         content="Internet Identity is the authentication service on ICP enabling real privacy, with quick, safe and hassle-free sign-in">
     <meta name="twitter:creator" content="@dfinity">
     <link rel="canonical" href="https://id.ai/">
-    <link href="_app/immutable/entry/start.C8PT4JNW.js" rel="modulepreload">
-    <link href="_app/immutable/entry/app.DjVQbkFH.js" rel="modulepreload">
+    <link href="start.C8PT4JNW.js" rel="modulepreload">
+    <link href="app.DjVQbkFH.js" rel="modulepreload">
 
-    <link href="_app/immutable/assets/start.CiSFHvU4.css" rel="stylesheet">
-    <link rel="preload" href="_app/immutable/assets/app.Dx4Fx7mQ.css" as="style">
-    <link rel="preload" href="_app/immutable/assets/app.fO60Y_U1.css" as="style">
-    <link rel="preload" href="_app/immutable/assets/main.C0unZbUb.css" as="style">
-    <link rel="preload" href="_app/immutable/assets/main.CxLon_RZ.css" as="style">
-    <link rel="preload" href="_app/immutable/assets/start.CiSFHvU4.css" as="style">
+    <link href="start.CiSFHvU4.css" rel="stylesheet">
+    <link rel="preload" href="app.Dx4Fx7mQ.css" as="style">
+    <link rel="preload" href="app.fO60Y_U1.css" as="style">
+    <link rel="preload" href="main.C0unZbUb.css" as="style">
+    <link rel="preload" href="main.CxLon_RZ.css" as="style">
+    <link rel="preload" href="start.CiSFHvU4.css" as="style">
     <link rel="preload" href="https://backend.id.ai/.config.did.bin" crossorigin="anonymous" fetchpriority="high"
         as="fetch"><!---->
     <link rel="stylesheet" href="https://id.ai/_app/immutable/assets/app.fO60Y_U1.css">
@@ -51,8 +51,8 @@
                 const element = document.currentScript.parentElement;
 
                 Promise.all([
-                    import("./_app/immutable/entry/start.C8PT4JNW.js"),
-                    import("./_app/immutable/entry/app.DjVQbkFH.js")
+                    import("start.C8PT4JNW.js"),
+                    import("app.DjVQbkFH.js")
                 ]).then(([kit, app]) => {
                     kit.start(app, element);
                 });
