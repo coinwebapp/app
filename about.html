@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://id.ai/favicon.svg">
+    <title>Internet Identity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description"
+        content="Internet Identity is the authentication service on ICP enabling real privacy, with quick, safe and hassle-free sign-in">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords"
+        content="Internet Identity, Internet Computer, ICP, DFINITY, authentication, digital identity, blockchain identity, decentralized identity, Web3 authentication, passwordless login, biometric authentication, secure login, privacy-focused identity, decentralized authentication, blockchain security, Web3 identity, cryptographic identity">
+    <meta property="og:title" content="Internet Identity">
+    <meta property="og:description"
+        content="Internet Identity is the authentication service on ICP enabling real privacy, with quick, safe and hassle-free sign-in">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://id.ai/">
+    <meta property="og:image" content="https://id.ai/social-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://id.ai/social-image.png">
+    <meta name="twitter:title" content="Internet Identity">
+    <meta name="twitter:description"
+        content="Internet Identity is the authentication service on ICP enabling real privacy, with quick, safe and hassle-free sign-in">
+    <meta name="twitter:creator" content="@dfinity">
+    <link rel="canonical" href="https://id.ai/">
+    <link href="start.C8PT4JNW.js" rel="modulepreload">
+    <link href="app.DjVQbkFH.js" rel="modulepreload">
+    <link href="0.BbDP1S-R.js" rel="modulepreload">
+    <link href="2.Q8j-UQZ3.js" rel="modulepreload">
+    <link href="8.C6J5MzR1.js" rel="modulepreload">
+    <!--[-1--><!--]--><!---->
+    <link rel="stylesheet" href="app.Dx4Fx7mQ.css"><!---->
+    <link href="start.CiSFHvU4.css" rel="stylesheet">
+    <link rel="preload" href="app.Dx4Fx7mQ.css" as="style">
+    <link rel="preload" href="app.fO60Y_U1.css" as="style">
+    <link rel="preload" href="main.C0unZbUb.css" as="style">
+    <link rel="preload" href="main.CxLon_RZ.css" as="style">
+    <link rel="preload" href="start.CiSFHvU4.css" as="style">
+    <link rel="preload" href="https://backend.id.ai/.config.did.bin" crossorigin="anonymous" fetchpriority="high"
+        as="fetch">
+</head>
+
+<body data-canister-id="rdmx6-jaaaa-aaaaa-aaadq-cai"
+    data-canister-config="RElETA9sCaeDzEAB7qbVhAECyLTG7AJo273ygggEuazFqgsC8bPDhA1xlqK0hg0Bn7iCyg4JvqPRww8Mbn5uA21xbgVuBmsB9YiMlwEHbATE4oLsAgjf4P+ZBgG06Y7nCQHtgPiIDQhucW4KbgtsAYGxg6gDfm4NbQ5sAgBxAX4BAAABAxNodHRwczovL2NhZmZlaW5lLmFpEGh0dHBzOi8vb2lzeS5jb20OaHR0cHM6Ly9vYy5hcHABCgAAAAAAAAAHAQEBAQABHWlkZW50aXR5LmludGVybmV0Y29tcHV0ZXIub3JnAAAAAQUNaHR0cHM6Ly9pZC5haRhodHRwczovL2lkZW50aXR5LmljMC5hcHAlaHR0cHM6Ly9pZGVudGl0eS5pbnRlcm5ldGNvbXB1dGVyLm9yZxhodHRwczovL2lkZW50aXR5LmljcDAuaW8YaHR0cHM6Ly9pZGVudGl0eS5pY3AubmV0FWh0dHBzOi8vYmFja2VuZC5pZC5haQAAAA=="
+    data-sveltekit-preload-data="hover">
+    <div style="display: contents"><!--[--><!--[0--><!--[--><!--[0--><!--[--><!--[-1--><!--[-->
+        <div class="flex min-h-[100dvh] flex-col">
+            <div class="absolute top-0 right-0 left-0 -z-1 h-[640px] max-md:hidden">
+                <div aria-hidden="true" class="h-[640px] absolute inset-0
+    -z-50 w-full select-none"><canvas class="block h-full w-full" width="1197" height="960"
+                        style="opacity: 1;"></canvas></div><!---->
+                <div
+                    class="from-bg-primary pointer-events-none absolute right-0 bottom-0 left-0 h-[200px] bg-gradient-to-t to-transparent">
+                </div>
+            </div>
+            <div class="h-[env(safe-area-inset-top)]"></div>
+            <header
+                class="from-bg-primary flex h-16 flex-row items-center bg-gradient-to-b to-transparent px-4 md:px-6 lg:px-8">
+                <a href="/" dir="ltr" aria-label="Internet Identity"><svg viewBox="0 0 46 22"
+                        class="text-fg-primary h-5.5">
+                        <path
+                            d="M45.9992 11C45.9992 4.93463 40.9792 0 34.8188 0C32.2505 0 29.4539 1.33375 26.4911 3.96324C25.0903 5.2064 23.8757 6.5361 22.9637 7.60537C19.7613 3.99235 15.4664 0 11.1804 0C5.99986 0 1.4822 3.63324 0.306661 8.44735C0.308259 8.44331 0.309856 8.43765 0.311453 8.43199C0.309856 8.43765 0.308259 8.4425 0.306661 8.44735C0.106213 9.2675 0 10.1224 0 11C0 17.0654 4.94012 22 11.1005 22C13.6688 22 16.5453 20.6663 19.5081 18.0368C20.9089 16.7936 22.1235 15.4639 23.0355 14.3946C26.2379 18.0076 30.5336 22 34.8196 22C40.0001 22 44.5178 18.3668 45.6933 13.5535C45.8938 12.7333 46 11.8784 46 11.0008L45.9992 11ZM23.823 7.59404C24.8699 6.39779 25.9081 5.34147 26.9127 4.45015C29.7557 1.92662 32.4159 0.647059 34.8188 0.647059C40.6318 0.647059 45.3603 5.29132 45.3603 11C45.3603 11.8007 45.2653 12.6007 45.0768 13.3788C45.0465 13.4685 44.6592 14.5426 43.5555 15.5868C42.122 16.9432 40.179 17.6315 37.78 17.6324C40.3603 16.4968 42.1651 13.9457 42.1651 11C42.1651 6.99551 38.8693 3.73838 34.8188 3.73838C33.24 3.73838 31.3074 4.74375 29.0721 6.72779C28.0667 7.62074 27.0485 8.67059 25.9736 9.92507L25.5519 10.4152L23.3917 8.07529L23.823 7.59485V7.59404ZM20.0017 11.1084C19.1488 12.134 17.9189 13.5316 16.5054 14.7861C13.8716 17.1244 12.1594 17.6146 11.1804 17.6146C7.48605 17.6146 4.47294 14.647 4.47294 11C4.47294 7.35301 7.48286 4.40809 11.1804 4.38544C11.3145 4.38544 11.4766 4.39919 11.6731 4.43478C13.5785 5.17485 15.2804 6.35574 16.3082 7.30853C17.1347 8.07529 18.6321 9.64441 20.0009 11.1076L20.0017 11.1084ZM22.1762 14.406C21.1285 15.6022 20.0911 16.6585 19.0865 17.5499C16.2834 20.0378 13.5218 21.3529 11.1005 21.3529C8.29343 21.3529 5.66126 20.2732 3.68712 18.3126C1.72098 16.3601 0.638878 13.7629 0.638878 11C0.638878 10.1993 0.73471 9.39853 0.92238 8.62125C0.954324 8.52824 1.34164 7.45574 2.44371 6.41316C3.87719 5.05677 5.82018 4.36846 8.21916 4.36765C5.6389 5.50324 3.83407 8.05427 3.83407 11C3.83407 15.0045 7.12988 18.2616 11.1804 18.2616C12.7592 18.2616 14.6918 17.2563 16.9271 15.2722C17.9325 14.3793 18.9507 13.3294 20.0256 12.0749L20.4465 11.584C20.4465 11.584 22.5747 13.8891 22.5979 13.915L22.1754 14.406H22.1762ZM25.9975 10.8916C26.8504 9.86603 28.0803 8.46838 29.4938 7.2139C32.1276 4.87559 33.8398 4.38544 34.8188 4.38544C38.5131 4.38544 41.5263 7.35301 41.5263 11C41.5263 14.647 38.5163 17.5919 34.8188 17.6146C34.6847 17.6146 34.5226 17.6008 34.3253 17.5652C34.3269 17.5652 34.3277 17.566 34.3293 17.5668C32.4222 16.8268 30.7188 15.6451 29.6902 14.6915C28.8637 13.9247 27.3663 12.3556 25.9967 10.8924L25.9975 10.8916ZM45.6885 13.5648C45.6901 13.5607 45.6909 13.5559 45.6925 13.5526C45.6917 13.5559 45.6901 13.5607 45.6885 13.5648Z"
+                            class="fill-current"></path>
+                    </svg><!----></a></header>
+            <div class="flex h-[392px] w-full flex-row px-4 sm:h-[512px]">
+                <div class="fade-in flex w-full flex-col items-center justify-center opacity-0 svelte-9jqrib">
+                    <h1 class="text-text-disabled mb-2 text-center text-4xl md:text-5xl lg:text-7xl">Experience</h1>
+                    <div class="relative h-[40px] md:h-[48px] lg:h-[72px] w-full flex items-center justify-center mb-6">
+                        <p class="absolute text-4xl md:text-5xl lg:text-7xl text-text-primary">Internet Identity</p>
+                        <!---->
+                    </div><!---->
+                    <p class="text-text-tertiary mb-6 max-w-[600px] text-center text-base text-balance">
+                        <!----><!---->Internet Identity lets you access apps and services securely, without creating
+                        passwords, sharing personal data, or giving up control.<!----></p> <a href="https://openscan.website/"
+                        class="btn btn-xl">Get started</a>
+                </div>
+            </div>
+            <div class="overflow-x-auto px-4 pt-4 pb-8 sm:px-8">
+                <div class="flex min-w-[fit-content] flex-row flex-nowrap justify-center gap-4">
+                    <div
+                        class="border-bg-disabled from-bg-primary_alt to-bg-secondary flex w-[280px] flex-col rounded-xl border bg-gradient-to-b px-6 pt-5 pb-8 sm:w-[320px] lg:w-[394px]">
+                        <p class="text-text-tertiary text-sm uppercase">Easy access</p>
+                        <div class="grid h-[280px] place-items-center"><!----><svg viewBox="0 0 234 206" fill="none"
+                                class="max-w-[233px] [&amp;_stop:first-child]:[stop-color:var(--fg-tertiary)] [&amp;_stop:last-child]:[stop-color:var(--fg-primary)] dark:[&amp;_stop:first-child]:[stop-color:var(--fg-quaternary)] dark:[&amp;_stop:last-child]:[stop-color:var(--fg-quaternary_hover)]"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_14810_25746)">
+                                    <path
+                                        d="M84.9329 162.133H54.6728V141.972H107.993C111.398 164.572 101.441 187.27 81.3653 198.488C39.5265 221.836 -9.05845 183.888 3.2013 137.648C11.5691 106.04 46.9537 89.9765 76.8246 102.951C79.0625 103.927 91.0628 110.723 90.706 112.706L75.9814 127.372C51.1376 107.471 15.9151 129.648 23.9585 160.8C32.002 191.952 76.5003 191.562 84.9978 162.101L84.9329 162.133Z"
+                                        stroke="url(#paint0_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path d="M164.07 0.390137H122.555V42.4681H164.07V0.390137Z"
+                                        stroke="url(#paint1_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path d="M117.82 46.6304H76.3057V88.7084H117.82V46.6304Z"
+                                        stroke="url(#paint2_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path d="M164.07 46.6304H122.555V88.7084H164.07V46.6304Z"
+                                        stroke="url(#paint3_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path d="M117.82 0.390137H76.3057V42.4681H117.82V0.390137Z"
+                                        stroke="url(#paint4_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path
+                                        d="M230.169 121.812C210.255 131.014 213.174 159.402 233.315 166.426C231.92 170.458 230.266 174.393 228.19 178.1C225.304 183.205 217.877 193.091 212.752 195.692C203.314 200.537 197.736 193.188 188.752 192.83C178.178 192.408 171.238 201.35 161.118 194.879C133.031 176.897 127.031 106.561 169.843 111.406C175.973 112.089 182.232 116.609 187.487 116.251C191.054 115.991 193.844 113.357 197.119 112.186C208.601 107.992 223.228 111.634 230.169 121.812Z"
+                                        stroke="url(#paint5_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                    <path
+                                        d="M208.957 82.5627C209.865 96.903 199.324 109.552 184.632 109.357C182.913 95.1145 194.557 81.9448 208.957 82.5627Z"
+                                        stroke="url(#paint6_linear_14810_25746)" stroke-miterlimit="10"></path>
+                                </g>
+                                <defs>
+                                    <linearGradient id="paint0_linear_14810_25746" x1="54.9618" y1="98.4397"
+                                        x2="54.9618" y2="205.579" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_14810_25746" x1="143.312" y1="0.390137"
+                                        x2="143.312" y2="42.4681" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_14810_25746" x1="97.0629" y1="46.6304"
+                                        x2="97.0629" y2="88.7084" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_14810_25746" x1="143.312" y1="46.6304"
+                                        x2="143.312" y2="88.7084" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint4_linear_14810_25746" x1="97.0629" y1="0.390137"
+                                        x2="97.0629" y2="42.4681" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint5_linear_14810_25746" x1="186.099" y1="110.477"
+                                        x2="186.099" y2="197.339" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint6_linear_14810_25746" x1="196.737" y1="82.5417"
+                                        x2="196.737" y2="109.36" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <clipPath id="clip0_14810_25746">
+                                        <rect width="233" height="206" fill="white" transform="translate(0.833496)">
+                                        </rect>
+                                    </clipPath>
+                                </defs>
+                            </svg><!----></div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-text-primary text-xl">Sign in using familiar methods</p>
+                            <p class="text-text-tertiary text-base">Make sign-up and sign-in simple with Google, Apple,
+                                or Microsoft. The login you know with enhanced privacy.</p>
+                        </div>
+                    </div><!---->
+                    <div
+                        class="border-bg-disabled from-bg-primary_alt to-bg-secondary flex w-[280px] flex-col rounded-xl border bg-gradient-to-b px-6 pt-5 pb-8 sm:w-[320px] lg:w-[394px]">
+                        <p class="text-text-tertiary text-sm uppercase">Password-free</p>
+                        <div class="grid h-[280px] place-items-center"><!----><svg viewBox="0 0 264 190" fill="none"
+                                class="max-w-[264px] [&amp;_stop:first-child]:[stop-color:var(--fg-tertiary)] [&amp;_stop:last-child]:[stop-color:var(--fg-primary)] dark:[&amp;_stop:first-child]:[stop-color:var(--fg-quaternary)] dark:[&amp;_stop:last-child]:[stop-color:var(--fg-quaternary_hover)]"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M55.4193 69.2048H54.5108C46.8786 69.2048 43.0625 69.2048 40.1474 70.6902C37.5832 71.9967 35.4984 74.0814 34.1919 76.6457C32.7065 79.5608 32.7065 83.3769 32.7065 91.009V91.9176M55.4193 150.971H54.5108C46.8786 150.971 43.0625 150.971 40.1474 149.485C37.5832 148.179 35.4984 146.094 34.1919 143.53C32.7065 140.615 32.7065 136.799 32.7065 129.166V128.258M114.472 91.9176V91.009C114.472 83.3769 114.472 79.5608 112.987 76.6457C111.68 74.0814 109.596 71.9967 107.032 70.6902C104.116 69.2048 100.3 69.2048 92.6681 69.2048H91.7596M114.472 128.258V129.166C114.472 136.799 114.472 140.615 112.987 143.53C111.68 146.094 109.596 148.179 107.032 149.485C104.116 150.971 100.3 150.971 92.6681 150.971H91.7596M53.148 91.9176V98.7314M94.0309 91.9176V98.7314M69.0469 112.814C72.6809 112.814 75.8607 109.634 75.8607 106V91.9176M88.1265 124.624C79.9499 132.8 66.7765 132.8 58.5999 124.624"
+                                    stroke="url(#paint0_linear_14810_25760)" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <rect x="0.5" y="36.9983" width="148.223" height="148.223" rx="15.5"
+                                    stroke="url(#paint1_linear_14810_25760)"></rect>
+                                <path d="M179.591 143.406C179.591 143.406 175.255 134.182 178.987 122.862"
+                                    stroke="url(#paint2_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path d="M180.146 119.913C180.146 119.913 187.315 102.064 208.901 102.064"
+                                    stroke="url(#paint3_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path d="M238.788 133.465C238.788 133.465 240.015 107.407 212.32 102.333"
+                                    stroke="url(#paint4_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M182.731 150.483C183.255 148.275 183.834 144.882 183.598 140.753C183.411 137.472 182.872 136.64 182.715 133.795C182.635 132.316 182.409 127.159 184.92 121.688C187.597 115.854 192.058 112.567 194.364 111.112"
+                                    stroke="url(#paint5_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M197.443 109.446C199.114 108.675 207.01 105.245 216.377 108.351C225.119 111.249 229.316 117.902 230.488 119.949C232.478 123.421 233.14 127.652 233.796 131.04C234.311 133.707 234.563 135.969 234.692 137.578"
+                                    stroke="url(#paint6_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path d="M234.799 148.045C234.826 145.665 234.853 143.285 234.884 140.905"
+                                    stroke="url(#paint7_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M186.239 154.663C187.248 152.452 188.517 148.995 188.741 144.664C188.968 140.337 187.947 139.066 187.858 134.587C187.784 130.925 187.68 125.626 190.945 120.742C195.008 114.666 201.763 113.003 203.588 112.625C208.546 111.591 212.639 112.616 214.589 113.245"
+                                    stroke="url(#paint8_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M217.518 114.469C219.547 115.564 222.807 117.69 225.269 121.47C227.222 124.47 227.747 127.089 228.725 131.98C229.215 134.438 230.022 139.302 229.829 145.607C229.7 149.763 229.175 153.241 228.673 155.778"
+                                    stroke="url(#paint9_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M190.185 157.995C190.725 156.806 191.261 155.478 191.758 154.018C192.236 152.611 192.607 151.284 192.896 150.056"
+                                    stroke="url(#paint10_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M193.64 146.778C193.818 145.538 194.008 143.642 193.889 141.331C193.763 138.93 193.404 137.959 193.153 135.534C192.886 132.936 192.665 130.798 193.153 128.502C194.211 123.509 198.022 120.527 198.592 120.095C202.628 117.028 206.933 117.031 208.147 117.049C211.768 117.107 214.377 118.416 215.202 118.861C218.235 120.5 219.909 122.759 220.636 123.884"
+                                    stroke="url(#paint11_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M204.568 163.367C204.927 162.426 205.289 161.486 205.648 160.542C206.013 159.586 206.374 158.634 206.736 157.681"
+                                    stroke="url(#paint12_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M210.002 163.388C210.906 161.241 211.82 158.685 212.556 155.758C213.335 152.661 213.746 149.839 213.951 147.423"
+                                    stroke="url(#paint13_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M215.782 162.51C216.803 159.773 217.91 156.196 218.655 151.916C219.584 146.578 219.526 142.559 219.464 139.232C219.311 131.266 218.078 128.901 217.554 127.997C216.898 126.863 215.583 124.658 212.851 123.285C210.296 122.003 207.886 122.139 207.19 122.197C205.602 122.333 204.363 122.804 203.587 123.167"
+                                    stroke="url(#paint14_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M222.193 159.891C223.447 155.626 224.717 149.605 224.68 142.347C224.649 136.095 223.665 130.824 222.616 126.886"
+                                    stroke="url(#paint15_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M201.079 124.88C199.877 125.957 198.305 127.714 197.783 130.172C197.222 132.813 198.252 134.503 198.813 138.002C199.335 141.269 199.068 143.715 198.74 146.7C198.4 149.791 197.446 154.718 194.417 160.455"
+                                    stroke="url(#paint16_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M199.267 162.224C200.579 159.55 202.042 155.927 203.002 151.481C203.643 148.512 204.474 144.665 204.032 140.174C203.863 138.459 203.787 136.738 203.59 135.026C203.232 131.902 202.962 131.043 203.517 129.879C204.21 128.421 205.78 127.351 207.485 127.124C209.748 126.824 211.82 128.073 212.703 129.589C212.844 129.831 212.998 130.154 213.366 132.199C213.688 133.995 213.859 134.948 214.028 136.765C214.194 138.55 214.341 140.972 214.295 143.93"
+                                    stroke="url(#paint17_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <path
+                                    d="M207.558 154.798C208.291 151.456 208.913 147.265 208.953 142.42C208.99 138.11 208.558 134.33 207.997 131.23"
+                                    stroke="url(#paint18_linear_14810_25760)" stroke-miterlimit="10"
+                                    stroke-linecap="round"></path>
+                                <rect x="152.583" y="77.8359" width="110.917" height="110.917" rx="11.5"
+                                    stroke="url(#paint19_linear_14810_25760)"></rect>
+                                <rect x="152.583" y="1.24707" width="73.6113" height="73.6113" rx="7.5"
+                                    stroke="url(#paint20_linear_14810_25760)"></rect>
+                                <path d="M184.846 24.1826L175.519 33.509" stroke="url(#paint21_linear_14810_25760)"
+                                    stroke-linecap="round"></path>
+                                <path d="M203.259 42.5964L193.933 51.9228" stroke="url(#paint22_linear_14810_25760)"
+                                    stroke-linecap="round"></path>
+                                <path d="M183.171 38.0527H176.953" stroke="url(#paint23_linear_14810_25760)"
+                                    stroke-linecap="round"></path>
+                                <path d="M201.824 38.0527H195.607" stroke="url(#paint24_linear_14810_25760)"
+                                    stroke-linecap="round"></path>
+                                <circle cx="170.975" cy="38.0528" r="2.84794" stroke="url(#paint25_linear_14810_25760)">
+                                </circle>
+                                <circle cx="189.388" cy="38.0528" r="2.84794" stroke="url(#paint26_linear_14810_25760)">
+                                </circle>
+                                <circle cx="207.802" cy="38.0528" r="2.84794" stroke="url(#paint27_linear_14810_25760)">
+                                </circle>
+                                <circle cx="170.975" cy="56.4664" r="2.84794" stroke="url(#paint28_linear_14810_25760)">
+                                </circle>
+                                <circle cx="189.388" cy="56.4664" r="2.84794" stroke="url(#paint29_linear_14810_25760)">
+                                </circle>
+                                <circle cx="207.802" cy="56.4664" r="2.84794" stroke="url(#paint30_linear_14810_25760)">
+                                </circle>
+                                <circle cx="170.975" cy="19.6392" r="2.84794" stroke="url(#paint31_linear_14810_25760)">
+                                </circle>
+                                <circle cx="189.388" cy="19.6392" r="2.84794" stroke="url(#paint32_linear_14810_25760)">
+                                </circle>
+                                <circle cx="207.802" cy="19.6392" r="2.84794" stroke="url(#paint33_linear_14810_25760)">
+                                </circle>
+                                <defs>
+                                    <linearGradient id="paint0_linear_14810_25760" x1="73.5894" y1="69.2048"
+                                        x2="73.5894" y2="150.971" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_14810_25760" x1="74.6113" y1="36.4983"
+                                        x2="74.6113" y2="185.721" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_14810_25760" x1="178.531" y1="122.862"
+                                        x2="178.531" y2="143.406" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_14810_25760" x1="194.524" y1="102.064"
+                                        x2="194.524" y2="119.913" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint4_linear_14810_25760" x1="225.558" y1="102.333"
+                                        x2="225.558" y2="133.465" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint5_linear_14810_25760" x1="188.518" y1="111.112"
+                                        x2="188.518" y2="150.483" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint6_linear_14810_25760" x1="216.067" y1="107.072"
+                                        x2="216.067" y2="137.578" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint7_linear_14810_25760" x1="234.841" y1="140.905"
+                                        x2="234.841" y2="148.045" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint8_linear_14810_25760" x1="200.414" y1="112.184"
+                                        x2="200.414" y2="154.663" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint9_linear_14810_25760" x1="223.688" y1="114.469"
+                                        x2="223.688" y2="155.778" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint10_linear_14810_25760" x1="191.54" y1="150.056" x2="191.54"
+                                        y2="157.995" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint11_linear_14810_25760" x1="206.75" y1="117.047" x2="206.75"
+                                        y2="146.778" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint12_linear_14810_25760" x1="205.652" y1="157.681"
+                                        x2="205.652" y2="163.367" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint13_linear_14810_25760" x1="211.977" y1="147.423"
+                                        x2="211.977" y2="163.388" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint14_linear_14810_25760" x1="211.541" y1="122.162"
+                                        x2="211.541" y2="162.51" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint15_linear_14810_25760" x1="223.437" y1="126.886"
+                                        x2="223.437" y2="159.891" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint16_linear_14810_25760" x1="197.748" y1="124.88"
+                                        x2="197.748" y2="160.455" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint17_linear_14810_25760" x1="206.785" y1="127.079"
+                                        x2="206.785" y2="162.224" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint18_linear_14810_25760" x1="208.257" y1="131.23"
+                                        x2="208.257" y2="154.798" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint19_linear_14810_25760" x1="208.041" y1="77.3359"
+                                        x2="208.041" y2="189.253" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint20_linear_14810_25760" x1="189.388" y1="0.74707"
+                                        x2="189.388" y2="75.3584" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint21_linear_14810_25760" x1="185.199" y1="24.5362"
+                                        x2="175.873" y2="33.8626" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint22_linear_14810_25760" x1="203.613" y1="42.95" x2="194.286"
+                                        y2="52.2764" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint23_linear_14810_25760" x1="183.171" y1="38.5527"
+                                        x2="176.953" y2="38.5527" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint24_linear_14810_25760" x1="201.824" y1="38.5527"
+                                        x2="195.607" y2="38.5527" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint25_linear_14810_25760" x1="170.975" y1="34.7048"
+                                        x2="170.975" y2="41.4007" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint26_linear_14810_25760" x1="189.388" y1="34.7048"
+                                        x2="189.388" y2="41.4007" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint27_linear_14810_25760" x1="207.802" y1="34.7048"
+                                        x2="207.802" y2="41.4007" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint28_linear_14810_25760" x1="170.975" y1="53.1184"
+                                        x2="170.975" y2="59.8143" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint29_linear_14810_25760" x1="189.388" y1="53.1184"
+                                        x2="189.388" y2="59.8143" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint30_linear_14810_25760" x1="207.802" y1="53.1184"
+                                        x2="207.802" y2="59.8143" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint31_linear_14810_25760" x1="170.975" y1="16.2913"
+                                        x2="170.975" y2="22.9871" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint32_linear_14810_25760" x1="189.388" y1="16.2913"
+                                        x2="189.388" y2="22.9871" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint33_linear_14810_25760" x1="207.802" y1="16.2913"
+                                        x2="207.802" y2="22.9871" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg><!----></div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-text-primary text-xl">Discoverable passkeys</p>
+                            <p class="text-text-tertiary text-base">Forget about remembering complicated usernames and
+                                passwords. With passkeys, you simply pick your name to log in. Quick, safe, and
+                                hassle-free.</p>
+                        </div>
+                    </div><!---->
+                    <div
+                        class="border-bg-disabled from-bg-primary_alt to-bg-secondary flex w-[280px] flex-col rounded-xl border bg-gradient-to-b px-6 pt-5 pb-8 sm:w-[320px] lg:w-[394px]">
+                        <p class="text-text-tertiary text-sm uppercase">Full control</p>
+                        <div class="grid h-[280px] place-items-center"><!----><svg viewBox="0 0 171 216" fill="none"
+                                class="max-w-[170px] [&amp;_stop:first-child]:[stop-color:var(--fg-tertiary)] [&amp;_stop:last-child]:[stop-color:var(--fg-primary)] dark:[&amp;_stop:first-child]:[stop-color:var(--fg-quaternary)] dark:[&amp;_stop:last-child]:[stop-color:var(--fg-quaternary_hover)]"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g opacity="0.3">
+                                    <mask id="path-1-inside-1_14810_25790" fill="white">
+                                        <path
+                                            d="M110.196 163.245C133.86 163.245 155.293 172.798 170.849 188.256V216H49.5337V188.266C65.0908 172.802 86.5271 163.245 110.196 163.245ZM110.192 104C123.436 104 134.172 114.737 134.172 127.981C134.172 141.225 123.436 151.961 110.192 151.961C96.9477 151.961 86.2107 141.225 86.2104 127.981C86.2104 114.737 96.9475 104 110.192 104Z">
+                                        </path>
+                                    </mask>
+                                    <path
+                                        d="M110.196 163.245L110.196 162.245H110.196L110.196 163.245ZM170.849 188.256H171.849V187.84L171.554 187.547L170.849 188.256ZM170.849 216V217H171.849V216H170.849ZM49.5337 216H48.5337V217H49.5337V216ZM49.5337 188.266L48.8287 187.557L48.5337 187.85V188.266H49.5337ZM110.192 104L110.192 103H110.192V104ZM134.172 127.981L135.172 127.981V127.981H134.172ZM110.192 151.961V152.961H110.192L110.192 151.961ZM86.2104 127.981H85.2104V127.981L86.2104 127.981ZM110.196 163.245L110.196 164.245C133.585 164.245 154.768 173.685 170.144 188.966L170.849 188.256L171.554 187.547C155.818 171.91 134.134 162.245 110.196 162.245L110.196 163.245ZM170.849 188.256H169.849V216H170.849H171.849V188.256H170.849ZM170.849 216V215H49.5337V216V217H170.849V216ZM49.5337 216H50.5337V188.266H49.5337H48.5337V216H49.5337ZM49.5337 188.266L50.2387 188.975C65.6161 173.69 86.8019 164.245 110.196 164.245L110.196 163.245L110.196 162.245C86.2523 162.245 64.5655 171.914 48.8287 187.557L49.5337 188.266ZM110.192 104L110.192 105C122.884 105 133.172 115.289 133.172 127.981H134.172H135.172C135.172 114.185 123.988 103 110.192 103L110.192 104ZM134.172 127.981L133.172 127.981C133.172 140.673 122.884 150.961 110.192 150.961L110.192 151.961L110.192 152.961C123.988 152.961 135.172 141.777 135.172 127.981L134.172 127.981ZM110.192 151.961V150.961C97.4999 150.961 87.2106 140.673 87.2104 127.981L86.2104 127.981L85.2104 127.981C85.2107 141.777 96.3954 152.961 110.192 152.961V151.961ZM86.2104 127.981H87.2104C87.2104 115.289 97.4998 105 110.192 105V104V103C96.3953 103 85.2104 114.184 85.2104 127.981H86.2104Z"
+                                        fill="url(#paint0_linear_14810_25790)" mask="url(#path-1-inside-1_14810_25790)">
+                                    </path>
+                                </g>
+                                <g opacity="0.3">
+                                    <mask id="path-3-inside-2_14810_25790" fill="white">
+                                        <path
+                                            d="M89.6914 163.245C113.356 163.245 134.788 172.798 150.345 188.257V216H29.0283V188.266C44.5854 172.802 66.0227 163.245 89.6914 163.245ZM89.6895 104C102.934 104 113.67 114.737 113.67 127.981C113.67 141.225 102.934 151.961 89.6895 151.961C76.4452 151.961 65.7082 141.225 65.708 127.981C65.708 114.737 76.4451 104 89.6895 104Z">
+                                        </path>
+                                    </mask>
+                                    <path
+                                        d="M89.6914 163.245L89.6914 162.245H89.6914L89.6914 163.245ZM150.345 188.257H151.345V187.841L151.05 187.548L150.345 188.257ZM150.345 216V217H151.345V216H150.345ZM29.0283 216H28.0283V217H29.0283V216ZM29.0283 188.266L28.3233 187.557L28.0283 187.85V188.266H29.0283ZM89.6895 104L89.6895 103H89.6895V104ZM113.67 127.981L114.67 127.981V127.981H113.67ZM89.6895 151.961V152.961H89.6895L89.6895 151.961ZM65.708 127.981H64.708V127.981L65.708 127.981ZM89.6914 163.245L89.6914 164.245C113.081 164.245 134.263 173.686 149.64 188.967L150.345 188.257L151.05 187.548C135.314 171.91 113.63 162.245 89.6914 162.245L89.6914 163.245ZM150.345 188.257H149.345V216H150.345H151.345V188.257H150.345ZM150.345 216V215H29.0283V216V217H150.345V216ZM29.0283 216H30.0283V188.266H29.0283H28.0283V216H29.0283ZM29.0283 188.266L29.7333 188.975C45.1107 173.689 66.2975 164.245 89.6914 164.245L89.6914 163.245L89.6914 162.245C65.7479 162.245 44.0602 171.914 28.3233 187.557L29.0283 188.266ZM89.6895 104L89.6894 105C102.381 105 112.67 115.289 112.67 127.981H113.67H114.67C114.67 114.184 103.486 103 89.6895 103L89.6895 104ZM113.67 127.981L112.67 127.981C112.67 140.673 102.381 150.961 89.6894 150.961L89.6895 151.961L89.6895 152.961C103.486 152.961 114.67 141.777 114.67 127.981L113.67 127.981ZM89.6895 151.961V150.961C76.9975 150.961 66.7082 140.673 66.708 127.981L65.708 127.981L64.708 127.981C64.7082 141.777 75.893 152.961 89.6895 152.961V151.961ZM65.708 127.981H66.708C66.708 115.289 76.9974 105 89.6895 105V104V103C75.8928 103 64.708 114.184 64.708 127.981H65.708Z"
+                                        fill="url(#paint1_linear_14810_25790)" mask="url(#path-3-inside-2_14810_25790)">
+                                    </path>
+                                </g>
+                                <mask id="path-5-inside-3_14810_25790" fill="white">
+                                    <path
+                                        d="M69.1904 163.245C92.8548 163.245 114.288 172.798 129.845 188.257V216H8.5293V188.265C24.0863 172.801 45.5222 163.245 69.1904 163.245ZM69.1875 104C82.4319 104 93.1689 114.737 93.1689 127.981C93.1687 141.225 82.4317 151.961 69.1875 151.961C55.9434 151.961 45.2072 141.225 45.207 127.981C45.207 114.737 55.9432 104 69.1875 104Z">
+                                    </path>
+                                </mask>
+                                <path
+                                    d="M69.1904 163.245L69.1904 162.245H69.1904L69.1904 163.245ZM129.845 188.257H130.845V187.841L130.55 187.548L129.845 188.257ZM129.845 216V217H130.845V216H129.845ZM8.5293 216H7.5293V217H8.5293V216ZM8.5293 188.265L7.82432 187.556L7.5293 187.849V188.265H8.5293ZM69.1875 104V103H69.1875L69.1875 104ZM93.1689 127.981L94.1689 127.981V127.981H93.1689ZM69.1875 151.961L69.1875 152.961H69.1875V151.961ZM45.207 127.981H44.207V127.981L45.207 127.981ZM69.1904 163.245L69.1904 164.245C92.5801 164.245 113.763 173.686 129.14 188.967L129.845 188.257L130.55 187.548C114.813 171.91 93.1296 162.245 69.1904 162.245L69.1904 163.245ZM129.845 188.257H128.845V216H129.845H130.845V188.257H129.845ZM129.845 216V215H8.5293V216V217H129.845V216ZM8.5293 216H9.5293V188.265H8.5293H7.5293V216H8.5293ZM8.5293 188.265L9.23428 188.974C24.6116 173.689 45.797 164.245 69.1904 164.245L69.1904 163.245L69.1904 162.245C45.2474 162.245 23.5611 171.913 7.82432 187.556L8.5293 188.265ZM69.1875 104V105C81.8796 105 92.1689 115.289 92.1689 127.981H93.1689H94.1689C94.1689 114.184 82.9841 103 69.1875 103V104ZM93.1689 127.981L92.1689 127.981C92.1688 140.673 81.8795 150.961 69.1875 150.961V151.961V152.961C82.984 152.961 94.1687 141.777 94.1689 127.981L93.1689 127.981ZM69.1875 151.961L69.1875 150.961C56.4957 150.961 46.2072 140.673 46.207 127.981L45.207 127.981L44.207 127.981C44.2072 141.777 55.3911 152.961 69.1875 152.961L69.1875 151.961ZM45.207 127.981H46.207C46.207 115.289 56.4956 105 69.1875 105L69.1875 104L69.1875 103C55.3909 103 44.207 114.184 44.207 127.981H45.207Z"
+                                    fill="url(#paint2_linear_14810_25790)" mask="url(#path-5-inside-3_14810_25790)">
+                                </path>
+                                <g clip-path="url(#clip0_14810_25790)">
+                                    <path
+                                        d="M103.025 94.4H90.0321C88.3358 94.4 86.9548 93.0191 86.9548 91.3228V88.0815C86.9548 86.9715 86.2266 85.9814 85.1848 85.6754C82.4653 84.8752 79.8269 83.7837 77.3452 82.4303C76.3901 81.9086 75.1751 82.0948 74.3896 82.8784L72.0997 85.1683C70.8994 86.3686 68.9468 86.3686 67.7484 85.1683L58.5609 75.9809C57.9801 75.4001 57.6593 74.6275 57.6593 73.8052C57.6593 72.9829 57.9801 72.2104 58.5609 71.6296L60.8509 69.3396C61.6363 68.5542 61.8207 67.3392 61.2989 66.3841C59.9456 63.9024 58.8541 61.264 58.0557 58.5444C57.7497 57.5027 56.7596 56.7744 55.6496 56.7744H52.4083C50.712 56.7744 49.3311 55.3934 49.3311 53.6972V40.7042C49.3311 39.0079 50.712 37.627 52.4083 37.627H55.6496C56.7596 37.627 57.7497 36.8987 58.0557 35.8569C58.8559 33.1374 59.9474 30.499 61.2989 28.0173C61.8188 27.0622 61.6345 25.8472 60.8509 25.0617L58.5609 22.7718C57.9801 22.191 57.6593 21.4185 57.6593 20.5961C57.6593 19.7738 57.9801 19.0013 58.5609 18.4205L67.7484 9.23304C68.3292 8.65226 69.1017 8.33144 69.924 8.33144C70.7463 8.33144 71.5189 8.65226 72.0997 9.23304L74.3896 11.523C75.1751 12.3084 76.3901 12.4928 77.3452 11.971C79.8269 10.6177 82.4653 9.5262 85.1848 8.72785C86.2266 8.42179 86.9548 7.43169 86.9548 6.32174V3.08041C86.9548 1.38415 88.3358 0.00317383 90.0321 0.00317383H103.025C104.721 0.00317383 106.102 1.38415 106.102 3.08041V6.32174C106.102 7.43169 106.831 8.42179 107.872 8.72785C110.592 9.52804 113.23 10.6195 115.712 11.971C116.667 12.491 117.882 12.3066 118.668 11.523L120.957 9.23304C122.158 8.03275 124.11 8.03275 125.309 9.23304L134.496 18.4205C135.077 19.0013 135.398 19.7738 135.398 20.5961C135.398 21.4185 135.077 22.191 134.496 22.7718L132.206 25.0617C131.421 25.8472 131.236 27.0622 131.758 28.0173C133.112 30.499 134.203 33.1374 135.003 35.8569C135.309 36.8987 136.299 37.627 137.409 37.627H140.651C142.347 37.627 143.728 39.0079 143.728 40.7042V53.6972C143.728 55.3934 142.347 56.7744 140.651 56.7744H137.409C136.299 56.7744 135.309 57.5027 135.003 58.5444C134.203 61.264 133.112 63.9024 131.76 66.3841C131.24 67.3392 131.425 68.5542 132.208 69.3396L134.498 71.6296C135.079 72.2104 135.4 72.9829 135.4 73.8052C135.4 74.6275 135.079 75.4001 134.498 75.9809L125.311 85.1683C124.11 86.3686 122.158 86.3686 120.959 85.1683L118.669 82.8784C117.884 82.0929 116.669 81.9086 115.714 82.4303C113.232 83.7837 110.594 84.8752 107.874 85.6754C106.832 85.9814 106.104 86.9715 106.104 88.0815V91.3228C106.104 93.0191 104.723 94.4 103.027 94.4H103.025ZM76.1817 81.5877C76.6722 81.5877 77.1626 81.7057 77.607 81.9473C80.0555 83.2822 82.657 84.3589 85.3397 85.1462C86.6156 85.5205 87.5061 86.7281 87.5061 88.0796V91.321C87.5061 92.7148 88.64 93.8488 90.0339 93.8488H103.027C104.421 93.8488 105.555 92.7148 105.555 91.321V88.0796C105.555 86.7263 106.445 85.5205 107.721 85.1462C110.404 84.3571 113.005 83.2822 115.454 81.9473C116.621 81.3112 118.105 81.5343 119.06 82.4893L121.35 84.7793C122.335 85.7639 123.939 85.7639 124.923 84.7793L134.111 75.5918C134.588 75.1143 134.85 74.48 134.85 73.8052C134.85 73.1304 134.587 72.4962 134.111 72.0186L131.821 69.7287C130.866 68.7736 130.643 67.2894 131.279 66.1223C132.614 63.6738 133.69 61.0722 134.478 58.3895C134.852 57.1137 136.06 56.225 137.411 56.225H140.653C142.046 56.225 143.18 55.0911 143.18 53.6972V40.7042C143.18 39.3103 142.046 38.1764 140.653 38.1764H137.411C136.058 38.1764 134.852 37.2859 134.478 36.01C133.689 33.3273 132.612 30.7258 131.279 28.2772C130.643 27.1101 130.866 25.6259 131.821 24.6708L134.111 22.3809C134.588 21.9034 134.85 21.2691 134.85 20.5943C134.85 19.9195 134.587 19.2852 134.111 18.8077L124.923 9.62023C123.939 8.63566 122.335 8.63566 121.35 9.62023L119.06 11.9102C118.105 12.8652 116.621 13.0902 115.454 12.4522C113.005 11.1174 110.404 10.0406 107.721 9.25332C106.445 8.87904 105.555 7.67137 105.555 6.3199V3.07857C105.555 1.68468 104.421 0.550771 103.027 0.550771H90.0339C88.64 0.550771 87.5061 1.68468 87.5061 3.07857V6.3199C87.5061 7.67322 86.6156 8.87904 85.3397 9.25332C82.657 10.0425 80.0555 11.1174 77.607 12.4522C76.4399 13.0883 74.9556 12.8652 74.0006 11.9102L71.7106 9.62023C71.2331 9.1427 70.5988 8.88088 69.924 8.88088C69.2492 8.88088 68.615 9.14454 68.1374 9.62023L58.95 18.8077C58.4724 19.2852 58.2106 19.9195 58.2106 20.5943C58.2106 21.2691 58.4743 21.9034 58.95 22.3809L61.2399 24.6708C62.195 25.6259 62.4181 27.1101 61.782 28.2772C60.4471 30.7258 59.3703 33.3273 58.583 36.01C58.2088 37.2859 57.0011 38.1764 55.6496 38.1764H52.4083C51.0144 38.1764 49.8805 39.3103 49.8805 40.7042V53.6972C49.8805 55.0911 51.0144 56.225 52.4083 56.225H55.6496C57.0029 56.225 58.2088 57.1155 58.583 58.3895C59.3722 61.0722 60.4471 63.6738 61.782 66.1223C62.4181 67.2894 62.195 68.7736 61.2399 69.7287L58.95 72.0186C58.4724 72.4962 58.2106 73.1304 58.2106 73.8052C58.2106 74.48 58.4743 75.1143 58.95 75.5918L68.1374 84.7793C69.1238 85.7639 70.7261 85.7639 71.7106 84.7793L74.0006 82.4893C74.5924 81.8975 75.3871 81.5859 76.1817 81.5859V81.5877Z"
+                                        fill="url(#paint3_linear_14810_25790)"></path>
+                                    <path
+                                        d="M96.5293 77.5922C79.7713 77.5922 66.1367 63.9576 66.1367 47.1997C66.1367 30.4417 79.7713 16.8071 96.5293 16.8071C113.287 16.8071 126.922 30.4417 126.922 47.1997C126.922 63.9576 113.287 77.5922 96.5293 77.5922ZM96.5293 17.3566C80.0737 17.3566 66.6862 30.7441 66.6862 47.1997C66.6862 63.6552 80.0737 77.0428 96.5293 77.0428C112.985 77.0428 126.372 63.6552 126.372 47.1997C126.372 30.7441 112.985 17.3566 96.5293 17.3566Z"
+                                        fill="url(#paint4_linear_14810_25790)"></path>
+                                </g>
+                                <g clip-path="url(#clip1_14810_25790)">
+                                    <path
+                                        d="M31.42 112.316H23.9345C22.9572 112.316 22.1616 111.52 22.1616 110.543V108.676C22.1616 108.036 21.7421 107.466 21.1419 107.289C19.5751 106.828 18.0551 106.199 16.6253 105.42C16.0751 105.119 15.3751 105.226 14.9226 105.678L13.6033 106.997C12.9118 107.689 11.7869 107.689 11.0964 106.997L5.80335 101.704C5.46875 101.37 5.28392 100.924 5.28392 100.451C5.28392 99.9769 5.46875 99.5319 5.80335 99.1973L7.12263 97.878C7.57514 97.4255 7.68136 96.7255 7.38075 96.1752C6.60108 94.7455 5.97224 93.2254 5.5123 91.6586C5.33597 91.0585 4.76555 90.6389 4.12609 90.6389H2.2587C1.28145 90.6389 0.48584 89.8433 0.48584 88.8661V81.3805C0.48584 80.4033 1.28145 79.6077 2.2587 79.6077H4.12609C4.76555 79.6077 5.33597 79.1881 5.5123 78.5879C5.9733 77.0212 6.60214 75.5011 7.38075 74.0714C7.6803 73.5211 7.57408 72.8211 7.12263 72.3686L5.80335 71.0493C5.46875 70.7147 5.28392 70.2696 5.28392 69.7959C5.28392 69.3221 5.46875 68.8771 5.80335 68.5425L11.0964 63.2494C11.431 62.9148 11.8761 62.73 12.3498 62.73C12.8236 62.73 13.2687 62.9148 13.6033 63.2494L14.9226 64.5687C15.3751 65.0212 16.0751 65.1274 16.6253 64.8268C18.0551 64.0471 19.5751 63.4183 21.1419 62.9583C21.7421 62.782 22.1616 62.2116 22.1616 61.5721V59.7047C22.1616 58.7275 22.9572 57.9319 23.9345 57.9319H31.42C32.3973 57.9319 33.1929 58.7275 33.1929 59.7047V61.5721C33.1929 62.2116 33.6124 62.782 34.2126 62.9583C35.7794 63.4193 37.2994 64.0482 38.7292 64.8268C39.2794 65.1263 39.9794 65.0201 40.4319 64.5687L41.7512 63.2494C42.4427 62.5579 43.5676 62.5579 44.2581 63.2494L49.5512 68.5425C49.8858 68.8771 50.0706 69.3221 50.0706 69.7959C50.0706 70.2696 49.8858 70.7147 49.5512 71.0493L48.2319 72.3686C47.7794 72.8211 47.6731 73.5211 47.9737 74.0714C48.7534 75.5011 49.3823 77.0212 49.8433 78.5879C50.0196 79.1881 50.59 79.6077 51.2295 79.6077H53.0969C54.0741 79.6077 54.8697 80.4033 54.8697 81.3805V88.8661C54.8697 89.8433 54.0741 90.6389 53.0969 90.6389H51.2295C50.59 90.6389 50.0196 91.0585 49.8433 91.6586C49.3823 93.2254 48.7534 94.7455 47.9748 96.1752C47.6753 96.7255 47.7815 97.4255 48.2329 97.878L49.5522 99.1973C49.8868 99.5319 50.0716 99.9769 50.0716 100.451C50.0716 100.924 49.8868 101.37 49.5522 101.704L44.2591 106.997C43.5676 107.689 42.4427 107.689 41.7523 106.997L40.433 105.678C39.9805 105.225 39.2805 105.119 38.7302 105.42C37.3005 106.199 35.7804 106.828 34.2137 107.289C33.6135 107.466 33.1939 108.036 33.1939 108.676V110.543C33.1939 111.52 32.3983 112.316 31.4211 112.316H31.42ZM15.955 104.934C16.2376 104.934 16.5202 105.002 16.7761 105.141C18.1868 105.911 19.6856 106.531 21.2311 106.984C21.9662 107.2 22.4792 107.896 22.4792 108.674V110.542C22.4792 111.345 23.1325 111.998 23.9356 111.998H31.4211C32.2241 111.998 32.8774 111.345 32.8774 110.542V108.674C32.8774 107.895 33.3904 107.2 34.1255 106.984C35.671 106.53 37.1698 105.911 38.5805 105.141C39.2529 104.775 40.108 104.904 40.6582 105.454L41.9775 106.773C42.5447 107.34 43.4688 107.34 44.0361 106.773L49.3291 101.48C49.6043 101.205 49.7551 100.839 49.7551 100.451C49.7551 100.062 49.6032 99.6965 49.3291 99.4214L48.0099 98.1021C47.4596 97.5519 47.3311 96.6968 47.6976 96.0244C48.4666 94.6138 49.087 93.115 49.5405 91.5694C49.7562 90.8344 50.4519 90.3224 51.2305 90.3224H53.0979C53.901 90.3224 54.5542 89.6691 54.5542 88.8661V81.3805C54.5542 80.5775 53.901 79.9242 53.0979 79.9242H51.2305C50.4509 79.9242 49.7562 79.4112 49.5405 78.6761C49.0859 77.1306 48.4656 75.6318 47.6976 74.2211C47.3311 73.5487 47.4596 72.6936 48.0099 72.1434L49.3291 70.8241C49.6043 70.549 49.7551 70.1836 49.7551 69.7948C49.7551 69.4061 49.6032 69.0407 49.3291 68.7655L44.0361 63.4725C43.4688 62.9052 42.5447 62.9052 41.9775 63.4725L40.6582 64.7917C40.108 65.342 39.2529 65.4716 38.5805 65.104C37.1698 64.335 35.671 63.7146 34.1255 63.2611C33.3904 63.0454 32.8774 62.3497 32.8774 61.5711V59.7037C32.8774 58.9006 32.2241 58.2474 31.4211 58.2474H23.9356C23.1325 58.2474 22.4792 58.9006 22.4792 59.7037V61.5711C22.4792 62.3507 21.9662 63.0454 21.2311 63.2611C19.6856 63.7157 18.1868 64.335 16.7761 65.104C16.1038 65.4705 15.2487 65.342 14.6984 64.7917L13.3791 63.4725C13.104 63.1973 12.7386 63.0465 12.3498 63.0465C11.9611 63.0465 11.5957 63.1984 11.3206 63.4725L6.02748 68.7655C5.75236 69.0407 5.60152 69.4061 5.60152 69.7948C5.60152 70.1836 5.75342 70.549 6.02748 70.8241L7.34676 72.1434C7.897 72.6936 8.02552 73.5487 7.65906 74.2211C6.89 75.6318 6.26966 77.1306 5.81609 78.6761C5.60046 79.4112 4.9047 79.9242 4.12609 79.9242H2.2587C1.45565 79.9242 0.802383 80.5775 0.802383 81.3805V88.8661C0.802383 89.6691 1.45565 90.3224 2.2587 90.3224H4.12609C4.90577 90.3224 5.60046 90.8354 5.81609 91.5694C6.27073 93.115 6.89 94.6138 7.65906 96.0244C8.02552 96.6968 7.897 97.5519 7.34676 98.1021L6.02748 99.4214C5.75236 99.6965 5.60152 100.062 5.60152 100.451C5.60152 100.839 5.75342 101.205 6.02748 101.48L11.3206 106.773C11.8888 107.34 12.8119 107.34 13.3791 106.773L14.6984 105.454C15.0394 105.113 15.4972 104.933 15.955 104.933V104.934Z"
+                                        fill="url(#paint5_linear_14810_25790)" stroke="url(#paint6_linear_14810_25790)"
+                                        stroke-width="0.25"></path>
+                                    <path
+                                        d="M27.6777 102.633C18.0231 102.633 10.168 94.7774 10.168 85.1228C10.168 75.4682 18.0231 67.613 27.6777 67.613C37.3323 67.613 45.1875 75.4682 45.1875 85.1228C45.1875 94.7774 37.3323 102.633 27.6777 102.633ZM27.6777 67.9296C18.1973 67.9296 10.4845 75.6424 10.4845 85.1228C10.4845 94.6032 18.1973 102.316 27.6777 102.316C37.1581 102.316 44.8709 94.6032 44.8709 85.1228C44.8709 75.6424 37.1581 67.9296 27.6777 67.9296Z"
+                                        fill="url(#paint7_linear_14810_25790)" stroke="url(#paint8_linear_14810_25790)"
+                                        stroke-width="0.25"></path>
+                                </g>
+                                <defs>
+                                    <linearGradient id="paint0_linear_14810_25790" x1="110.191" y1="104" x2="110.191"
+                                        y2="216" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_14810_25790" x1="89.6865" y1="104" x2="89.6865"
+                                        y2="216" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_14810_25790" x1="69.187" y1="104" x2="69.187"
+                                        y2="216" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_14810_25790" x1="96.5295" y1="0.00317383"
+                                        x2="96.5295" y2="94.4" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint4_linear_14810_25790" x1="96.5293" y1="16.8071"
+                                        x2="96.5293" y2="77.5922" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint5_linear_14810_25790" x1="27.6778" y1="57.9319"
+                                        x2="27.6778" y2="112.316" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint6_linear_14810_25790" x1="27.6778" y1="57.9319"
+                                        x2="27.6778" y2="112.316" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint7_linear_14810_25790" x1="27.6777" y1="67.613" x2="27.6777"
+                                        y2="102.633" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint8_linear_14810_25790" x1="27.6777" y1="67.613" x2="27.6777"
+                                        y2="102.633" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="currentColor"></stop>
+                                        <stop offset="0.94" stop-color="currentColor"></stop>
+                                    </linearGradient>
+                                    <clipPath id="clip0_14810_25790">
+                                        <rect width="94.4006" height="94.4006" fill="white"
+                                            transform="translate(49.3291 -0.000488281)"></rect>
+                                    </clipPath>
+                                    <clipPath id="clip1_14810_25790">
+                                        <rect width="54.386" height="54.386" fill="white"
+                                            transform="translate(0.484863 57.9297)"></rect>
+                                    </clipPath>
+                                </defs>
+                            </svg><!----></div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-text-primary text-xl">Advanced identity management</p>
+                            <p class="text-text-tertiary text-base">Manage your identities and stay in control of your
+                                apps and websites with your dashboard. Explore Pro Features to further customize and
+                                secure your experience.</p>
+                        </div>
+                    </div><!---->
+                </div>
+            </div>
+            <div class="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-24 md:px-16 lg:flex-row">
+                <div class="flex flex-1 flex-col gap-5">
+                    <div class="flex flex-col gap-3">
+                        <p class="text-text-tertiary text-center text-xs md:text-start md:text-sm">Understanding
+                            Internet Identity</p>
+                        <p class="text-text-primary text-center text-3xl font-semibold md:text-start md:text-4xl">FAQs
+                        </p>
+                    </div>
+                    <p class="text-text-tertiary text-center text-sm md:text-start md:text-lg"><!----><!---->Everything
+                        you need to know about Internet Identity, your private, secure, and easy way to log in to apps
+                        on the Internet Computer.<!----></p>
+                </div>
+                <div
+                    class="divide-border-secondary mx-5 flex flex-1 flex-col divide-y-1 [&amp;_details]:pb-6 [&amp;_summary]:-mb-6 [&amp;_summary]:flex [&amp;_summary]:flex-row [&amp;_summary]:items-center [&amp;_summary]:gap-4 [&amp;_summary]:py-10 [&amp;_summary]:text-text-primary [&amp;_summary]:cursor-pointer [&amp;_summary]:font-medium [&amp;_summary]:select-none md:[&amp;_summary]:text-xl [&amp;_summary_svg]:text-text-placeholder [&amp;_summary_svg]:ml-auto [&amp;_summary_svg]:size-6 [&amp;_summary_svg]:shrink-0 [&amp;_details:not([open])_summary_svg:first-child]:hidden [&amp;_details[open]_summary_svg:last-child]:hidden [&amp;_p]:text-text-secondary [&amp;_p]:mb-4 [&amp;_p]:text-base [&amp;_ul]:mb-4 [&amp;_li]:text-text-secondary [&amp;_li]:text-base [&amp;_li_+_li]:mt-4">
+                    <details class="svelte-9jqrib">
+                        <summary>What is Internet Identity? <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Internet Identity is an authentication system for applications running on the
+                            <!----><!----><!----><a class="text-text-primary underline" target="_blank" rel="noopener"
+                                href="https://internetcomputer.org"><!----><!----><!---->Internet
+                                Computer<!----></a><!----><!----><!---->. Instead of traditional usernames and
+                            passwords, it uses keys created via <!----><!----><!----><!----><a
+                                class="text-text-primary underline" target="_blank" rel="noopener"
+                                href="https://www.passkeys.com/"><!----><!----><!---->passkeys<!----></a><!----><!---->
+                            or other authentication systems like Google, Microsoft or Apple.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>Is my Face ID or Fingerprint stored in Internet Identity? <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->No. Your face ID or fingerprint is only used to create or unlock your passkey.
+                            Your biometric data is never shared with Internet Identity or with any websites or apps you
+                            use.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>How do passkeys work? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Passkeys are a secure and easy way to sign in without using passwords. They're
+                            stored on your password manager (Google Password Manager, iCloud Keychain, 1Password, etc)
+                            and can be protected by your fingerprint, face, or device code.<!----></p>
+                        <p><!----><!---->When you create a passkey, your device makes two matching keys. One stays
+                            safely on your device, and the other goes to the app or service. They work together to
+                            confirm it's you (without ever sharing your personal info or a password).<!----></p>
+                        <p><!----><!---->Passkeys are phishing-resistant, hard to steal, and can sync across your
+                            devices through providers like Google, Apple, or Microsoft. <!----><!----><!----><a
+                                class="text-text-primary underline" target="_blank" rel="noopener"
+                                href="https://www.passkeys.com/"><!----><!----><!---->Learn more.<!----></a><!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>What makes Internet Identity secure &amp; easy to use? <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Internet Identity is as secure as the authentication methods it uses (like
+                            Google, Apple, Microsoft, or Passkeys). That means it's built on state-of-the-art security.
+                            When you choose Passkeys, access is protected by your device's unlock method (Face ID or
+                            fingerprint), making it as simple as unlocking your phone.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>What makes Internet Identity privacy-preserving? <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Internet Identity never shares your personal data, like your email, with apps
+                            or websites. Instead, it creates a unique pseudonym for you in each app. Every app gets a
+                            different one, so they can’t track you across services. All of this happens automatically in
+                            the background. You don't need to manage anything.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>How does Internet Identity compare to other Web3 authentication tools? <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Unlike many Web3 auth systems that require manual signing for every action,
+                            Internet Identity creates authenticated sessions per application. This delivers both
+                            security and convenience (no repeated signing) while still giving each session its own
+                            identity.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>How do Google, Microsoft and Apple integrations work with Internet Identity? <svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->The integration with Google, Microsoft and Apple uses a standard authentication
+                            protocol called OpenID. This is the same protocol that other applications use to log in with
+                            Google.<!----></p>
+                        <p><!----><!---->Internet Identity then bridges the authentication with those providers with the
+                            Internet Computer. By authenticating with one of those services, Internet Identity can
+                            ensure that you are who you are, and then create another authentication for the applications
+                            that run on Internet Computer.<!----></p>
+                        <p><!----><!---->No data is shared with Google, Microsoft or Apple on which applications you log
+                            in with Internet Identity.<!----></p>
+                        <p><!----><!---->For example, user A logs into Internet Identity with their Google account
+                            “A@gmail.com” and then uses Internet Identity to authenticate in application Z. Google will
+                            never know that the user is authenticated in application Z, only with Internet Identity.
+                            Moreover, application Z will also never know that user A used Google to authenticate their
+                            Internet Identity user.<!----></p>
+                    </details>
+                    <details class="svelte-9jqrib">
+                        <summary>What's new in Internet Identity 2.0? <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-minus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!----><!----><!---->
+                            </svg><!----> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide-icon lucide lucide-circle-plus"><!---->
+                                <circle cx="12" cy="12" r="10"></circle><!---->
+                                <path d="M8 12h8"></path><!---->
+                                <path d="M12 8v8"></path><!----><!----><!---->
+                            </svg><!----></summary>
+                        <p><!----><!---->Internet Identity 2.0 brings a host of improvements designed to enhance your
+                            experience:<!----></p>
+                        <ul>
+                            <li><!----><!----><!----><!----><span
+                                    class="text-text-primary font-semibold"><!----><!----><!---->Completely redesigned
+                                    interface:<!----></span><!----> We've given Internet Identity a fresh, modern look
+                                and feel. The new design is intuitive and easier to navigate, ensuring a smoother user
+                                journey.<!----></li>
+                            <li><!----><!----><!----><!----><span
+                                    class="text-text-primary font-semibold"><!----><!----><!---->No more identity
+                                    numbers:<!----></span><!----> As explained above, discoverable passkeys mean you no
+                                longer need to remember or store an identity number. Logging in is now simpler and more
+                                streamlined.<!----></li>
+                            <li><!----><!----><!----><!----><span
+                                    class="text-text-primary font-semibold"><!----><!----><!---->Seamless passkey
+                                    integration:<!----></span><!----> We continue to embrace passkeys as the future of
+                                secure authentication. Internet Identity 2.0 leverages the latest passkey standards for
+                                enhanced security and ease of use.<!----></li>
+                            <li><!----><!----><!----><!----><span
+                                    class="text-text-primary font-semibold"><!----><!----><!---->Google, Apple and
+                                    Microsoft integrations:<!----></span><!----> While passkeys are becoming more
+                                mature, they are not yet mainstream for everyone. We've observed a 50% drop-off rate in
+                                our registration flow, indicating a need for alternative authentication methods. To make
+                                Internet Identity accessible to an even wider audience, we've integrated with Google,
+                                Apple and Microsoft as alternative authentication options.<!----></li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+            <footer class="flex h-14 items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+                <div class="text-text-tertiary text-xs font-medium">© https://openscan.website/about</div>
+                <nav class="text-text-primary flex gap-4 text-xs font-semibold"><button
+                        class="uppercase outline-0 focus-visible:underline">en</button> <a target="_blank"
+                        rel="noopener" class="outline-0 focus-visible:underline"
+                        href="https://identitysupport.dfinity.org">Support</a>
+            </footer> <!----><!---->
+            <div class="h-[env(safe-area-inset-bottom)]"></div>
+        </div><!--]--><!--]--><!---->
+        <div class="max-md:hidden">
+            <div class="h-full absolute inset-0
+    -z-50 w-full select-none" aria-hidden="true"><canvas class="block h-full w-full" style="opacity: 1;" width="1197"
+                    height="897"></canvas></div><!---->
+        </div> <!--$s1-->
+        <div data-scope="toast" data-part="group" dir="ltr" tabindex="-1" aria-label="top-end Notifications alt+T"
+            id="toast-group:top-end" data-placement="top-end" data-side="top" data-align="end" aria-live="polite"
+            role="region"
+            style="position:fixed;pointer-events:none;display:flex;flex-direction:column;--gap:16px;--first-height:0px;--viewport-offset-left:1rem;--viewport-offset-right:1rem;--viewport-offset-top:4rem;--viewport-offset-bottom:1rem;z-index:2147483647;align-items:flex-end;top:max(env(safe-area-inset-top, 0px), 4rem);inset-inline-end:calc(env(safe-area-inset-right, 0px) + 1rem);"
+            class="pointer-events-none"><!--[--><!--]--></div><!----><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1-->
+        <div id="svelte-announcer" aria-live="assertive" aria-atomic="true"
+            style="position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px">
+            Internet Identity<!----></div><!--]--><!--]-->
+
+        <script>
+            {
+                __sveltekit_1vzi1g = {
+                    base: new URL(".", location).pathname.slice(0, -1)
+                };
+
+                const element = document.currentScript.parentElement;
+
+                Promise.all([
+                    import(".start.C8PT4JNW.js"),
+                    import(".app.DjVQbkFH.js")
+                ]).then(([kit, app]) => {
+                    kit.start(app, element, {
+                        node_ids: [0, 2, 8],
+                        data: [null, null, null],
+                        form: null,
+                        error: null
+                    });
+                });
+            }
+        </script>
+    </div>
+
+
+</body>
+
+</html>
