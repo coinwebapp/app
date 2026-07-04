@@ -215,9 +215,8 @@ const MoneroRPC = (function () {
 
     } catch(e) {
       currentNode = null;
-      notifyListeners({ status: 'disconnected', message: 'No nodes reachable: ' + e.message });
-      
-      
+      notifyListeners({ status: 'disconnected', message: ' '});
+      throw new Error(' ');
     }
   }
 
