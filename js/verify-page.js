@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
           try { sessionStorage.setItem('monero-web-fresh-wallet', '1'); } catch (e) {}
         }
         await WalletVault.store(vaultData, pw);
-        window.location.href = '/dashboard';
+        window.location.href = 'dashboard.html';
       });
     }
 
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
               } catch (e) {
                 console.warn('[verify] pre-register on LWS failed (non-fatal):', e);
               }
-              window.location.href = '/dashboard';
+              window.location.href = 'dashboard.html';
             });
           }
 
