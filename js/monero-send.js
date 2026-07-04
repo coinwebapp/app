@@ -242,7 +242,7 @@ const MoneroSend = (function () {
     }
 
     if (spendableOuts.length === 0) {
-      throw new Error('No spendable outputs available. Your funds may still be confirming â€” wait a few minutes and try again.');
+      throw new Error('No spendable outputs available. Your funds may still be confirming wait a few minutes and try again.');
     }
 
     // 2. Select outputs to spend (simple: use all, let WASM compute change)
@@ -369,7 +369,7 @@ const MoneroSend = (function () {
 
     if (!step2Result || !step2Result.serialized_signed_tx) {
       console.error('[send] step2 returned:', JSON.stringify(step2Result));
-      throw new Error('Transaction signing failed â€” no signed output');
+      throw new Error('Transaction signing failed no signed output');
     }
 
     // 6. Broadcast

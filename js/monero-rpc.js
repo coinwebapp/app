@@ -216,7 +216,7 @@ const MoneroRPC = (function () {
     } catch(e) {
       currentNode = null;
       notifyListeners({ status: 'disconnected', message: 'No nodes reachable: ' + e.message });
-      throw new Error('Could not connect to Monero network: ' + e.message);
+      
     }
   }
 
