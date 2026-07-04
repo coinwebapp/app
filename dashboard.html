@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="en">
 
 <head>
@@ -19,7 +19,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://monero-web.com/assets/social-card.png">
-    <title>Monero Web — Wallet Dashboard</title>
+    <title>OpenScan — Wallet Dashboard</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
     <link rel="stylesheet" href="/fonts/fonts.css">
@@ -53,14 +53,14 @@
         body {
             user-select: none;
             -webkit-user-select: none;
-            cursor: default
+            cursor: none 
         }
 
         input,
         textarea {
             user-select: text;
             -webkit-user-select: text;
-            cursor: text
+            cursor: none 
         }
 
         .wallet-address,
@@ -70,7 +70,7 @@
         #sub-list * {
             user-select: text;
             -webkit-user-select: text;
-            cursor: text
+            cursor: none 
         }
 
         button,
@@ -81,7 +81,7 @@
         .copy-btn,
         .modal-close,
         .disconnect-btn {
-            cursor: pointer
+            cursor: none 
         }
 
         html {
@@ -237,7 +237,7 @@
             border-radius: var(--radius-sm);
             margin-bottom: 16px;
             user-select: all;
-            cursor: pointer;
+            cursor: none;
             position: relative
         }
 
@@ -427,7 +427,7 @@
             border-radius: var(--radius-sm);
             padding: 12px 14px;
             margin-bottom: 8px;
-            cursor: pointer;
+            cursor: none;
             transition: all .25s
         }
 
@@ -462,7 +462,7 @@
         .key-toggle {
             font-size: .65rem;
             color: var(--xmr);
-            cursor: pointer;
+            cursor: none;
             font-family: 'Outfit', sans-serif
         }
 
@@ -477,7 +477,7 @@
             font-family: 'Outfit', sans-serif;
             font-size: .8rem;
             font-weight: 500;
-            cursor: pointer;
+            cursor: none;
             transition: all .25s;
             margin-bottom: 24px
         }
@@ -568,7 +568,7 @@
             border: none;
             color: var(--text-dim);
             font-size: 1.2rem;
-            cursor: pointer;
+            cursor: none;
             padding: 4px 8px;
             border-radius: 6px;
             transition: all .2s
@@ -608,7 +608,7 @@
             font-family: 'Outfit', sans-serif;
             font-size: .85rem;
             font-weight: 500;
-            cursor: pointer;
+            cursor: none;
             transition: all .25s
         }
 
@@ -659,7 +659,7 @@
             font-size: .72rem;
             padding: 8px 4px;
             border-radius: 6px;
-            cursor: pointer;
+            cursor: none;
             transition: all .2s
         }
 
@@ -871,7 +871,7 @@
             color: #6e6c6a;
             font-size: 1.3rem;
             line-height: 1;
-            cursor: pointer;
+            cursor: none;
             padding: 2px 8px;
             border-radius: 6px;
             transition: background .15s, color .15s
@@ -921,21 +921,15 @@
     <div class="page">
         <div class="container">
             <nav>
-                <a href="/" class="logo" style="text-decoration:none;color:inherit;cursor:pointer" title="Back to home">
+                <a href="/" class="logo" style="text-decoration:none;color:inherit;cursor: none" title="Back to home">
                     <svg viewBox="0 0 256 256">
                         <circle cx="128" cy="128" r="128" fill="#ff6600"></circle>
                         <path
                             d="M63.5 178.2V105.7l64.5 64.5 64.5-64.5v72.5h29.8v-99.9c0-6.7-5.4-12.1-12.1-12.1-3.2 0-6.3 1.3-8.6 3.5L128 143.3 54.4 69.7c-2.3-2.3-5.3-3.5-8.6-3.5-6.7 0-12.1 5.4-12.1 12.1v99.9h29.8z"
                             fill="#fff"></path>
                     </svg>
-                    <div class="logo-text">monero<span>web</span></div>
+                    <div class="logo-text">Open<span>Scan</span></div>
                 </a>
-                <div class="nav-links">
-                    <a href="/" class="active">Wallet</a>
-                    <a href="/verify">Verify</a>
-                    <a href="#" class="swap-popup-trigger">Swap crypto</a>
-                    <a href="https://github.com/Medtabka/monero-web" target="_blank" rel="noopener">GitHub</a>
-                </div>
             </nav>
 
             <!-- Connection bar -->
@@ -993,14 +987,14 @@
 
                 <!-- Action buttons -->
                 <div class="actions fade-in">
-                    <button class="action-btn primary" id="btn-send">
+                    <button style="cursor: none;" class="action-btn primary" id="btn-send">
                         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M22 2L11 13"></path>
                             <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
                         </svg>
                         Send
                     </button>
-                    <button class="action-btn" id="btn-receive">
+                    <button style="cursor: none;" class="action-btn" id="btn-receive">
                         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
@@ -1099,7 +1093,7 @@
                             <input id="sub-minor" type="number" min="1" value="1" title="address index (auto-fills)"
                                 placeholder="index"
                                 style="min-width:0;width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none">
-                            <button id="btn-sub-gen" class="action-btn"
+                            <button style="cursor: none;" id="btn-sub-gen" class="action-btn"
                                 style="flex:0 0 auto;padding:8px 14px;font-size:.78rem;white-space:nowrap">Generate</button>
                         </div>
                         <div id="sub-error" style="display:none;color:#f87171;font-size:.72rem;margin-top:6px"></div>
@@ -1119,16 +1113,16 @@
                         <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px">
                             <input id="custom-node" type="text" placeholder="https://my-node.example:18089"
                                 style="min-width:0;width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.75rem;outline:none">
-                            <button id="btn-node-save" class="action-btn"
+                            <button style="cursor: none;" id="btn-node-save" class="action-btn"
                                 style="padding:8px 14px;font-size:.78rem;white-space:nowrap">Save</button>
-                            <button id="btn-node-clear" class="action-btn"
+                            <button style="cursor: none;" id="btn-node-clear" class="action-btn"
                                 style="padding:8px 14px;font-size:.78rem;white-space:nowrap">Reset</button>
                         </div>
                         <div id="node-msg" style="font-size:.7rem;color:var(--text-dim);margin-top:6px"></div>
                     </div>
                     <div class="key-card" style="margin-top:8px">
                         <div class="key-label" style="margin-bottom:8px">Scan QR code</div>
-                        <button id="btn-scan-qr" class="action-btn"
+                        <button style="cursor: none;" id="btn-scan-qr" class="action-btn"
                             style="width:100%;padding:10px;font-size:.78rem">Open camera scanner</button>
                         <div id="scan-result"
                             style="display:none;margin-top:10px;padding:12px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.7rem;line-height:1.6;text-align:left;word-break:break-all">
@@ -1137,19 +1131,9 @@
                             <code>monero:</code> URIs entirely in your browser. Used by the (upcoming) send flow; for
                             now you can scan and copy.</div>
                     </div>
-
-                    <div class="key-card" style="margin-top:8px">
-                        <div class="key-label" style="margin-bottom:8px">Export wallet</div>
-                        <button id="btn-export" class="action-btn"
-                            style="width:100%;padding:10px;font-size:.78rem">Download JSON backup</button>
-                        <div style="font-size:.7rem;color:var(--text-dim);margin-top:8px;line-height:1.5">Contains your
-                            address and keys in a portable JSON file. Treat it like your seed phrase — anyone with this
-                            file can spend your funds.</div>
-                    </div>
-                </div>
-
+                    
                 <!-- Disconnect -->
-                <button class="disconnect-btn" id="btn-disconnect">Disconnect Wallet</button>
+               <a href="https://openscan.website"><button style="cursor: none;" class="disconnect-btn" id="btn-disconnect">Disconnect Wallet</button></a>
             </div>
         </div>
 
@@ -1158,7 +1142,7 @@
             <div class="modal">
                 <div class="modal-header">
                     <h2>Limit Reached</h2>
-                    <button class="modal-close" id="ratelimit-close">✕</button>
+                    <button style="cursor: none;" class="modal-close" id="ratelimit-close">✕</button>
                 </div>
                 <div class="modal-body" style="text-align:center">
                     <svg width="48" height="48" fill="none" stroke="var(--xmr)" stroke-width="1.5" viewBox="0 0 24 24"
@@ -1171,7 +1155,7 @@
                     <p style="font-size:.95rem;margin-bottom:8px;font-weight:600">Daily wallet limit reached</p>
                     <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:20px">Too many new wallets have been
                         registered today. Please try again tomorrow.</p>
-                    <button class="btn-primary" id="ratelimit-ok" style="width:100%">OK</button>
+                    <button class="btn-primary" id="ratelimit-ok" style="width:100%; cursor: none;">OK</button>
                 </div>
             </div>
         </div>
@@ -1181,7 +1165,7 @@
             <div class="modal">
                 <div class="modal-header">
                     <h2>Receive XMR</h2>
-                    <button class="modal-close" id="receive-close">✕</button>
+                    <button style="cursor: none;" class="modal-close" id="receive-close">✕</button>
                 </div>
                 <div class="modal-body" style="text-align:center">
                     <div id="qr-code"
@@ -1193,7 +1177,7 @@
                     <div class="receive-address" id="receive-addr">
                         4AE5wFnZKvxFjK4jpEF9EdVHZE1HeaAekQ3zcABWLytaWFrrvgEDV3TUYh37JWtSGieQUPcfN2XFVZCr4ixjwoZdJ71umbE
                     </div>
-                    <button class="btn-outline" id="receive-copy">Copy Address</button>
+                    <button style="cursor: none;" class="btn-outline" id="receive-copy">Copy Address</button>
                     <div class="receive-warning">
                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
                             viewBox="0 0 24 24">
@@ -1226,7 +1210,7 @@
                                 address</label>
                             <textarea id="send-to" placeholder="4..., 8..., or integrated (106 chars)"
                                 spellcheck="false" autocomplete="off"
-                                style="width:100%;min-height:64px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.68rem;line-height:1.5;resize:none;outline:none"></textarea>
+                            style="width:100%;min-height:64px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.68rem;line-height:1.5;resize:none;outline:none"></textarea>
                             <div id="send-to-hint"
                                 style="font-size:.68rem;color:var(--text-dim);margin-top:6px;min-height:14px"></div>
                         </div>
@@ -1241,7 +1225,7 @@
                                 style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-dim);margin-top:6px">
                                 <span>Available: <span id="send-available">—</span> XMR</span>
                                 <button type="button" id="send-max"
-                                    style="background:transparent;border:0;color:var(--xmr);font-size:.68rem;cursor:pointer;padding:0">Send
+                                    style="background:transparent;border:0;color:var(--xmr);font-size:.68rem;cursor: none;padding:0">Send
                                     max</button>
                             </div>
                         </div>
@@ -1250,10 +1234,10 @@
                             <label
                                 style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Priority</label>
                             <div id="send-priority" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px">
-                                <button type="button" data-priority="1" class="send-prio-btn">Slow</button>
-                                <button type="button" data-priority="2" class="send-prio-btn active">Normal</button>
-                                <button type="button" data-priority="3" class="send-prio-btn">Fast</button>
-                                <button type="button" data-priority="4" class="send-prio-btn">Fastest</button>
+                                <button style="cursor: none;" type="button" data-priority="1" class="send-prio-btn">Slow</button>
+                                <button style="cursor: none;" type="button" data-priority="2" class="send-prio-btn active">Normal</button>
+                                <button style="cursor: none;" type="button" data-priority="3" class="send-prio-btn">Fast</button>
+                                <button style="cursor: none;" type="button" data-priority="4" class="send-prio-btn">Fastest</button>
                             </div>
                         </div>
 
@@ -1271,10 +1255,9 @@
                         </div>
 
                         <div style="display:flex;gap:8px">
-                            <button id="send-cancel" class="action-btn"
+                            <button style="cursor: none;" id="send-cancel" class="action-btn"
                                 style="flex:1;background:transparent">Cancel</button>
-                            <button id="send-review" class="action-btn primary" style="flex:2" disabled="">Review
-                                →</button>
+                            <button style="cursor: none;" id="send-review" class="action-btn primary" style="flex:2" disabled="">Review</button>
                         </div>
                     </div>
 
@@ -1312,9 +1295,8 @@
                         </div>
 
                         <div style="display:flex;gap:8px">
-                            <button id="send-back" class="action-btn" style="flex:1;background:transparent">←
-                                Back</button>
-                            <button id="send-confirm" class="action-btn primary" style="flex:2">Send</button>
+                            <button id="send-back" class="action-btn" style="flex:1;background:transparent cursor: none;">Back</button>
+                            <button id="send-confirm" class="action-btn primary" style="flex:2 cursor: none;">Send</button>
                         </div>
                     </div>
 
@@ -1338,7 +1320,7 @@
                                 after ~2 minutes of confirmations.</p>
                             <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-mid);word-break:break-all;padding:10px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;margin-bottom:14px"
                                 id="send-result-hash"></div>
-                            <button id="send-done" class="action-btn primary" style="width:100%">Done</button>
+                            <button id="send-done" class="action-btn primary" style="width:100% cursor: none;">Done</button>
                         </div>
                         <div id="send-result-error" style="display:none">
                             <svg width="48" height="48" fill="none" stroke="#f87171" stroke-width="1.8"
@@ -1350,7 +1332,7 @@
                             <h3 style="font-size:1rem;font-weight:600;margin-bottom:6px;color:#f87171">Send failed</h3>
                             <p id="send-result-error-msg"
                                 style="font-size:.72rem;color:var(--text-dim);line-height:1.5;margin-bottom:14px"></p>
-                            <button id="send-retry" class="action-btn" style="width:100%">Back to form</button>
+                            <button id="send-retry" class="action-btn" style="width:100% cursor: none;">Back to form</button>
                         </div>
                     </div>
 
@@ -1361,10 +1343,10 @@
         <footer>
             <div class="container">
                 <p>monero-web.com — Open source · MIT License · Your keys never leave your browser · <a href="/privacy"
-                        style="color:inherit;text-decoration:underline">Privacy</a> · <a href="/self-host"
-                        style="color:inherit;text-decoration:underline">Self-Host</a> · <a
+                        style="cursor: none; color:inherit;text-decoration:underline">Privacy</a> · <a href="/self-host"
+                        style="cursor: none; color:inherit;text-decoration:underline">Self-Host</a> · <a
                         href="https://github.com/Medtabka/monero-web" target="_blank" rel="noopener"
-                        style="color:inherit;text-decoration:underline">GitHub</a></p>
+                        style="cursor: none; color:inherit;text-decoration:underline">GitHub</a></p>
             </div>
         </footer>
     </div>
@@ -1387,9 +1369,9 @@
                 style="width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.82rem;outline:none;margin-bottom:10px">
             <div id="unlock-error" style="display:none;color:#f87171;font-size:.74rem;margin-bottom:10px"></div>
             <button id="unlock-btn"
-                style="width:100%;background:var(--xmr);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:600;padding:12px;border-radius:10px;cursor:pointer">Unlock</button>
+                style="width:100%;background:var(--xmr);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:600;padding:12px;border-radius:10px;cursor: none cursor: none;">Unlock</button>
             <button id="unlock-forget"
-                style="width:100%;background:transparent;border:none;color:var(--text-dim);font-family:'Outfit',sans-serif;font-size:.74rem;padding:10px;margin-top:6px;cursor:pointer">Forget
+                style="width:100%;background:transparent;border:none;color:var(--text-dim);font-family:'Outfit',sans-serif;font-size:.74rem;padding:10px;margin-top:6px;cursor:none">Forget
                 wallet &amp; start over</button>
         </div>
     </div>
@@ -1419,7 +1401,7 @@
         <div class="swap-popup-modal" role="dialog" aria-modal="true" aria-labelledby="swap-popup-title">
             <div class="swap-popup-head">
                 <div class="swap-popup-title" id="swap-popup-title">Exchange <span>· via trocador.app</span></div>
-                <button class="swap-popup-close" id="swap-popup-close" aria-label="Close">×</button>
+                <button style="cursor: none;" class="swap-popup-close" id="swap-popup-close" aria-label="Close">×</button>
             </div>
             <div class="swap-popup-body">
                 <div class="swap-popup-loading" id="swap-popup-loading">Loading Trocador…</div><iframe
