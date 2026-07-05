@@ -900,7 +900,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   }
-
+ 
   await connectAndPopulate();
 
   // â”€â”€â”€ RATE LIMIT MODAL â”€â”€â”€
