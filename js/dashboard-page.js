@@ -886,13 +886,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const ls = document.getElementById('loading-state');
       ls.style.display = 'block';
       ls.innerHTML =
-        '<div style="text-align:center;max-width:380px;margin:0 auto">' +
+        '<div>' +
           '' +
           '' +
           '' + escapeHtml(e.message) + '</p>' +
           '' +
-          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Reload</button>' +
-          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
+          '' +
+          '' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {
