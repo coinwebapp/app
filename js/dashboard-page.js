@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Detail panel (hidden by default, toggled on click)
         var detailRows = '';
-        detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0;white-space:nowrap">Transaction ID</td><td style="padding:4px 0;word-break:break-all"><span class="tx-detail-copy" data-copy="' + escapeHtml(fullHash) + '" style="cursor:pointer" title="Click to copy">' + escapeHtml(fullHash) + '</span></td></tr>';
+        detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0;white-space:nowrap">Transaction ID</td><td style="padding:4px 0;word-break:break-all"><span class="tx-detail-copy" data-copy="' + escapeHtml(fullHash) + '" style="cursor:none" title="Click to copy">' + escapeHtml(fullHash) + '</span></td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Date</td><td style="padding:4px 0">' + escapeHtml(when) + '</td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Height</td><td style="padding:4px 0">' + (tx.height ? tx.height.toLocaleString() : 'mempool') + '</td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Amount</td><td style="padding:4px 0;font-weight:600;color:' + arrowCol + '">' + (isIn ? '+' : 'âˆ’') + display + ' XMR</td></tr>';
@@ -802,10 +802,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Payment ID</td><td style="padding:4px 0;word-break:break-all">' + escapeHtml(paymentId) + '</td></tr>';
         }
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Direction</td><td style="padding:4px 0">' + (isIn ? 'Received' : 'Sent') + '</td></tr>';
-        detailRows += '<tr><td colspan="2" style="padding:8px 0 0 0"><a href="' + escapeHtml(explorerUrl) + '" target="_blank" rel="noopener noreferrer" style="color:var(--xmr);font-size:.72rem;text-decoration:none">View on block explorer â†—</a></td></tr>';
+        detailRows += '<tr><td colspan="2" style="padding:8px 0 0 0"><a href="' + escapeHtml(explorerUrl) + '" target="_blank" rel="noopener noreferrer" style="color:var(--xmr);font-size:.72rem;text-decoration:none">View on block explorer</a></td></tr>';
 
         return '<div class="key-card" style="margin-bottom:6px;padding:0;overflow:hidden">' +
-          '<div class="tx-row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:pointer">' +
+          '<div class="tx-row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:none">' +
             '<div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">' +
               '<span style="font-size:1.1rem;color:' + arrowCol + ';font-weight:700;flex-shrink:0">' + arrow + '</span>' +
               '<div style="min-width:0">' +
@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     } catch (e) {
       console.warn('[lws] tx history fetch failed:', e);
-      listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">Could not load transactions â€” will retry on next poll</div>';
+      listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">Could not load transactions will retry on next poll</div>';
     }
   }
 
@@ -889,10 +889,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       ls.innerHTML =
         '<div style="text-align:center;max-width:380px;margin:0 auto">' +
           '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" style="margin:0 auto 14px" class="bi bi-router" viewBox="0 0 24 24"><path d="M5.525 3.025a3.5 3.5 0 0 1 4.95 0 .5.5 0 1 0 .707-.707 4.5 4.5 0 0 0-6.364 0 .5.5 0 0 0 .707.707"/><path d="M6.94 4.44a1.5 1.5 0 0 1 2.12 0 .5.5 0 0 0 .708-.708 2.5 2.5 0 0 0-3.536 0 .5.5 0 0 0 .707.707ZM2.5 11a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m4.5-.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2.5.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m1.5-.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0"/><path d="M2.974 2.342a.5.5 0 1 0-.948.316L3.806 8H1.5A1.5 1.5 0 0 0 0 9.5v2A1.5 1.5 0 0 0 1.5 13H2a.5.5 0 0 0 .5.5h2A.5.5 0 0 0 5 13h6a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5h.5a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 14.5 8h-2.306l1.78-5.342a.5.5 0 1 0-.948-.316L11.14 8H4.86zM14.5 9a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5z"/><path d="M8.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/></svg>' +
-          '<p style="color:#f87171;font-size:.92rem;font-weight:600;margin-bottom:6px">Connecting To Monero</p>' +
+          '<p style="color:#2E8B57;font-size:.92rem;font-weight:600;margin-bottom:6px">Connecting To Monero...</p>' +
           '<p style="color:var(--text-dim);font-size:.78rem;line-height:1.55;margin-bottom:4px">' + escapeHtml(e.message) + '</p>' +
           '<p style="color:var(--text-dim);font-size:.72rem;line-height:1.55;margin-bottom:18px"></p>' +
-          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
+          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Reload</button>' +
           '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
