@@ -890,8 +890,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           '' +
           '' + escapeHtml(e.message) + '</p>' +
           '' +
-          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
-          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
+          '<button id="err-retry" class="action-btn" style="cursor: none"padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Refresh</button>' +
+          '<button id="err-disconnect" class="action-btn" style="cursor: none"padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {

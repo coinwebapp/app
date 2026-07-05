@@ -51,7 +51,7 @@ const QrScanner = (function () {
       '<div style="width:100%;max-width:420px;background:#111113;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:22px;text-align:center">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">' +
           '<h2 style="font-size:1rem;font-weight:600;color:#eae8e4;letter-spacing:-0.01em">Scan QR code</h2>' +
-          '<button id="qr-scanner-close" style="background:transparent;border:0;color:#9a9894;font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px">âœ•</button>' +
+          '<button id="qr-scanner-close" style="background:transparent;border:0;color:#9a9894;font-size:1.4rem;cursor:none;line-height:1;padding:0 4px"></button>' +
         '</div>' +
         '<div style="position:relative;width:100%;aspect-ratio:1/1;background:#000;border-radius:10px;overflow:hidden;margin-bottom:12px">' +
           '<video id="qr-scanner-video" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;display:block"></video>' +
