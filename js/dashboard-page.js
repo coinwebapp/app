@@ -851,10 +851,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-
-
-
-
   // Wraps the network connect + populate flow so it can be called both on
 // initial load and from any in-page retry button without reloading.
 async function connectAndPopulate () {
@@ -895,11 +891,6 @@ async function connectAndPopulate () {
 }
 
 await connectAndPopulate();
-
-
-
-
-
 
   // â”€â”€â”€ RATE LIMIT MODAL â”€â”€â”€
   function showRateLimitModal () {
