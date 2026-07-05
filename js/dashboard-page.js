@@ -888,7 +888,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       ls.style.display = 'block';
       ls.innerHTML =
         '<div style="text-align:center;max-width:380px;margin:0 auto">' +
-          
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {
