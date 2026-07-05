@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       // Disconnected â€” surface a retry link inline so the user doesn't have
       // to reload the whole page to recover from a transient proxy outage.
-      connInfo.innerHTML = '<span style="color: #2e8b57">' + escapeHtml(state.message || 'Disconnected') + '</span> <a href="#" id="conn-retry" style="color:var(--xmr);text-decoration:underline;cursor:none"></a>';
+      connInfo.innerHTML = '<span style="color: #084b25">' + escapeHtml(state.message || 'Disconnected') + '</span> <a href="#" id="conn-retry" style="color:var(--xmr);text-decoration:underline;cursor:none"></a>';
       const r = document.getElementById('conn-retry');
       if (r) r.addEventListener('click', (e) => { e.preventDefault(); connectAndPopulate(); });
     }
@@ -890,8 +890,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           '' +
           '' + escapeHtml(e.message) + '</p>' +
           '' +
-          '<button id="err-retry" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
-          '<button id="err-disconnect" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
+          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
+          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {
