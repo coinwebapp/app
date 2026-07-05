@@ -879,7 +879,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       // wallet on first load. If the LWS is unreachable (still building, sync
       // not done, etc.) the UI shows an explanatory message and falls back
       // to "balance unknown â€” scanning unavailable" rather than breaking the
-      // dashboard.
       startBalancePolling();
     } catch (e) {
       // Build a structured error block with two recovery options.
