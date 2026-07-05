@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <svg width="48" height="48" fill="none" stroke="var(--text-dim)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:12px;opacity:.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         <p style="color:var(--text);font-size:.95rem;font-weight:500;margin-bottom:6px">No wallet connected</p>
         <p style="color:var(--text-dim);font-size:.8rem;margin-bottom:20px">Enter your seed phrase or private key to access your wallet</p>
-        <a href="import.html" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet</a>
+        <a href="import.html" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet â†’</a>
       </div>
     `;
     return;
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           '</div>' +
           '<div style="display:flex;gap:6px;flex-shrink:0">' +
             '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.62rem;color:var(--text-dim);padding:2px 8px;background:var(--surface);border-radius:100px">' + entry.major + '/' + entry.minor + '</span>' +
-            '<button class="sub-del" data-idx="' + realIdx + '" title="Delete" style="background:transparent;border:0;color:var(--text-dim);cursor:none;font-size:.85rem;padding:0 4px;line-height:1">Exit</button>' +
+            '<button class="sub-del" data-idx="' + realIdx + '" title="Delete" style="background:transparent;border:0;color:var(--text-dim);cursor:pointer;font-size:.85rem;padding:0 4px;line-height:1">âœ•</button>' +
           '</div>' +
         '</div>' +
         '<div class="sub-addr" style="font-family:\'JetBrains Mono\',monospace;font-size:.62rem;color:var(--text-mid);word-break:break-all;line-height:1.5;cursor:pointer" title="Click to copy">' +
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const major = parseInt(subMajor.value, 10) || 0;
       const minor = parseInt(subMinor.value, 10) || 0;
-      if (major === 0 && minor === 0) throw new Error('Index (0,0) is your primary address cannot be a subaddress');
+      if (major === 0 && minor === 0) throw new Error('Index (0,0) is your primary address â€” cannot be a subaddress');
       // Validate by actually deriving
       MoneroSubaddress.generate(subKeys, major, minor);
       const list = loadSubBook();
@@ -379,13 +379,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   MoneroRPC.onConnectionChange((state) => {
     connDot.className = 'conn-dot ' + state.status;
     if (state.status === 'connected') {
-      connInfo.innerHTML = '<span>' + escapeHtml(state.node) + '</span> <span class="conn-height">' + (state.height ? state.height.toLocaleString() : 'â€”') + '</span>';
+      connInfo.innerHTML = '<span>' + escapeHtml(state.node) + '</span> Â· <span class="conn-height">' + (state.height ? state.height.toLocaleString() : 'â€”') + '</span>';
     } else if (state.status === 'connecting') {
       connInfo.textContent = state.message || 'Connectingâ€¦';
     } else {
       // Disconnected â€” surface a retry link inline so the user doesn't have
       // to reload the whole page to recover from a transient proxy outage.
-      connInfo.innerHTML = '<span style="color:#f87171">' + escapeHtml(state.message || 'Disconnected') + '</span> <a href="#" id="conn-retry" style="color:var(--xmr);text-decoration:underline;cursor:none">retry</a>';
+      connInfo.innerHTML = '<span style="color:#f87171">' + escapeHtml(state.message || 'Disconnected') + '</span> Â· <a href="#" id="conn-retry" style="color:var(--xmr);text-decoration:underline;cursor:pointer">retry</a>';
       const r = document.getElementById('conn-retry');
       if (r) r.addEventListener('click', (e) => { e.preventDefault(); connectAndPopulate(); });
     }
@@ -736,7 +736,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           woNote = document.createElement('div');
           woNote.id = 'wo-balance-note';
           woNote.style.cssText = 'font-size:.68rem;color:var(--text-dim);margin-top:2px;font-style:italic';
-          woNote.textContent = 'Showing received funds only outgoing transactions require the spend key';
+          woNote.textContent = 'Showing received funds only â€” outgoing transactions require the spend key';
           balEl.parentNode.insertBefore(woNote, balEl.nextSibling);
         }
       }
@@ -786,7 +786,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       } else {
         scanningActive = false;
-        noteEl.textContent = 'Up to date last checked ' + new Date().toLocaleTimeString();
+        noteEl.textContent = 'Up to date Â· last checked ' + new Date().toLocaleTimeString();
         if (scanWrap) scanWrap.style.display = 'none';
       }
     } catch (e) {
@@ -836,7 +836,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       if (txs.length === 0) {
-        listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">No transactions yet. Receive some XMR and it will show up here.</div>';
+        listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">No transactions yet. Receive some XMR and it\'ll show up here.</div>';
         return;
       }
 
@@ -870,7 +870,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Detail panel (hidden by default, toggled on click)
         var detailRows = '';
-        detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0;white-space:nowrap">Transaction ID</td><td style="padding:4px 0;word-break:break-all"><span class="tx-detail-copy" data-copy="' + escapeHtml(fullHash) + '" style="cursor:none" title="Click to copy">' + escapeHtml(fullHash) + '</span></td></tr>';
+        detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0;white-space:nowrap">Transaction ID</td><td style="padding:4px 0;word-break:break-all"><span class="tx-detail-copy" data-copy="' + escapeHtml(fullHash) + '" style="cursor:pointer" title="Click to copy">' + escapeHtml(fullHash) + '</span></td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Date</td><td style="padding:4px 0">' + escapeHtml(when) + '</td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Height</td><td style="padding:4px 0">' + (tx.height ? tx.height.toLocaleString() : 'mempool') + '</td></tr>';
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Amount</td><td style="padding:4px 0;font-weight:600;color:' + arrowCol + '">' + (isIn ? '+' : 'âˆ’') + display + ' XMR</td></tr>';
@@ -880,10 +880,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Payment ID</td><td style="padding:4px 0;word-break:break-all">' + escapeHtml(paymentId) + '</td></tr>';
         }
         detailRows += '<tr><td style="color:var(--text-dim);padding:4px 12px 4px 0">Direction</td><td style="padding:4px 0">' + (isIn ? 'Received' : 'Sent') + '</td></tr>';
-        detailRows += '<tr><td colspan="2" style="padding:8px 0 0 0"><a href="' + escapeHtml(explorerUrl) + '" target="_blank" rel="noopener noreferrer" style="color:var(--xmr);font-size:.72rem;text-decoration:none">View on block explorer</a></td></tr>';
+        detailRows += '<tr><td colspan="2" style="padding:8px 0 0 0"><a href="' + escapeHtml(explorerUrl) + '" target="_blank" rel="noopener noreferrer" style="color:var(--xmr);font-size:.72rem;text-decoration:none">View on block explorer â†—</a></td></tr>';
 
         return '<div class="key-card" style="margin-bottom:6px;padding:0;overflow:hidden">' +
-          '<div class="tx-row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:none">' +
+          '<div class="tx-row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;cursor:pointer">' +
             '<div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">' +
               '<span style="font-size:1.1rem;color:' + arrowCol + ';font-weight:700;flex-shrink:0">' + arrow + '</span>' +
               '<div style="min-width:0">' +
@@ -925,7 +925,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     } catch (e) {
       console.warn('[lws] tx history fetch failed:', e);
-      listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">Could not load transactions retry on next poll</div>';
+      listEl.innerHTML = '<div class="key-card" style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">Could not load transactions â€” will retry on next poll</div>';
     }
   }
 
@@ -934,7 +934,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function connectAndPopulate () {
     document.getElementById('loading-state').style.display = 'block';
     document.getElementById('loading-state').innerHTML =
-      '<div class="spinner"></div><p>Connecting to Monero network</p>';
+      '<div class="spinner"></div><p>Connecting to Monero networkâ€¦</p>';
     try {
       const node = await MoneroRPC.connect();
 
@@ -966,7 +966,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       ls.style.display = 'block';
       ls.innerHTML =
         '<div style="text-align:center;max-width:380px;margin:0 auto">' +
-  
+          '<svg width="40" height="40" fill="none" stroke="#f87171" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 14px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+          '<p style="color:#f87171;font-size:.92rem;font-weight:600;margin-bottom:6px">Could not reach a Monero node</p>' +
+          '<p style="color:var(--text-dim);font-size:.78rem;line-height:1.55;margin-bottom:4px">' + escapeHtml(e.message) + '</p>' +
+          '<p style="color:var(--text-dim);font-size:.72rem;line-height:1.55;margin-bottom:18px">This usually means the proxy is rate-limited, the upstream nodes are temporarily down, or your network is blocking the request. Your wallet keys are unaffected.</p>' +
+          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
+          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
         '</div>';
       document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
       document.getElementById('err-disconnect').addEventListener('click', () => {
