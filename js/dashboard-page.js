@@ -875,7 +875,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('net-fee').textContent = 'unavailable';
       }
 
-      // Kick off the light-wallet scan via monero-lws. The actual UI updates
       // are driven by startBalancePolling() below â€” this just registers the
       // wallet on first load. If the LWS is unreachable (still building, sync
       // not done, etc.) the UI shows an explanatory message and falls back
