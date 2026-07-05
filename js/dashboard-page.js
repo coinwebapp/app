@@ -851,57 +851,55 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+
+
+
+
   // Wraps the network connect + populate flow so it can be called both on
-  // initial load and from any in-page retry button without reloading.
-  async function connectAndPopulate () {
-    document.getElementById('loading-state').style.display = 'block';
-    document.getElementById('loading-state').innerHTML =
-      '<div class="spinner"></div><p></p>';
+// initial load and from any in-page retry button without reloading.
+async function connectAndPopulate () {
+  document.getElementById('loading-state').style.display = 'block';
+  document.getElementById('loading-state').innerHTML =
+    '<div class="spinner"></div><p></p>';
+
+  try {
+    const node = await MoneroRPC.connect();
+
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+
+    document.getElementById('net-node').textContent = node.name;
+    document.getElementById('net-height').textContent =
+      node.height ? node.height.toLocaleString() : '—';
+    document.getElementById('net-latency').textContent =
+      node.latency + 'ms';
+    document.getElementById('net-pool').textContent =
+      node.txPoolSize || '0';
+
     try {
-      const node = await MoneroRPC.connect();
-
-      document.getElementById('loading-state').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-
-      document.getElementById('net-node').textContent     = node.name;
-      document.getElementById('net-height').textContent   = node.height ? node.height.toLocaleString() : 'â€”';
-      document.getElementById('net-latency').textContent  = node.latency + 'ms';
-      document.getElementById('net-pool').textContent     = node.txPoolSize || '0';
-
-      try {
-        const fee = await MoneroRPC.getFeeEstimate();
-        document.getElementById('net-fee').textContent = MoneroRPC.formatXMR(fee.feePerByte) + ' XMR/byte';
-      } catch (e) {
-        document.getElementById('net-fee').textContent = 'unavailable';
-      }
-
-      // are driven by startBalancePolling() below â€” this just registers the
-      // wallet on first load. If the LWS is unreachable (still building, sync
-      // not done, etc.) the UI shows an explanatory message and falls back
-      // to "balance unknown â€” scanning unavailable" rather than breaking the
-      startBalancePolling();
+      const fee = await MoneroRPC.getFeeEstimate();
+      document.getElementById('net-fee').textContent =
+        MoneroRPC.formatXMR(fee.feePerByte) + ' XMR/byte';
     } catch (e) {
-      // Build a structured error block with two recovery options.
-      const ls = document.getElementById('loading-state');
-      ls.style.display = 'block';
-      ls.innerHTML =
-        '<div style="text-align:center;max-width:380px;margin:0 auto">' +
-          '' +
-          '' +
-          '' + escapeHtml(e.message) + '</p>' +
-          '' +
-          '<button id="err-retry" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;margin-right:8px">Retry</button>' +
-          '<button id="err-disconnect" class="action-btn" style="padding:10px 22px;font-size:.82rem;width:auto;display:inline-flex;background:transparent">Disconnect</button>' +
-        '</div>';
-      document.getElementById('err-retry').addEventListener('click', () => connectAndPopulate());
-      document.getElementById('err-disconnect').addEventListener('click', () => {
-        WalletVault.clear();
-        window.location.href = '/';
-      });
+      document.getElementById('net-fee').textContent = 'unavailable';
     }
+
+    startBalancePolling();
+
+  } catch (e) {
+    console.error('[connectAndPopulate]', e);
+
+    // Hide loading screen so the rest of the page continues working.
+    document.getElementById('loading-state').style.display = 'none';
   }
- 
-  await connectAndPopulate();
+}
+
+await connectAndPopulate();
+
+
+
+
+
 
   // â”€â”€â”€ RATE LIMIT MODAL â”€â”€â”€
   function showRateLimitModal () {
