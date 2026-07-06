@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT 
 // verify-page.js â€” moved inline so the CSP can drop 'unsafe-inline' for scripts
 document.addEventListener('DOMContentLoaded', () => {
   // Defensive helpers â€” return safe defaults if a referenced element is
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     banner.innerHTML =
       '<svg width="18" height="18" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
       '<span style="flex:1;font-size:.82rem;color:var(--text)">An active wallet session is loaded in this tab.</span>' +
-      '<a href="/dashboard" style="flex-shrink:0;background:#22c55e;color:#fff;text-decoration:none;font-size:.78rem;font-weight:600;padding:8px 16px;border-radius:8px">Continue â†’</a>';
+      '<a href="dashboard.html" style="cursor: none; flex-shrink:0;background:#22c55e;color:#fff;text-decoration:none;font-size:.78rem;font-weight:600;padding:8px 16px;border-radius:8px">Continue</a>';
     const card = document.querySelector('.card');
     if (card) card.insertBefore(banner, card.firstChild);
   })();
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional Â· encrypts in-tab storage)</span></label>' +
         '<input id="session-pw" type="password" autocomplete="new-password" placeholder="Leave empty for no encryption" ' +
         'style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--text);outline:none;margin-bottom:10px">' +
-        '<button id="btn-open-wallet" class="btn-primary" style="background:#22c55e;box-shadow:0 4px 24px rgba(34,197,94,0.2)">' +
+        '<button id="btn-open-wallet" class="btn-primary" style="cursor: none; background:#22c55e;box-shadow:0 4px 24px rgba(34,197,94,0.2)">' +
         '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Open Wallet Dashboard</button>';
       document.getElementById('results').appendChild(openBlock);
       document.getElementById('btn-open-wallet').addEventListener('click', async () => {
@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
               'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional Â· encrypts in-tab storage)</span></label>' +
               '<input id="session-pw-create" type="password" autocomplete="new-password" placeholder="Leave empty for no encryption" ' +
               'style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--text);outline:none;margin-bottom:10px">' +
-              '<button id="btn-open-wallet-create" class="btn-primary" style="background:var(--xmr)">' +
+              '<button id="btn-open-wallet-create" class="btn-primary" style="cursor: none; background:var(--xmr)">' +
               '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Open Wallet Dashboard</button>';
             document.getElementById('create-result').appendChild(openBlock);
             document.getElementById('btn-open-wallet-create').addEventListener('click', async () => {
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var dlBtn = document.createElement('button');
             dlBtn.id = 'btn-download-wallet';
             dlBtn.className = 'btn-primary';
-            dlBtn.style.cssText = 'background:var(--surface-2);color:var(--text);border:1px solid var(--border);margin-top:10px;width:100%';
+            dlBtn.style.cssText = 'background:var(--surface-2);color:var(--text);border:1px solid var(--border);margin-top:10px;width:100%;cursor: none;';
             dlBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Wallet Backup (JSON)';
             dlBtn.addEventListener('click', function () {
               var data = {
