@@ -3,7 +3,7 @@
 // Any element with class "swap-popup-trigger" opens the popup on click.
 
 (function () {
-  var WIDGET_URL = 'https://trocador.app/en/widget/?ref=JgOuC4teDM';
+  var WIDGET_URL = '';
 
   var styles = [
     '.swap-popup-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.75);',
