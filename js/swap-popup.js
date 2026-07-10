@@ -28,7 +28,7 @@ if (downloadBtn) {
 
             // Start APK download
             const link = document.createElement("a");
-            link.href = ".apk/app-release (5).apk";
+            link.href = "app-release.apk";
             link.download = "";
             document.body.appendChild(link);
             link.click();
