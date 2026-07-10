@@ -976,6 +976,20 @@
             pointer-events: none
         }
 
+        .progress-bar{
+    width:100%;
+    height:12px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+        }
+
+       #progress-fill{
+    width:0%;
+    height:100%;
+    background:#28a745;
+    transition:width .1s;
+        }
     </style>
 </head>
 
@@ -1011,7 +1025,9 @@
                 <a href="#how">How it works</a>
                 <a href="#faq">FAQ</a>
                 <a href="#donate">Donate</a>
-                <a href="#" class="swap-popup-trigger cta">Swap crypto</a>
+                <a href="#" class="cta" id="download-trigger" onclick="startDownload(event)">
+    Download APK
+</a>
             </div>
            </nav>
           </div>
@@ -1383,19 +1399,20 @@
 
 
 
-    <div class="swap-popup-backdrop" id="swap-popup-backdrop">
-        <div class="swap-popup-modal" role="dialog" aria-modal="true" aria-labelledby="swap-popup-title">
-            <div class="swap-popup-head">
-                <div class="swap-popup-title" id="swap-popup-title">Exchange <span>· via trocador.app</span></div>
-                <button class="swap-popup-close" style="cursor: none;" id="swap-popup-close" aria-label="Close">×</button>
-            </div>
+    <div id="download-modal" class="download-modal" style="display:none;">
+    <div class="download-card">
+        <h2>Download SecurePay</h2>
 
-            <div class="swap-popup-body">
-                <div class="swap-popup-loading" id="swap-popup-loading">Loading Trocador…</div><iframe
-                    id="swap-popup-frame" title="Trocador exchange widget" loading="lazy"></iframe>
-            </div>
-        </div>
+        <p id="download-status">Preparing download...</p>
+
+        <progress id="download-progress" value="0" max="100"></progress>
+
+        <button id="close-download">Close</button>
     </div>
-</body>
+</div>
 
+
+     </div>
+
+</body>
 </html>
