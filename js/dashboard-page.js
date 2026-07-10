@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT 
 // dashboard-page.js â€” moved inline so the CSP can drop 'unsafe-inline' for scripts
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   overlayForget.addEventListener('click', () => {
     WalletVault.clear();
     walletKeys = null;
-    window.location.href = '/verify';
+    window.location.href = 'import.html';
   });
 
   overlayBtn.addEventListener('click', tryUnlock);
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <svg width="48" height="48" fill="none" stroke="var(--text-dim)" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:12px;opacity:.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         <p style="color:var(--text);font-size:.95rem;font-weight:500;margin-bottom:6px">No wallet connected</p>
         <p style="color:var(--text-dim);font-size:.8rem;margin-bottom:20px">Enter your seed phrase or private key to access your wallet</p>
-        <a href="/verify" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet â†’</a>
+        <a href="import.html" style="display:inline-block;padding:12px 28px;background:var(--xmr);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:.85rem;box-shadow:0 4px 24px rgba(255,102,0,0.2)">Open Wallet</a>
       </div>
     `;
     return;
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       window.location.reload();
     } else {
       WalletVault.clear();
-      window.location.href = '/verify';
+      window.location.href = 'import.html';
     }
   }
   function installIdleListeners() {
@@ -139,9 +139,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // â”€â”€â”€ Populate wallet info â”€â”€â”€
   document.getElementById('wallet-address').insertAdjacentText('afterbegin', walletKeys.address);
   document.getElementById('receive-addr').textContent = walletKeys.address;
-  document.getElementById('key-spend').textContent = walletKeys.privateSpendKeyHex || 'â€” not available (watch-only) â€”';
+  document.getElementById('key-spend').textContent = walletKeys.privateSpendKeyHex || 'â€” Not available (watch-only) â€”';
   document.getElementById('key-view').textContent = walletKeys.privateViewKeyHex;
-  document.getElementById('key-pub-spend').textContent = walletKeys.publicSpendKeyHex || 'â€” not available (watch-only) â€”';
+  document.getElementById('key-pub-spend').textContent = walletKeys.publicSpendKeyHex || 'â€” Not available (watch-only) â€”';
   document.getElementById('key-pub-view').textContent = walletKeys.publicViewKeyHex;
 
   // â”€â”€â”€ Seed phrase recovery â”€â”€â”€
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const ts = (POLYSEED_EPOCH + walletKeys.birthday * TIME_STEP) * 1000;
       const d = new Date(ts);
       const dateStr = d.toISOString().slice(0, 10);
-      parts.push('Polyseed Â· birthday ~' + dateStr);
+      parts.push('Polyseed · birthday ~' + dateStr);
     } else if (walletKeys.seedFormat === 'bip39') {
       parts.push('BIP-39');
     }
@@ -280,14 +280,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       row.innerHTML =
         '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px">' +
           '<div style="font-size:.78rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' +
-            (entry.label ? escapeHtml(entry.label) : '<span style="color:var(--text-dim);font-weight:400">unlabeled</span>') +
+            (entry.label ? escapeHtml(entry.label) : '<span style="color:var(--text-dim);font-weight:400">Unlabeled</span>') +
           '</div>' +
           '<div style="display:flex;gap:6px;flex-shrink:0">' +
             '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.62rem;color:var(--text-dim);padding:2px 8px;background:var(--surface);border-radius:100px">' + entry.major + '/' + entry.minor + '</span>' +
-            '<button class="sub-del" data-idx="' + realIdx + '" title="Delete" style="background:transparent;border:0;color:var(--text-dim);cursor:pointer;font-size:.85rem;padding:0 4px;line-height:1">âœ•</button>' +
+            '<button class="sub-del" data-idx="' + realIdx + '" title="Delete" style="background:transparent;border:0;color:var(--text-dim);cursor:none;font-size:.85rem;padding:0 4px;line-height:1"></button>' +
           '</div>' +
         '</div>' +
-        '<div class="sub-addr" style="font-family:\'JetBrains Mono\',monospace;font-size:.62rem;color:var(--text-mid);word-break:break-all;line-height:1.5;cursor:pointer" title="Click to copy">' +
+        '<div class="sub-addr" style="font-family:\'JetBrains Mono\',monospace;font-size:.62rem;color:var(--text-mid);word-break:break-all;line-height:1.5;cursor:none" title="Click to copy">' +
           escapeHtml(address) +
         '</div>';
       row.querySelector('.sub-addr').addEventListener('click', (e) => copyToClipboard(address, e.currentTarget));
@@ -432,8 +432,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const noteEl = document.getElementById('balance-note');
 
     // Mark as scanning while we wait for the first response
-    balEl.textContent = 'â€”';
-    noteEl.textContent = 'Connecting to light-wallet serverâ€¦';
+    balEl.textContent = '';
+    noteEl.textContent = 'Connecting to light-wallet server';
 
     // First call: register the wallet with the LWS, then decide whether
     // to trigger a historical rescan via /import_wallet_request.
@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       } else {
         scanningActive = false;
-        noteEl.textContent = 'Up to date Â· last checked ' + new Date().toLocaleTimeString();
+        noteEl.textContent = 'Up to date · last checked ' + new Date().toLocaleTimeString();
         if (scanWrap) scanWrap.style.display = 'none';
       }
     } catch (e) {
@@ -1005,7 +1005,7 @@ await connectAndPopulate();
       let label = 'Primary address';
       if (v.integrated) label = 'Integrated address (with payment ID baked in)';
       else if (v.subaddress) label = 'Subaddress';
-      sendToHintEl.textContent = 'âœ“ ' + label;
+      sendToHintEl.textContent = ' ' + label;
       sendToHintEl.style.color = '#22c55e';
     }
     var amtNorm = amt.replace(',', '.'); // accept comma as decimal separator
@@ -1037,7 +1037,7 @@ await connectAndPopulate();
     const errEl = document.getElementById('send-error');
     errEl.style.display = 'none';
     sendReviewBtn.disabled = true;
-    sendReviewBtn.textContent = 'Estimatingâ€¦';
+    sendReviewBtn.textContent = 'Estimating';
     try {
       const toAddress = (sendToEl.value || '').trim();
       const xmrAmount = (sendAmountEl.value || '').trim();
@@ -1055,7 +1055,7 @@ await connectAndPopulate();
       errEl.style.display = 'block';
     }
     sendReviewBtn.disabled = false;
-    sendReviewBtn.textContent = 'Review â†’';
+    sendReviewBtn.textContent = 'Review';
   });
 
   // Back from confirm â†’ form

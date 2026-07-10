@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   const formats = {
-    12: { name:'BIP-39',          cls:'mymonero', icon:'â—‡' },
-    13: { name:'MyMonero Legacy', cls:'mymonero', icon:'â—ˆ' },
-    16: { name:'Polyseed',        cls:'mymonero', icon:'â—‰' },
-    25: { name:'Monero Standard', cls:'standard', icon:'â—†' },
+    12: { name:'BIP-39',          cls:'mymonero', icon:'' },
+    13: { name:'MyMonero Legacy', cls:'mymonero', icon:'' },
+    16: { name:'Polyseed',        cls:'mymonero', icon:'' },
+    25: { name:'Monero Standard', cls:'standard', icon:'' },
   };
 
   // â”€â”€â”€ Advanced: custom Monero node URL â”€â”€â”€
@@ -180,10 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (restoreHeightEl) restoreHeightEl.value = String(height);
       if (selectedLabel) {
         if (age === 'unknown') {
-          selectedLabel.textContent = 'Will scan from genesis â€” finds everything, may take 1-3 hours for old wallets';
+          selectedLabel.textContent = 'Will scan from genesis, this may take 1-3 hours for old wallets';
           selectedLabel.style.color = 'var(--text-dim)';
         } else {
-          selectedLabel.textContent = 'Restore point set to ~block ' + height.toLocaleString() + ' â€” full scan required to find historical transactions';
+          selectedLabel.textContent = 'Restore point set to ~block ' + height.toLocaleString() + ' full scan required to find historical transactions';
           selectedLabel.style.color = 'var(--success)';
         }
         selectedLabel.style.display = 'block';
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const fmt = formats[keys.wordCount];
       formatEl.textContent = (fmt ? fmt.icon + ' ' : '') + 'Derived via ' + (fmt ? fmt.name : keys.wordCount + '-word seed');
     } else {
-      formatEl.textContent = 'â—† Derived from private spend key';
+      formatEl.textContent = 'Derived from private spend key';
     }
 
     // Store keys for Open Wallet button
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
       openBlock.style.marginTop = '16px';
       openBlock.innerHTML =
         '<label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">' +
-        'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional Â· encrypts in-tab storage)</span></label>' +
+        'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional · encrypts in-tab storage)</span></label>' +
         '<input id="session-pw" type="password" autocomplete="new-password" placeholder="Leave empty for no encryption" ' +
         'style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--text);outline:none;margin-bottom:10px">' +
         '<button id="btn-open-wallet" class="btn-primary" style="cursor: none; background:#22c55e;box-shadow:0 4px 24px rgba(34,197,94,0.2)">' +
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openBlock.style.marginTop = '12px';
             openBlock.innerHTML =
               '<label style="display:block;font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">' +
-              'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional Â· encrypts in-tab storage)</span></label>' +
+              'Session password <span style="text-transform:none;letter-spacing:0;color:var(--text-dim)">(optional · encrypts in-tab storage)</span></label>' +
               '<input id="session-pw-create" type="password" autocomplete="new-password" placeholder="Leave empty for no encryption" ' +
               'style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--text);outline:none;margin-bottom:10px">' +
               '<button id="btn-open-wallet-create" class="btn-primary" style="cursor: none; background:var(--xmr)">' +

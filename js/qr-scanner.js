@@ -171,7 +171,7 @@ const QrScanner = (function () {
     }
     ensureModal();
     modal.style.display = 'flex';
-    setStatus('Requesting camera accessâ€¦');
+    setStatus('Requesting camera access');
     try {
       stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' },

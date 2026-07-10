@@ -1082,70 +1082,61 @@
                     </button>
                 </div>
 
-                <!-- Network Info -->
-                <div class="network-section fade-in">
-                    <div class="section-title">Network</div>
-                    <div class="network-card">
-                        <div class="network-row">
-                            <span class="label">Node</span>
-                            <span class="value" id="net-node">monero-web proxy</span>
-                        </div>
-                        <div class="network-row">
-                            <span class="label">Height</span>
-                            <span class="value" id="net-height">3,709,844</span>
-                        </div>
-                        <div class="network-row">
-                            <span class="label">Latency</span>
-                            <span class="value" id="net-latency">414ms</span>
-                        </div>
-                        <div class="network-row">
-                            <span class="label">Est. Fee</span>
-                            <span class="value" id="net-fee">0.00000002 XMR/byte</span>
-                        </div>
-                        <div class="network-row">
-                            <span class="label">Tx Pool</span>
-                            <span class="value" id="net-pool">20</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Network Info -->
+<div class="network-section fade-in">
+    <div class="section-title">Network</div>
 
-    <script>
+    <div class="network-card">
+        <div class="network-row">
+            <span class="label">Height</span>
+            <span class="value" id="net-height">3,709,844</span>
+        </div>
+
+        <div class="network-row">
+            <span class="label">Latency</span>
+            <span class="value" id="net-latency">414 Milliseconds</span>
+        </div>
+
+        <div class="network-row">
+            <span class="label">Est. Fee</span>
+            <span class="value" id="net-fee">0.00000002 XMR</span>
+        </div>
+    </div>
+</div>
+
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-    // Available nodes
-    const nodes = [
-        "remote node",
-        "public node",
-        "global node",
-        "secure node",
-    ];
 
-    // Random helper
-    const random = (min, max) =>
-        Math.floor(Math.random() * (max - min + 1)) + min;
+    // Random number helper
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-    // Node
-    document.getElementById("net-node").textContent =
-        nodes[random(0, nodes.length - 1)];
+    // Update Block Height
+    const heightEl = document.getElementById("net-height");
+    if (heightEl) {
+        heightEl.textContent = random(3709000, 3715000).toLocaleString();
+    }
 
-    // Block Height
-    document.getElementById("net-height").textContent =
-        random(3709000, 3715000).toLocaleString();
+    // Update Network Latency
+    const latencyEl = document.getElementById("net-latency");
+    if (latencyEl) {
+        latencyEl.textContent = random(35, 850) + " Milliseconds";
+    }
 
-    // Latency
-    document.getElementById("net-latency").textContent =
-        random(35, 850) + "ms";
+    // Update Estimated Fee
+    const feeEl = document.getElementById("net-fee");
+    if (feeEl) {
+        const fee = (
+            Math.random() * (0.00000008 - 0.00000001) + 0.00000001
+        ).toFixed(8);
 
-    // Estimated Fee
-    const fee = (Math.random() * (0.00000008 - 0.00000001) + 0.00000001)
-        .toFixed(8);
-    document.getElementById("net-fee").textContent =
-        fee + " XMR/byte";
+        feeEl.textContent = fee + " XMR";
+    }
 
-    // Transaction Pool
-    document.getElementById("net-pool").textContent =
-        random(5, 300);
 });
 </script>
+
 
                 <!-- Transactions -->
                 <div class="keys-section fade-in">
@@ -1411,13 +1402,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
 
                         <div style="display:flex;gap:8px">
-<<<<<<< HEAD
                             <button id="send-back" class="action-btn" style="flex:1;background:transparent; cursor: none;">Back</button>
                             <button id="send-confirm" class="action-btn primary" style="flex:2; cursor: none;">Send</button>
-=======
-                            <button id="send-back" class="action-btn" style="flex:1;background:transparent; cursor: none;">Back</button>
-                            <button id="send-confirm" class="action-btn primary" style="flex:2; cursor: none;">Send</button>
->>>>>>> c81c898e70da278965799cc2857a80e6e50ed6d8
+
                         </div>
                     </div>
 
@@ -1441,11 +1428,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                 after ~2 minutes of confirmations.</p>
                             <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-mid);word-break:break-all;padding:10px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;margin-bottom:14px"
                                 id="send-result-hash"></div>
-<<<<<<< HEAD
+
                             <button id="send-done" class="action-btn primary" style="width:100%; cursor: none;">Done</button>
-=======
-                            <button id="send-done" class="action-btn primary" style="width:100%; cursor: none;">Done</button>
->>>>>>> c81c898e70da278965799cc2857a80e6e50ed6d8
+
+
                         </div>
                         <div id="send-result-error" style="display:none">
                             <svg width="48" height="48" fill="none" stroke="#f87171" stroke-width="1.8"
@@ -1457,11 +1443,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <h3 style="font-size:1rem;font-weight:600;margin-bottom:6px;color:#f87171">Send failed</h3>
                             <p id="send-result-error-msg"
                                 style="font-size:.72rem;color:var(--text-dim);line-height:1.5;margin-bottom:14px"></p>
-<<<<<<< HEAD
+
                             <button id="send-retry" class="action-btn" style="width:100%; cursor: none;">Back to form</button>
-=======
-                            <button id="send-retry" class="action-btn" style="width:100%; cursor: none;">Back to form</button>
->>>>>>> c81c898e70da278965799cc2857a80e6e50ed6d8
+
                         </div>
                     </div>
 
@@ -1493,15 +1477,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <input id="unlock-pw" type="password" autocomplete="current-password" placeholder="Session password"
                 style="width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.82rem;outline:none;margin-bottom:10px">
             <div id="unlock-error" style="display:none;color:#f87171;font-size:.74rem;margin-bottom:10px"></div>
-            <button id="unlock-btn"
-<<<<<<< HEAD
-                style="width:100%;background:var(--xmr);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:600;padding:12px;border-radius:10px;cursor: none; cursor: none;">Unlock</button>
-=======
-                style="width:100%;background:var(--xmr);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:600;padding:12px;border-radius:10px;cursor: none cursor: none;">Unlock</button>
->>>>>>> c81c898e70da278965799cc2857a80e6e50ed6d8
-            <button id="unlock-forget"
-                style="width:100%;background:transparent;border:none;color:var(--text-dim);font-family:'Outfit',sans-serif;font-size:.74rem;padding:10px;margin-top:6px;cursor:none">Forget
-                wallet &amp; start over</button>
+            <button id="unlock-btn" style="width:100%;background:var(--xmr);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;font-weight:600;padding:12px;border-radius:10px;cursor: none; cursor: none;">Unlock</button>
+
+            <button id="unlock-forget" style="width:100%;background:transparent;border:none;color:var(--text-dim);font-family:'Outfit',sans-serif;font-size:.74rem;padding:10px;margin-top:6px;cursor:none">Forget wallet &amp; start over</button>
         </div>
     </div>
 

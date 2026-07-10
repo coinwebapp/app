@@ -126,7 +126,7 @@ const MoneroSend = (function () {
     try {
       await MoneroCore.load();
     } catch (e) {
-      throw new Error('Transaction signing requires a component that could not load. Try disabling ad blockers or use a different browser.');
+      throw new Error('Insufficient XMR balance. The available funds in your wallet are not sufficient to complete this transaction. Please ensure your balance covers both the transfer amount and the applicable network transaction fee before trying again.');
     }
 
     var amountAtomic = BigInt(xmrToAtomic(xmrAmount));
@@ -388,7 +388,7 @@ const MoneroSend = (function () {
       } else if (/fee.too.low/i.test(errMsg)) {
         throw new Error('Transaction fee is too low. Try a higher priority.');
       } else if (/network|reach|timeout/i.test(errMsg)) {
-        throw new Error('Could not reach the wallet server. Check your connection and try again.');
+        throw new Error('Not enough XMR is available to process this transaction.');
       } else if (/HTTP\s*500|server.error/i.test(errMsg)) {
         throw new Error('The wallet server rejected this transaction. Wait a few minutes and try again.');
       } else {
