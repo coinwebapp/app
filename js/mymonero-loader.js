@@ -28,7 +28,7 @@
 const MoneroCore = (function () {
   'use strict';
 
-  const WASM_DIR = '/js/mymonero-core/';
+  const WASM_DIR = 'js/';
   let _module = null;
   let _loadingPromise = null;
   let _loadError = null;
@@ -46,7 +46,7 @@ const MoneroCore = (function () {
 
     _loadingPromise = (async () => {
       if (typeof MyMoneroClient !== 'function') {
-        _loadError = 'MyMoneroClient not available â€” script not loaded or blocked by browser';
+        _loadError = 'MyMoneroClient not available script not loaded or blocked by browser';
         throw new Error(_loadError);
       }
       try {
@@ -74,7 +74,7 @@ const MoneroCore = (function () {
    * addresses.
    */
   function decodeAddress (address, nettype) {
-    if (!_module) throw new Error('MoneroCore not loaded â€” call await MoneroCore.load() first');
+    if (!_module) throw new Error('MoneroCore not loaded call await MoneroCore.load() first');
     const args = JSON.stringify({
       address: String(address || '').trim(),
       nettype_string: nettype || 'MAINNET',

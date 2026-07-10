@@ -12,7 +12,7 @@
  *   MoneroSend.send(keys, to, amt, prio, pid, preview) â†’ Promise<{ tx_hash }>
  *
  * Depends on:
- *   js/mymonero-loader.js  (MoneroCore â€” WASM bridge for sendStep2)
+ *   js/mymonero-loader.js  (MoneroCore WASM bridge for sendStep2)
  *   js/lws-client.js       (LwsClient for network I/O)
  */
 
@@ -382,7 +382,7 @@ const MoneroSend = (function () {
     } catch (bcErr) {
       var errMsg = bcErr.message || String(bcErr);
       if (/double.spend|already.spent/i.test(errMsg)) {
-        throw new Error('Transaction rejected â€” an output was already spent. Wait a few minutes for confirmations and try again.');
+        throw new Error('Transaction rejected an output was already spent. Wait a few minutes for confirmations and try again.');
       } else if (/invalid.input/i.test(errMsg)) {
         throw new Error('Transaction rejected by the network. This can happen on some mobile browsers. Try again or use a desktop browser.');
       } else if (/fee.too.low/i.test(errMsg)) {
