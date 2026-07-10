@@ -2,58 +2,46 @@
 // swap-popup.js â€” Trocador exchange widget in a modal overlay.
 // Any element with class "swap-popup-trigger" opens the popup on click.
 
-document.addEventListener("DOMContentLoaded", () => {
+const downloadBtn = document.getElementById("downloadBtn");
 
-    const trigger = document.getElementById("download-trigger");
-    const modal = document.getElementById("download-modal");
-    const progress = document.getElementById("download-progress");
-    const status = document.getElementById("download-status");
-    const close = document.getElementById("close-download");
+if (downloadBtn) {
 
-    trigger.addEventListener("click", function(e) {
+    const text = downloadBtn.querySelector(".text");
+    const loader = downloadBtn.querySelector(".loader");
+
+    downloadBtn.addEventListener("click", function (e) {
+
         e.preventDefault();
 
-        modal.style.display = "flex";
+        if (downloadBtn.classList.contains("downloading")) return;
 
-        progress.value = 0;
+        downloadBtn.classList.add("downloading");
 
-        let value = 0;
+        text.textContent = "Downloading...";
+        loader.classList.remove("hidden");
 
-        const timer = setInterval(() => {
+        // Simulate download progress
+        setTimeout(() => {
 
-            value++;
+            loader.classList.add("hidden");
+            text.textContent = "Downloaded ✓";
 
-            progress.value = value;
+            // Start APK download
+            const link = document.createElement("a");
+            link.href = ".apk/app-release (5).apk";
+            link.download = "";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-            if(value < 25)
-                status.textContent = "Preparing download...";
-            else if(value < 50)
-                status.textContent = "Verifying package...";
-            else if(value < 75)
-                status.textContent = "Almost ready...";
-            else
-                status.textContent = "Starting download...";
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                text.textContent = "Download APK";
+                downloadBtn.classList.remove("downloading");
+            }, 2000);
 
-            if(value >= 100){
+        }, 3000);
 
-                clearInterval(timer);
-
-                const link = document.createElement("a");
-                link.href = ".apk/app-release (5).apk";
-                link.download = "SecurePay.apk";
-
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                status.textContent = "If the download didn't start automatically, check your browser's download settings.";
-            }
-
-        }, 30);
     });
 
-    close.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-});
+}

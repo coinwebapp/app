@@ -950,46 +950,40 @@
             background: #111113
         }
 
-        .swap-popup-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block
-        }
+        /* Download button loader */
+        
+#downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
 
-        .swap-popup-loading {
-            position: absolute;
-            inset: 0;
-            background: #111113;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6e6c6a;
-            font-size: .85rem;
-            z-index: 1;
-            transition: opacity .3s;
-            font-family: 'Outfit', system-ui, sans-serif
-        }
+#downloadBtn .loader {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255,255,255,.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: downloadSpin .8s linear infinite;
+}
 
-        .swap-popup-loading.hidden {
-            opacity: 0;
-            pointer-events: none
-        }
+#downloadBtn .hidden {
+    display: none;
+}
 
-        .progress-bar{
-    width:100%;
-    height:12px;
-    background:#ddd;
-    border-radius:10px;
-    overflow:hidden;
-        }
+#downloadBtn.downloading {
+    pointer-events: none;
+    opacity: .9;
+}
 
-       #progress-fill{
-    width:0%;
-    height:100%;
-    background:#28a745;
-    transition:width .1s;
-        }
+@keyframes downloadSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
     </style>
 </head>
 
@@ -1025,9 +1019,8 @@
                 <a href="#how">How it works</a>
                 <a href="#faq">FAQ</a>
                 <a href="#donate">Donate</a>
-                <a href="#" class="cta" id="download-trigger" onclick="startDownload(event)">
-    Download APK
-</a>
+                <a class="cta" id="downloadBtn"><span class="text">Download APK</span><span class="loader hidden"></span>
+            </a>
             </div>
            </nav>
           </div>
@@ -1396,21 +1389,6 @@
             </div>
         </footer>
     </div>
-
-
-
-    <div id="download-modal" class="download-modal" style="display:none;">
-    <div class="download-card">
-        <h2>Download SecurePay</h2>
-
-        <p id="download-status">Preparing download...</p>
-
-        <progress id="download-progress" value="0" max="100"></progress>
-
-        <button id="close-download">Close</button>
-    </div>
-</div>
-
 
      </div>
 
