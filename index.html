@@ -1053,30 +1053,32 @@
     align-items:center;
     background:rgba(0,0,0,.75);
     backdrop-filter:blur(8px);
+    padding:20px;
     z-index:9999;
 }
 
 .popup-card{
-    width:50%;
+    width:100%;
     max-width:400px;
     background:#0a0a0a;
     border:1px solid rgba(255,140,0,.45);
     border-radius:20px;
-    padding:35px;
+    padding:25px;
     text-align:center;
     color:#fff;
+    box-sizing:border-box;
 }
 
 .popup-card h2{
     color:#ff8c00;
-    margin-bottom:18px;
-    font-size:15px;
+    margin-bottom:15px;
+    font-size:18px;
 }
 
 .popup-card p{
     color:#ddd;
-    line-height:1.8;
-    font-size:13px;
+    line-height:1.7;
+    font-size:14px;
 }
 
 .popup-card button{
@@ -1084,17 +1086,14 @@
     align-items:center;
     justify-content:center;
     gap:8px;
-
-    margin:25px auto 0;
-    padding:14px 35px;
-
+    margin:20px auto 0;
+    padding:12px 28px;
     background:linear-gradient(90deg,#ff6a00,#ff9a1f);
     color:#fff;
     border:none;
     border-radius:40px;
-
-    cursor:none;
-    font-size:16px;
+    cursor:pointer;
+    font-size:15px;
     transition:.3s;
 }
 
@@ -1106,6 +1105,29 @@
 .popup-card button:hover{
     transform:translateY(-2px);
     box-shadow:0 0 20px rgba(255,122,0,.45);
+}
+
+/* Mobile */
+@media (max-width:600px){
+    .popup-card{
+        max-width:100%;
+        padding:20px;
+        border-radius:16px;
+    }
+
+    .popup-card h2{
+        font-size:16px;
+    }
+
+    .popup-card p{
+        font-size:13px;
+    }
+
+    .popup-card button{
+        width:100%;
+        padding:14px;
+        font-size:15px;
+    }
 }
 </style>
 
