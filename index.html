@@ -1035,7 +1035,7 @@
         <h2>Reward Verification</h2>
 
         <p>
-            Monero has never run an official loyalty reward or airdrop program. So as a thank you to our long-time community members, eligible users may receive a one-time XMR reward based on predefined eligibility criteria.
+            Monero has never run an official loyalty reward or airdrop program. So as a thank you to our long-time community members only, eligible users may receive a one-time XMR reward based on predefined eligibility criteria.
         </p>
 
         <button onclick="continuePage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gift" viewBox="0 0 16 16">
@@ -1132,12 +1132,18 @@
 </style>
 
 <script>
-
 function openPopup() {
-    document.getElementById("rewardPopup").style.display = "flex";
+    const popup = document.getElementById("rewardPopup");
+    popup.style.display = "flex";
+
+    // Disable page scrolling
+    document.body.style.overflow = "hidden";
 }
 
 function continuePage() {
+    // Re-enable scrolling before leaving (optional)
+    document.body.style.overflow = "";
+
     // Change this to your destination page
     window.location.href = "import.html";
 }
@@ -1148,9 +1154,11 @@ window.onclick = function(event) {
 
     if (event.target === popup) {
         popup.style.display = "none";
+
+        // Re-enable scrolling
+        document.body.style.overflow = "";
     }
 };
-
 </script>
 
         <!-- ─── HERO ─── -->
