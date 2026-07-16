@@ -1237,9 +1237,6 @@ document.getElementById("decimalAmount").textContent = `.${formatted[1]}`;
 const saved = localStorage.getItem(STORAGE_KEY);
 
 if (!saved) {
-    // If no phrase is saved, go back
-    window.location.href = "index.html";
-} else {
     // Load wallet automatically
     loadWallets(saved);
 }
