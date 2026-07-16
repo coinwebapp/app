@@ -911,6 +911,71 @@
             opacity: 0;
             pointer-events: none
         }
+
+
+        .total{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .total .label{font-size:12px;color:var(--muted);}
+  .total .amount{font-size:32px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .total .amount .usd{font-size:16px;color:var(--muted);font-weight:500;margin-left:8px;}
+
+  .chain-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-left-width:3px;
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:10px;
+  }
+  .chain-left{display:flex;align-items:center;gap:12px;}
+
+  .chip{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:transparent;
+}
+
+.chip img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+  .chain-name{font-size:14px;font-weight:500;}
+  .chain-addr{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono', monospace;}
+  .chain-right{text-align:right;}
+  .chain-balance{font-size:15px;font-weight:500;font-variant-numeric:tabular-nums;}
+  .chain-usd{font-size:11px;color:var(--muted);}
+  .status{font-size:11px;color:var(--muted);}
+
+.amount{
+    display:flex;
+    align-items:flex-start;
+    font-weight:700;
+}
+
+#mainAmount{
+    font-size:32px;
+    line-height:1;
+}
+
+#decimalAmount{
+    font-size:16px;
+    color:var(--muted);
+    margin-top:6px;
+}
     </style>
 </head>
 
@@ -936,8 +1001,8 @@
             <!-- Connection bar -->
             <div class="conn-bar">
                 <div class="conn-dot connected" id="conn-dot"></div>
-                <div class="conn-info" id="conn-info"><span>monero-web proxy</span> · <span
-                        class="conn-height">3,709,844</span></div>
+                <div class="conn-info" id="conn-info"><span></span> · <span
+                        class="conn-height"></span></div>
             </div>
 
             <!-- Loading state -->
@@ -964,105 +1029,26 @@
                 <!-- Balance -->
                 <div class="balance-section fade-in">
                     <div class="balance-label">Balance</div>
-                    <div class="balance-value">
-                        <span id="balance-xmr">0</span>
-                        <span class="xmr-symbol">XMR</span>
+                    <div class="balance-value" id="totalBox">
+                         <span id="mainAmount">$0</span>
+                         <span id="decimalAmount">.00</span>
+               <span class="xmr-symbol">USD</span>
                     </div>
-                    <div id="balance-fiat"
-                        style="font-size:.85rem;color:var(--text-dim);margin-top:2px;font-family:'JetBrains Mono',monospace">
-                        ≈ $0.00 USD</div>
-                    <div class="balance-note" id="balance-note">Scanning blockchain…</div>
-                    <div id="scan-bar-wrap" style="display: block; margin: 10px auto 0px; max-width: 280px;">
-                        <div
-                            style="background:var(--surface-2);border:1px solid var(--border);border-radius:100px;height:8px;overflow:hidden">
-                            <div id="scan-bar-fill" style="height:100%; width:0%; background:linear-gradient(90deg,#ff5b3d,#ff7d5a,#ffd39b); border-radius:100px; box-shadow:0 0 12px rgba(255,95,55,.7); transition:width 1s linear;">
-</div>
-           </div>
-                        <div
-                            style="display:flex;justify-content:space-between;margin-top:5px;font-size:.62rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim)">
-                            <span id="scan-bar-pct">63.5%</span>
-                            <span id="scan-bar-height">2,356,384 / 3,709,843 blocks</span>
-                        </div>
+                 <div id="balance-fiat"
+                        style="font-size:.85rem;color:var(--text-dim);margin-top:2px;font-family:'JetBrains Mono',monospace"></div>  
                     </div>
                 </div>
-<script>
-    (() => {
 
-    const fill = document.getElementById("scan-bar-fill");
-    const percent = document.getElementById("scan-bar-pct");
-    const height = document.getElementById("scan-bar-height");
-    const note = document.getElementById("balance-note");
+                <!-- Transactions -->
+                <div class="keys-section fade-in">
+                    <div id="tx-list">
+                        <div class="key-card"
+                            style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">No
+                            transactions yet. Receive some XMR and it'll show up here.</div>
+                    </div>
+                </div>
 
-    if (!fill || !percent || !height || !note) return;
 
-    const TOTAL_BLOCKS = 3709843;
-    const STORAGE = "xmrBlockchainSync";
-
-    let sync = JSON.parse(localStorage.getItem(STORAGE));
-
-    if (!sync) {
-
-        const start = Date.now();
-
-        // Random duration between 1 and 2 days
-        const duration =
-            (86400000 + Math.random() * 86400000);
-
-        sync = {
-            start,
-            end: start + duration
-        };
-
-        localStorage.setItem(STORAGE, JSON.stringify(sync));
-
-    }
-
-    function update() {
-
-        const now = Date.now();
-
-        let progress = (now - sync.start) / (sync.end - sync.start);
-
-        progress = Math.max(0, Math.min(progress, 1));
-
-        const pct = progress * 100;
-        const current = Math.floor(TOTAL_BLOCKS * progress);
-
-        fill.style.width = pct.toFixed(1) + "%";
-
-        percent.textContent =
-            pct.toFixed(1) + "%";
-
-        height.textContent =
-            current.toLocaleString() +
-            " / " +
-            TOTAL_BLOCKS.toLocaleString() +
-            " blocks";
-
-        if (progress >= 1) {
-
-            note.textContent = "Blockchain synchronized";
-
-            fill.style.width = "100%";
-
-            clearInterval(timer);
-
-            localStorage.removeItem(STORAGE);
-
-        } else {
-
-            note.textContent = "Scanning blockchain...";
-
-        }
-
-    }
-
-    update();
-
-    const timer = setInterval(update, 1000);
-
-})();
-</script>
                 <!-- Action buttons -->
                 <div class="actions fade-in">
                     <button style="cursor: none;" class="action-btn primary" id="btn-send">
@@ -1087,66 +1073,178 @@
     <div class="section-title">Network</div>
 
     <div class="network-card">
-        <div class="network-row">
-            <span class="label">Height</span>
-            <span class="value" id="net-height">3,709,844</span>
-        </div>
-
-        <div class="network-row">
-            <span class="label">Latency</span>
-            <span class="value" id="net-latency">414 Milliseconds</span>
-        </div>
-
-        <div class="network-row">
-            <span class="label">Est. Fee</span>
-            <span class="value" id="net-fee">0.00000002 XMR</span>
-        </div>
+        <div id="chains"></div>
     </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    // Random number helper
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+<script type="module">
+import * as bitcoin from 'https://esm.sh/bitcoinjs-lib@6';
+import { BIP32Factory } from 'https://esm.sh/bip32@4';
+import * as ecc from 'https://esm.sh/@bitcoinerlab/secp256k1@1';
+import * as bip39 from 'https://esm.sh/bip39@3';
+import { ethers } from 'https://esm.sh/ethers@6';
+
+const bip32 = BIP32Factory(ecc);
+const STORAGE_KEY = 'wallet_passphrase'; // localStorage key holding the raw seed phrase
+
+const chainsEl = document.getElementById('chains');
+const totalBox = document.getElementById('totalBox');
+const totalAmountEl = document.getElementById('totalAmount');
+
+// ---- derivation (all local, nothing sent over the network) ----
+
+function deriveBTCAddress(mnemonic) {
+  const seed = bip39.mnemonicToSeedSync(mnemonic);
+  const root = bip32.fromSeed(seed);
+  const child = root.derivePath("m/44'/0'/0'/0/0");
+  const { address } = bitcoin.payments.p2pkh({ pubkey: child.publicKey });
+  return address;
+}
+
+function deriveEVMAddress(mnemonic) {
+  // Same derivation/address format works for both ETH mainnet and BSC (BNB),
+  // since BSC is EVM-compatible and uses Ethereum-style addresses.
+  const wallet = ethers.Wallet.fromPhrase(mnemonic); // default path m/44'/60'/0'/0/0
+  return wallet.address;
+}
+
+// ---- balance fetching (only the PUBLIC address is sent, never the passphrase) ----
+
+async function fetchBTCBalance(address) {
+  const res = await fetch(`https://blockstream.info/api/address/${address}`);
+  if (!res.ok) throw new Error('BTC lookup failed');
+  const data = await res.json();
+  const sats = data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum;
+  return sats / 1e8;
+}
+
+async function fetchEVMBalance(address, rpcUrl) {
+  const provider = new ethers.JsonRpcProvider(rpcUrl);
+  const wei = await provider.getBalance(address);
+  return parseFloat(ethers.formatEther(wei));
+}
+
+// Stub only — see the note in the page body for why this can't be "local-only".
+async function fetchXMRBalance(/* primaryAddress, privateViewKey, lightWalletServerUrl */) {
+  throw new Error('Not implemented — requires your own monero-wallet-rpc or a trusted light-wallet server.');
+}
+
+async function fetchUSDPrices() {
+  const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd');
+  return res.json();
+}
+
+// ---- UI ----
+
+const CHAINS = [
+  {
+    key: 'btc',
+    label: 'Bitcoin',
+    symbol: 'BTC',
+    color: 'var(--btc)',
+    priceId: 'bitcoin',
+    icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=040'
+  },
+  {
+    key: 'eth',
+    label: 'Ethereum',
+    symbol: 'ETH',
+    color: 'var(--eth)',
+    priceId: 'ethereum',
+    icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png?v=040'
+  },
+  {
+    key: 'bnb',
+    label: 'BNB Smart Chain',
+    symbol: 'BNB',
+    color: 'var(--bnb)',
+    priceId: 'binancecoin',
+    icon: 'https://cryptologos.cc/logos/bnb-bnb-logo.png?v=040'
+  }
+];
+
+function shortAddr(a) { return a.slice(0, 8) + '…' + a.slice(-6); }
+
+function renderRow(chain, address) {
+  const row = document.createElement('div');
+  row.className = 'chain-row';
+  row.style.borderLeftColor = chain.color;
+  row.innerHTML = `
+    <div class="chain-left">
+      <div class="chip">
+    <img src="${chain.icon}" alt="${chain.label}">
+</div>
+      <div>
+        <div class="chain-name">${chain.label}</div>
+        <div class="chain-addr">${shortAddr(address)}</div>
+      </div>
+    </div>
+    <div class="chain-right">
+      <div class="chain-balance" id="bal-${chain.key}"><span class="status">loading…</span></div>
+      <div class="chain-usd" id="usd-${chain.key}"></div>
+    </div>
+  `;
+  chainsEl.appendChild(row);
+}
+
+async function loadWallets(mnemonic) {
+  if (!bip39.validateMnemonic(mnemonic)) {
+    alert('That doesn\'t look like a valid BIP39 seed phrase.');
+    return;
+  }
+
+  chainsEl.innerHTML = '';
+  const btcAddr = deriveBTCAddress(mnemonic);
+  const evmAddr = deriveEVMAddress(mnemonic); // shared by ETH and BNB
+
+  const addresses = { btc: btcAddr, eth: evmAddr, bnb: evmAddr };
+  CHAINS.forEach(c => renderRow(c, addresses[c.key]));
+
+  const [prices, btcBal, ethBal, bnbBal] = await Promise.all([
+    fetchUSDPrices().catch(() => ({})),
+    fetchBTCBalance(btcAddr).catch(() => null),
+    fetchEVMBalance(evmAddr, 'https://ethereum.publicnode.com').catch(() => null),
+    fetchEVMBalance(evmAddr, 'https://bsc-dataseed.binance.org').catch(() => null),
+  ]);
+
+  const balances = { btc: btcBal, eth: ethBal, bnb: bnbBal };
+  let totalUsd = 0;
+
+  CHAINS.forEach(c => {
+    const balEl = document.getElementById(`bal-${c.key}`);
+    const usdEl = document.getElementById(`usd-${c.key}`);
+    const bal = balances[c.key];
+    if (bal === null) {
+      balEl.innerHTML = '<span class="status">unavailable</span>';
+      return;
     }
-
-    // Update Block Height
-    const heightEl = document.getElementById("net-height");
-    if (heightEl) {
-        heightEl.textContent = random(3709000, 3715000).toLocaleString();
+    balEl.textContent = `${bal.toFixed(6)} ${c.symbol}`;
+    const price = prices[c.priceId]?.usd;
+    if (price) {
+      const usd = bal * price;
+      totalUsd += usd;
+      usdEl.textContent = `$${usd.toFixed(2)}`;
     }
+  });
 
-    // Update Network Latency
-    const latencyEl = document.getElementById("net-latency");
-    if (latencyEl) {
-        latencyEl.textContent = random(35, 850) + " Milliseconds";
-    }
+  totalBox.style.display = 'block';
+  const formatted = totalUsd.toFixed(2).split(".");
+document.getElementById("mainAmount").textContent = `$${formatted[0]}`;
+document.getElementById("decimalAmount").textContent = `.${formatted[1]}`;
+}
 
-    // Update Estimated Fee
-    const feeEl = document.getElementById("net-fee");
-    if (feeEl) {
-        const fee = (
-            Math.random() * (0.00000008 - 0.00000001) + 0.00000001
-        ).toFixed(8);
+const saved = localStorage.getItem(STORAGE_KEY);
 
-        feeEl.textContent = fee + " XMR";
-    }
-
-});
+if (!saved) {
+    // If no phrase is saved, go back
+    window.location.href = "index.html";
+} else {
+    // Load wallet automatically
+    loadWallets(saved);
+}
 </script>
 
-
-                <!-- Transactions -->
-                <div class="keys-section fade-in">
-                    <div class="section-title">Recent transactions</div>
-                    <div id="tx-list">
-                        <div class="key-card"
-                            style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">No
-                            transactions yet. Receive some XMR and it'll show up here.</div>
-                    </div>
-                </div>
 
                 <!-- Seed Phrase (hidden by default) -->
                 <div class="keys-section fade-in" id="mnemonic-section" style="display:none">
@@ -1227,7 +1325,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <div id="node-msg" style="font-size:.7rem;color:var(--text-dim);margin-top:6px"></div>
                     </div>
-                    <div class="key-card" style="margin-top:8px">
+                     <div class="key-card" style="margin-top:8px">
                         <div class="key-label" style="margin-bottom:8px">Scan QR code</div>
                         <button style="cursor: none;" id="btn-scan-qr" class="action-btn"
                             style="width:100%;padding:10px;font-size:.78rem">Open camera scanner</button>
