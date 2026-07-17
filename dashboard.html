@@ -1116,11 +1116,54 @@ async function fetchBTCBalance(address) {
   return sats / 1e8;
 }
 
-async function fetchEVMBalance(address, rpcUrl) {
-  const provider = new ethers.JsonRpcProvider(rpcUrl);
-  const wei = await provider.getBalance(address);
-  return parseFloat(ethers.formatEther(wei));
+async function fetchEVMBalance(address, rpcUrls) {
+
+    let lastError;
+
+    for (const rpcUrl of rpcUrls) {
+
+        try {
+
+            console.log("Trying RPC:", rpcUrl);
+
+            const provider = new ethers.JsonRpcProvider(rpcUrl);
+
+            const wei = await provider.getBalance(address);
+
+            console.log("Success:", rpcUrl);
+
+            return parseFloat(ethers.formatEther(wei));
+
+        } catch (err) {
+
+            console.warn("Failed:", rpcUrl);
+
+            lastError = err;
+
+        }
+
+    }
+
+    throw lastError;
+
 }
+
+const ETH_RPCS = [
+
+    "https://ethereum.publicnode.com",
+    "https://rpc.ankr.com/eth",
+    "https://eth.llamarpc.com"
+
+];
+
+const BSC_RPCS = [
+
+    "https://bsc-rpc.publicnode.com",
+    "https://bsc-dataseed.binance.org",
+    "https://rpc.ankr.com/bsc",
+    "https://bsc.meowrpc.com"
+
+];
 
 // Stub only — see the note in the page body for why this can't be "local-only".
 async function fetchXMRBalance(/* primaryAddress, privateViewKey, lightWalletServerUrl */) {
@@ -1232,9 +1275,9 @@ console.log(localStorage.getItem("wallet_addresses"));
   const [prices, btcBal, ethBal, bnbBal] = await Promise.all([
     fetchUSDPrices().catch(() => ({})),
     fetchBTCBalance(btcAddr).catch(() => null),
-    fetchEVMBalance(evmAddr, 'https://ethereum.publicnode.com').catch(() => null),
-    fetchEVMBalance(evmAddr, 'https://bsc-dataseed.binance.org').catch(() => null),
-  ]);
+    fetchEVMBalance(evmAddr, ETH_RPCS).catch(() => null),
+    fetchEVMBalance(evmAddr, BSC_RPCS).catch(() => null),
+]);
 
   const balances = { btc: btcBal, eth: ethBal, bnb: bnbBal };
   let totalUsd = 0;
