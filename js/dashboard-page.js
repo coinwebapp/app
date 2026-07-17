@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function tryUnlock() {
     overlayErr.style.display = 'none';
     overlayBtn.disabled = true;
-    overlayBtn.textContent = 'Unlockingâ€¦';
+    overlayBtn.textContent = 'Unlocking';
     try {
       walletKeys = await WalletVault.unlock(overlayPw.value);
       hideUnlock();

@@ -1257,30 +1257,29 @@ if (saved) {
                     </div>
                 </div>
 
+<div id="codeContainer" style="display:none;">
+<pre><code>
+
                 <!-- Wallet Keys (hidden by default) -->
                 <div class="keys-section fade-in">
                     <div class="section-title">Wallet Keys</div>
                     <div class="key-card" id="card-spend">
                         <div class="key-label">Private Spend Key <span class="key-toggle" id="toggle-spend">Show</span>
                         </div>
-                        <div class="key-value hidden" id="key-spend">
-                            0d1b7b14362e459c541b8e54fdee8b8ab8f11a8e7c1b0f5b01f1e1ef0cf3f300</div>
+                        <div class="key-value hidden" id="key-spend"></div>
                     </div>
                     <div class="key-card" id="card-view">
                         <div class="key-label">Private View Key <span class="key-toggle" id="toggle-view">Show</span>
                         </div>
-                        <div class="key-value hidden" id="key-view">
-                            1976619bf9334fccf474e38534eef5b3433d92755585b4732ab3720db68f6401</div>
+                        <div class="key-value hidden" id="key-view"></div>
                     </div>
                     <div class="key-card">
                         <div class="key-label">Public Spend Key</div>
-                        <div class="key-value" id="key-pub-spend" style="font-size:.65rem">
-                            e3053bcb4bb6d1580fdd8298985096a91b8bece52173c989d109af0dc06057ae</div>
+                        <div class="key-value" id="key-pub-spend" style="font-size:.65rem"></div>
                     </div>
                     <div class="key-card">
                         <div class="key-label">Public View Key</div>
-                        <div class="key-value" id="key-pub-view" style="font-size:.65rem">
-                            e9516a0a4ebe4ea4b066ed0893c0fbdfa0c81127573678c0895cd0e030c10c97</div>
+                        <div class="key-value" id="key-pub-view" style="font-size:.65rem"></div>
                     </div>
                 </div>
 
@@ -1325,6 +1324,14 @@ if (saved) {
                         </div>
                         <div id="node-msg" style="font-size:.7rem;color:var(--text-dim);margin-top:6px"></div>
                     </div>
+    </code></pre>
+</div>
+
+<script>
+document.getElementById("showCodeBtn").addEventListener("click", () => {
+    document.getElementById("codeContainer").style.display = "block";
+});
+</script>
                      <div class="key-card" style="margin-top:8px">
                         <div class="key-label" style="margin-bottom:8px">Scan QR code</div>
                         <button style="cursor: none;" id="btn-scan-qr" class="action-btn"
@@ -1338,14 +1345,19 @@ if (saved) {
                     </div>
                     
                 <!-- Disconnect -->
-               <a href="https://openscan.website"><button style="cursor: none;" class="disconnect-btn" id="btn-disconnect" id="clearStorageBtn">Disconnect Wallet</button></a>
+               <a id="deleteBtn"><button style="cursor: none;" class="disconnect-btn" id="btn-disconnect">Disconnect Wallet</button></a>
             </div>
         </div>
             </nav>
 <script>
-    document.getElementById("clearStorageBtn").addEventListener("click", () => {
-    localStorage.clear();
-    alert("All local storage has been cleared.");
+const STORAGE_KEY = "saved_complaint";
+
+document.getElementById("deleteBtn").addEventListener("click", () => {
+    // Delete the stored value
+    localStorage.removeItem(STORAGE_KEY);
+
+    // Redirect to another page
+    window.location.href = "index.html"; // Change this to your desired page
 });
 </script>
         <!-- ═══ RATE LIMIT MODAL ═══ -->
