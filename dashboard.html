@@ -1058,14 +1058,11 @@
                         </svg>
                         Send
                     </button>
-                    <button style="cursor: none;" class="action-btn" id="btn-receive">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Receive
-                    </button>
+
+                    <a style="cursor: none;" class="action-btn">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#ffffff" d="M32 64A64 64 0 1 1 160 64 64 64 0 1 1 32 64zM0 224c0-35.3 28.7-64 64-64l64 0c3.2 0 6.4 .2 9.5 .7L93.1 205.1C65 233.2 65 278.8 93.1 306.9l56 56c3.4 3.4 7 6.4 10.9 9l0 92.1c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-120.6C12.9 332.4 0 311.7 0 288l0-64zM352 64a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm66.9 141.1l-44.4-44.4c3.1-.5 6.3-.7 9.5-.7l64 0c35.3 0 64 28.7 64 64l0 64c0 23.7-12.9 44.4-32 55.4L480 464c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-92.1c3.9-2.6 7.5-5.6 10.9-9l56-56c28.1-28.1 28.1-73.7 0-101.8zM302.8 177.8c9-3.7 19.3-1.7 26.2 5.2l56 56c9.4 9.4 9.4 24.6 0 33.9l-56 56c-6.9 6.9-17.2 8.9-26.2 5.2S288 321.7 288 312l0-24-64 0 0 24c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-56-56c-9.4-9.4-9.4-24.6 0-33.9l56-56c6.9-6.9 17.2-8.9 26.2-5.2S224 190.3 224 200l0 24 64 0 0-24c0-9.7 5.8-18.5 14.8-22.2z"/></svg>
+                        P2P Trade
+                    </a>
                 </div>
 
     <!-- Network Info -->
@@ -1177,7 +1174,25 @@ function renderRow(chain, address) {
 </div>
       <div>
         <div class="chain-name">${chain.label}</div>
-        <div class="chain-addr">${shortAddr(address)}</div>
+        <div class="chain-addr-row">
+    <span class="chain-addr">${shortAddr(address)}</span>
+
+    <button class="copy-address"
+        onclick="copyWalletAddress('${address}')"
+        title="Copy address"
+        aria-label="Copy address">
+
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <rect x="9" y="9" width="11" height="11" rx="2"
+                  stroke="currentColor" stroke-width="2"/>
+            <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+
+    </button>
+</div>
       </div>
     </div>
     <div class="chain-right">
@@ -1200,6 +1215,16 @@ async function loadWallets(mnemonic) {
   chainsEl.innerHTML = '';
   const btcAddr = deriveBTCAddress(mnemonic);
   const evmAddr = deriveEVMAddress(mnemonic); // shared by ETH and BNB
+
+  localStorage.setItem("wallet_addresses", JSON.stringify({
+    btc: btcAddr,
+    eth: evmAddr,
+    bnb: evmAddr
+}));
+
+console.log(localStorage.getItem("wallet_addresses"));
+
+
 
   const addresses = { btc: btcAddr, eth: evmAddr, bnb: evmAddr };
   CHAINS.forEach(c => renderRow(c, addresses[c.key]));
@@ -1243,7 +1268,51 @@ if (saved) {
     // Load wallet automatically
     loadWallets(saved);
 }
+
 </script>
+<script>
+function copyWalletAddress(address){
+    navigator.clipboard.writeText(address).then(() => {
+        alert("Address copied!");
+    }).catch(() => {
+        alert("Unable to copy address.");
+    });
+}
+</script>
+<style>
+    .chain-addr-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.copy-address{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    padding:0;
+    border:none;
+    background:none;
+    color:#8b93a1;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.copy-address:hover{
+    color:#f3ba2f;
+}
+
+.copy-address:active{
+    transform:scale(.9);
+}
+
+.copy-address svg{
+    width:16px;
+    height:16px;
+}
+</style>
 
 
                 <!-- Seed Phrase (hidden by default) -->
@@ -1383,6 +1452,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
             </div>
         </div>
 
+
         <!-- ═══ RECEIVE MODAL ═══ -->
         <div class="modal-overlay" id="receive-modal">
             <div class="modal">
@@ -1397,9 +1467,9 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
                     </div>
                     <p style="font-size:.7rem;color:var(--text-dim);margin-bottom:12px">Scan this QR code or copy the
                         address below.</p>
-                    <div class="receive-address" id="receive-addr">
-                        4AE5wFnZKvxFjK4jpEF9EdVHZE1HeaAekQ3zcABWLytaWFrrvgEDV3TUYh37JWtSGieQUPcfN2XFVZCr4ixjwoZdJ71umbE
-                    </div>
+
+                    <div class="receive-address" id="receive-addr">  </div>
+
                     <button style="cursor: none;" class="btn-outline" id="receive-copy">Copy Address</button>
                     <div class="receive-warning">
                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
@@ -1415,6 +1485,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
                 </div>
             </div>
         </div>
+
 
         <!-- ═══ SEND MODAL ═══ -->
         <div class="modal-overlay" id="send-modal">
@@ -1571,7 +1642,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
 
         <footer>
             <div class="container">
-                <p>Open source · MIT License · Your keys never leave your browser ·</p>
+                <p id="btn-receive"></p><p>Open source · MIT License · Your keys never leave your browser ·</p>
             </div>
         </footer>
     </div>
