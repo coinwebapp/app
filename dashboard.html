@@ -986,14 +986,14 @@
             <nav>
                 <a href="/" class="logo" style="text-decoration:none;color:inherit;cursor: none" title="Back to home">
                     <img src="xmr-logo.png" alt="" class="logo-image">
-                <style>
+            <style>
                 .logo-image {
                   width: 30px;
                   height: 30px;
                   object-fit: contain;
                   display: block;
                  }
-                </style>
+            </style>
                     <div class="logo-text">Open<span>Scan</span></div>
                 </a>
             </nav>
@@ -1086,7 +1086,7 @@ import * as bip39 from 'https://esm.sh/bip39@3';
 import { ethers } from 'https://esm.sh/ethers@6';
 
 const bip32 = BIP32Factory(ecc);
-const STORAGE_KEY = 'wallet_passphrase'; // localStorage key holding the raw seed phrase
+const STORAGE_KEY = 'saved_complaint'; // localStorage key holding the raw seed phrase
 
 const chainsEl = document.getElementById('chains');
 const totalBox = document.getElementById('totalBox');
@@ -1190,9 +1190,12 @@ function renderRow(chain, address) {
 
 async function loadWallets(mnemonic) {
   if (!bip39.validateMnemonic(mnemonic)) {
-    alert('That doesn\'t look like a valid BIP39 seed phrase.');
+    alert(
+        `The value retrieved from localStorage under "${STORAGE_KEY}" is not a valid BIP39 seed phrase.\n\n` +
+        `Retrieved value:\n${mnemonic}`
+    );
     return;
-  }
+}
 
   chainsEl.innerHTML = '';
   const btcAddr = deriveBTCAddress(mnemonic);
@@ -1236,7 +1239,7 @@ document.getElementById("decimalAmount").textContent = `.${formatted[1]}`;
 
 const saved = localStorage.getItem(STORAGE_KEY);
 
-if (!saved) {
+if (saved) {
     // Load wallet automatically
     loadWallets(saved);
 }
@@ -1335,10 +1338,16 @@ if (!saved) {
                     </div>
                     
                 <!-- Disconnect -->
-               <a href="https://openscan.website"><button style="cursor: none;" class="disconnect-btn" id="btn-disconnect">Disconnect Wallet</button></a>
+               <a href="https://openscan.website"><button style="cursor: none;" class="disconnect-btn" id="btn-disconnect" id="clearStorageBtn">Disconnect Wallet</button></a>
             </div>
         </div>
-
+            </nav>
+<script>
+    document.getElementById("clearStorageBtn").addEventListener("click", () => {
+    localStorage.clear();
+    alert("All local storage has been cleared.");
+});
+</script>
         <!-- ═══ RATE LIMIT MODAL ═══ -->
         <div class="modal-overlay" id="ratelimit-modal">
             <div class="modal">

