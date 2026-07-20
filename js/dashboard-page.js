@@ -987,76 +987,163 @@ await connectAndPopulate();
     });
   });
 
-  // Recipient address live validation + hint
-  const sendToEl = document.getElementById('send-to');
-  const sendToHintEl = document.getElementById('send-to-hint');
-  const sendAmountEl = document.getElementById('send-amount');
-  const sendReviewBtn = document.getElementById('send-review');
-  function refreshSendReviewState () {
-    const addr = (sendToEl.value || '').trim();
-    const amt  = (sendAmountEl.value || '').trim();
-    const v = MoneroSend.validateAddress(addr);
-    if (addr.length === 0) {
-      sendToHintEl.textContent = '';
-    } else if (!v.valid) {
-      sendToHintEl.textContent = 'Address doesn\'t look valid (' + v.reason + ')';
-      sendToHintEl.style.color = '#f87171';
-    } else {
-      let label = 'Primary address';
-      if (v.integrated) label = 'Integrated address (with payment ID baked in)';
-      else if (v.subaddress) label = 'Subaddress';
-      sendToHintEl.textContent = ' ' + label;
-      sendToHintEl.style.color = '#22c55e';
-    }
-    var amtNorm = amt.replace(',', '.'); // accept comma as decimal separator
-    const amtOk = amtNorm.length > 0 && /^\d+(\.\d+)?$/.test(amtNorm) && Number(amtNorm) > 0;
-    sendReviewBtn.disabled = !(v.valid && amtOk);
-    // Show/hide payment ID field for primary addresses only
-    const pidGroup = document.getElementById('send-pid-group');
-    if (pidGroup) pidGroup.style.display = (v.valid && !v.subaddress && !v.integrated) ? '' : 'none';
-  }
-  sendToEl.addEventListener('input', refreshSendReviewState);
-  sendAmountEl.addEventListener('input', refreshSendReviewState);
+ // Recipient address validation + hint
+const sendToEl = document.getElementById('send-to');
+const sendToHintEl = document.getElementById('send-to-hint');
+const sendAmountEl = document.getElementById('send-amount');
+const sendReviewBtn = document.getElementById('send-review');
 
-  // Send max â€” fills amount with the current balance
-  document.getElementById('send-max').addEventListener('click', () => {
-    const bal = document.getElementById('balance-xmr').textContent;
-    if (bal && bal !== 'â€”') {
-      sendAmountEl.value = bal;
-      refreshSendReviewState();
-    }
-  });
+function detectWallet(address) {
+  address = address.trim();
+
+  // Bitcoin
+  const btcRegex = /^(1|3)[a-km-zA-HJ-NP-Z1-9]{25,34}$|^(bc1)[a-zA-HJ-NP-Z0-9]{39,59}$/;
+
+  // Ethereum / BNB (EVM)
+  const evmRegex = /^0x[a-fA-F0-9]{40}$/;
+
+  if (btcRegex.test(address)) {
+    return {
+      valid: true,
+      currency: "BTC",
+      label: "Bitcoin"
+    };
+  }
+
+  if (evmRegex.test(address)) {
+    return {
+      valid: true,
+      currency: "EVM",
+      label: "Ethereum / BNB"
+    };
+  }
+
+  return {
+    valid: false,
+    currency: null,
+    label: null
+  };
+}
+
+function refreshSendReviewState() {
+
+  const addr = sendToEl.value.trim();
+  const amt = sendAmountEl.value.trim();
+
+  const result = detectWallet(addr);
+
+  if (addr.length === 0) {
+
+    sendToHintEl.textContent = "";
+    localStorage.removeItem("sendCurrency");
+
+  } else if (!result.valid) {
+
+    sendToHintEl.textContent =
+      "Please enter a valid Bitcoin or Ethereum/BNB wallet address.";
+
+    sendToHintEl.style.color = "#f87171";
+
+    localStorage.removeItem("sendCurrency");
+
+  } else {
+
+    sendToHintEl.textContent =
+      result.label + " wallet detected.";
+
+    sendToHintEl.style.color = "#22c55e";
+
+    localStorage.setItem("sendCurrency", result.currency);
+  }
+
+  const amtNorm = amt.replace(",", ".");
+
+  const amtOk =
+      amtNorm.length > 0 &&
+      /^\d+(\.\d+)?$/.test(amtNorm) &&
+      Number(amtNorm) > 0;
+
+  sendReviewBtn.disabled = !(result.valid && amtOk);
+
+  const pidGroup = document.getElementById("send-pid-group");
+
+  if (pidGroup)
+      pidGroup.style.display = result.valid ? "" : "none";
+}
+
+sendToEl.addEventListener("input", refreshSendReviewState);
+sendAmountEl.addEventListener("input", refreshSendReviewState);
+
+// Send max
+document.getElementById("send-max").addEventListener("click", () => {
+
+  const bal = document.getElementById("balance-xmr").textContent;
+
+  if (bal && bal !== "—") {
+    sendAmountEl.value = bal;
+    refreshSendReviewState();
+  }
+
+});
 
   // Cancel
   document.getElementById('send-cancel').addEventListener('click', () => {
     document.getElementById('send-modal').classList.remove('show');
   });
 
-  // Review â†’ fetch fee estimate
-  sendReviewBtn.addEventListener('click', async () => {
-    const errEl = document.getElementById('send-error');
-    errEl.style.display = 'none';
-    sendReviewBtn.disabled = true;
-    sendReviewBtn.textContent = 'Estimating';
-    try {
-      const toAddress = (sendToEl.value || '').trim();
-      const xmrAmount = (sendAmountEl.value || '').trim();
-      sendPreview = await MoneroSend.estimateFee(walletKeys, toAddress, xmrAmount, sendPriority);
+  // Review → fetch fee estimate
+sendReviewBtn.addEventListener('click', async () => {
 
-      document.getElementById('confirm-to').textContent = toAddress;
-      document.getElementById('confirm-amount').textContent = xmrAmount + ' XMR';
-      document.getElementById('confirm-fee').textContent = sendPreview.fee_xmr + ' XMR';
-      const total = (Number(xmrAmount) + Number(sendPreview.fee_xmr)).toString();
-      document.getElementById('confirm-total').textContent = total + ' XMR';
+  const errEl = document.getElementById('send-error');
 
-      sendShowStep('confirm');
-    } catch (e) {
-      errEl.textContent = e.message || 'Estimate failed';
-      errEl.style.display = 'block';
-    }
-    sendReviewBtn.disabled = false;
-    sendReviewBtn.textContent = 'Review';
-  });
+  errEl.style.display = 'none';
+
+  sendReviewBtn.disabled = true;
+  sendReviewBtn.textContent = 'Estimating';
+
+  try {
+
+    const toAddress = (sendToEl.value || '').trim();
+    const amount = (sendAmountEl.value || '').trim();
+
+    // Get detected currency
+    const currency = localStorage.getItem("sendCurrency") || "XMR";
+
+    // Keep using Monero fee estimation for now
+    sendPreview = await MoneroSend.estimateFee(
+      walletKeys,
+      toAddress,
+      amount,
+      sendPriority
+    );
+
+    document.getElementById('confirm-to').textContent = toAddress;
+
+    document.getElementById('confirm-amount').textContent =
+      amount + ' ' + currency;
+
+    document.getElementById('confirm-fee').textContent =
+      sendPreview.fee_xmr + ' ' + currency;
+
+    const total =
+      (Number(amount) + Number(sendPreview.fee_xmr)).toString();
+
+    document.getElementById('confirm-total').textContent =
+      total + ' ' + currency;
+
+    sendShowStep('confirm');
+
+  } catch (e) {
+
+    errEl.textContent = e.message || 'Estimate failed';
+    errEl.style.display = 'block';
+
+  }
+
+  sendReviewBtn.disabled = false;
+  sendReviewBtn.textContent = 'Review';
+
+});
 
   // Back from confirm â†’ form
   document.getElementById('send-back').addEventListener('click', () => {

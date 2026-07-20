@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+        injectIntoGlobalHook(window);
+        window.$RefreshReg$ = () => { };
+        window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+    <link rel="stylesheet" href="css/create.css">
+    <link rel="icon" type="image/svg+xml" href="img/file_00000000db3481f49cc970825d799.png">
+    <link rel="icon" type="image/x-icon" href="img/file_00000000db3481f49cc970825d799.png" sizes="any">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create P2P Trade</title>
+
+    <meta name="description"
+        content="Facilitates secure, automated Monero escrow payments with real-time tracking, seamless wallet integration, and comprehensive transaction management for buyers and sellers.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Figma Make App">
+    <meta property="og:description"
+        content="Facilitates secure, automated Monero escrow payments with real-time tracking, seamless wallet integration, and comprehensive transaction management for buyers and sellers.">
+
+</head>
+
+<body>
+
+    <div id="root">
+        <div style="background: rgb(14, 16, 20); min-height: 100vh; font-family: Inter, system-ui, sans-serif;">
+  
+            <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 h-14"
+                style="background: rgba(14, 16, 20, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 107, 0, 0.08);">
+                <button>
+                    <div class="flex items-center gap-2.5">
+                        <div class="relative w-8 h-8">
+                            <div class="absolute inset-0 rounded-full bg-orange-500 opacity-20 blur-sm"></div>
+                            <div class="relative w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold text-sm leading-none">M</span></div>
+                        </div><span class="text-white font-bold text-base tracking-wider">MONERO<span
+                                class="text-orange-500">WEB</span></span>
+                    </div>
+                </button>
+                <div class="flex items-center gap-1"><button
+                        class="relative flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                        style="color: rgba(255, 255, 255, 0.55);">Wallet</button><button
+                        class="relative flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                        style="color: rgb(255, 107, 0);">Escrow<span
+                            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
+                            style="background: rgb(255, 107, 0);"></span></button><button
+                        class="relative flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                        style="color: rgba(255, 255, 255, 0.55);">History</button><button
+                        class="relative flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                        style="color: rgba(255, 255, 255, 0.55);">Settings</button></div>
+                <div class="flex items-center gap-3"><button class="relative p-2 rounded-lg transition-colors"
+                        style="color: rgba(255, 255, 255, 0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"
+                            aria-hidden="true">
+                            <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+                            <path
+                                d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326">
+                            </path>
+                        </svg><span
+                            class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-orange-500"></span></button>
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                        style="background: linear-gradient(135deg, rgb(255, 107, 0), rgb(255, 140, 0));">SA</div>
+                </div>
+            </nav>
+            <div class="min-h-screen pt-14" style="background: rgb(14, 16, 20);">
+                <div class="max-w-screen-xl mx-auto px-8 py-10">
+                    <div class="mb-8">
+                        <h1 class="text-2xl font-bold text-white">Create Escrow</h1>
+                        <p class="text-sm mt-1" style="color: rgba(255, 255, 255, 0.35);">Set up a new secure escrow
+                            payment</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <div class="rounded-2xl p-6 "
+                                style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px);">
+                                <h2 class="font-semibold text-white mb-6">Payment Details</h2>
+                                <div class="mb-5"><label class="block text-xs font-medium mb-2"
+                                        style="color: rgba(255, 255, 255, 0.5);">Amount (XMR)</label>
+                                    <div class="relative"><input
+                                            class="w-full px-4 py-3.5 rounded-xl text-white text-sm font-mono focus:outline-none transition-all"
+                                            type="number" value="0.500000"
+                                            style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);"><span
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-medium"
+                                            style="color: rgb(255, 107, 0);">XMR</span></div>
+                                    <p class="text-xs mt-1.5" style="color: rgba(255, 255, 255, 0.3);">≈ $82.45 USD</p>
+                                </div>
+                                <div class="mb-5"><label class="block text-xs font-medium mb-2"
+                                        style="color: rgba(255, 255, 255, 0.5);">Description</label><textarea
+                                        placeholder="Payment for product or service" rows="3" maxlength="120"
+                                        class="w-full px-4 py-3 rounded-xl text-white text-sm resize-none focus:outline-none transition-all placeholder-gray-600"
+                                        style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);"></textarea>
+                                    <p class="text-xs mt-1 text-right" style="color: rgba(255, 255, 255, 0.2);">0/120
+                                    </p>
+                                </div>
+                                <div class="mb-5"><label class="block text-xs font-medium mb-2"
+                                        style="color: rgba(255, 255, 255, 0.5);">Expiry Time</label>
+                                    <div class="relative"><select
+                                            class="w-full px-4 py-3.5 rounded-xl text-white text-sm focus:outline-none appearance-none cursor-pointer"
+                                            style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                            <option value="1 Hour" style="background: rgb(26, 29, 36);">1 Hour</option>
+                                            <option value="6 Hours" style="background: rgb(26, 29, 36);">6 Hours
+                                            </option>
+                                            <option value="12 Hours" style="background: rgb(26, 29, 36);">12 Hours
+                                            </option>
+                                            <option value="24 Hours" style="background: rgb(26, 29, 36);">24 Hours
+                                            </option>
+                                            <option value="48 Hours" style="background: rgb(26, 29, 36);">48 Hours
+                                            </option>
+                                            <option value="7 Days" style="background: rgb(26, 29, 36);">7 Days</option>
+                                        </select><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-down absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                                            aria-hidden="true" style="color: rgba(255, 255, 255, 0.4);">
+                                            <path d="m6 9 6 6 6-6"></path>
+                                        </svg></div>
+                                </div>
+                                <div class="mb-8"><label class="block text-xs font-medium mb-2"
+                                        style="color: rgba(255, 255, 255, 0.5);">Optional Notes<span
+                                            class="ml-2 font-normal"
+                                            style="color: rgba(255, 255, 255, 0.25);">(Private)</span></label><textarea
+                                        placeholder="Internal notes for your reference..." rows="2"
+                                        class="w-full px-4 py-3 rounded-xl text-white text-sm resize-none focus:outline-none placeholder-gray-600"
+                                        style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);"></textarea>
+                                </div><button
+                                    class="w-full py-4 rounded-xl font-bold text-white text-sm transition-all hover:opacity-90 active:scale-[0.99]"
+                                    style="background: linear-gradient(135deg, rgb(255, 107, 0), rgb(255, 140, 0)); box-shadow: rgba(255, 107, 0, 0.4) 0px 0px 28px;">Create
+                                    Escrow</button>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="rounded-2xl p-6 "
+                                style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px);">
+                                <h3 class="font-semibold text-white mb-5 text-sm">Escrow Summary</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between"><span class="text-xs"
+                                            style="color: rgba(255, 255, 255, 0.4);">Amount</span><span
+                                            class="text-xs font-semibold text-white">0.500000 XMR</span></div>
+                                    <div class="flex items-center justify-between"><span class="text-xs"
+                                            style="color: rgba(255, 255, 255, 0.4);">Network Fee</span><span
+                                            class="text-xs font-semibold text-white">0.000200 XMR</span></div>
+                                    <div class="flex items-center justify-between"><span class="text-xs"
+                                            style="color: rgba(255, 255, 255, 0.4);">Seller Receives</span><span
+                                            class="text-xs font-semibold text-orange-500">0.499800 XMR</span></div>
+                                    <div class="flex items-center justify-between"><span class="text-xs"
+                                            style="color: rgba(255, 255, 255, 0.4);">Expiry</span><span
+                                            class="text-xs font-semibold text-white">24 Hours</span></div>
+                                </div>
+                                <div class="mt-5 pt-5" style="border-top: 1px solid rgba(255, 255, 255, 0.07);">
+                                    <div class="flex items-center justify-between"><span class="text-xs font-medium"
+                                            style="color: rgba(255, 255, 255, 0.4);">USD Estimate</span><span
+                                            class="text-sm font-bold text-white">≈ $82.45</span></div>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl p-6 "
+                                style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px);">
+                                <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-shield mt-0.5 flex-shrink-0" aria-hidden="true"
+                                        style="color: rgb(255, 107, 0);">
+                                        <path
+                                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-xs font-semibold text-white mb-1">Trustless &amp; Secure</p>
+                                        <p class="text-xs leading-relaxed" style="color: rgba(255, 255, 255, 0.4);">
+                                            Funds are held in a non-custodial escrow contract. No third party can access
+                                            your funds.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl p-6 "
+                                style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px);">
+                                <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-zap mt-0.5 flex-shrink-0" aria-hidden="true"
+                                        style="color: rgb(255, 107, 0);">
+                                        <path
+                                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-xs font-semibold text-white mb-1">Automatic Release</p>
+                                        <p class="text-xs leading-relaxed" style="color: rgba(255, 255, 255, 0.4);">
+                                            Funds are released to you automatically once the buyer confirms payment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+
+
+
+    <span id="recharts_measurement_span" aria-hidden="true"
+        style="position: absolute; top: -20000px; left: 0px; padding: 0px; margin: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; white-space: pre; font-size: 11px; letter-spacing: normal;">0</span>
+</body>
+
+</html>
