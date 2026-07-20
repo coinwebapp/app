@@ -3,6 +3,11 @@
    Apple / Linear / Vercel style animations
    ========================================================== */
 
+a{
+    text-decoration: none; 
+    cursor: none;
+}
+
 :root {
 
     /* Animation timing */

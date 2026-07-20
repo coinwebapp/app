@@ -4,6 +4,11 @@
    PART 1 — Foundation + Animation Engine
 ========================================================== */
 
+a{
+    text-decoration: none; 
+    cursor: none;
+}
+
 :root{
 
     --bg:#080808;

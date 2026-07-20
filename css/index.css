@@ -17,6 +17,11 @@
     box-sizing:border-box;
 }
 
+a{
+    text-decoration: none; 
+    cursor: none;
+}
+
 html{
     scroll-behavior:smooth;
     -webkit-text-size-adjust:100%;
