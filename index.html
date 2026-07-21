@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="en">
 
 <head>
@@ -8,7 +8,7 @@
         window.$RefreshSig$ = () => (type) => type;</script>
 
     <script type="module" src="/@vite/client"></script>
-
+    
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +50,7 @@
 
     <!-- ================= HERO ================= -->
 
-    <section class="hero" style="margin-top: 50px;">
+    <section class="hero" id="services" style="margin-top: 50px;">
 
         <div class="container hero-grid">
 
@@ -61,9 +61,7 @@
                     Non-Custodial • Trustless • Automatic
                 </div>
 
-                <h1>
-                    Secure Escrow.<br>
-                    <span>Seamless Payments.</span>
+                <h1>Secure Escrow.<br><span>Seamless Payments.</span>
                 </h1>
 
                 <p>
@@ -78,7 +76,7 @@
                         Create Escrow
                     </a>
 
-                    <a href="#" class="btn-secondary" style=" text-decoration: none; cursor: none;">
+                    <a onclick="scrollToSection('about')" class="btn-secondary" style=" text-decoration: none; cursor: none;">
                         Learn How It Works
                     </a>
 
@@ -199,7 +197,7 @@
 
 <section class="how-it-works" id="how">
 
-    <div class="container">
+    <div class="container" id="about">
 
         <div class="section-title">
 
@@ -329,33 +327,13 @@
 
                 <ul>
 
-                    <li><a href="#">Escrow</a></li>
+                    <li><a onclick="scrollToSection('services')">Escrow</a></li>
 
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a onclick="scrollToSection('services')">Dashboard</a></li>
 
-                    <li><a href="#">Wallet</a></li>
+                    <li><a onclick="scrollToSection('services')">Wallet</a></li>
 
-                    <li><a href="#">Security</a></li>
-
-                </ul>
-
-            </div>
-
-            <!-- Resources -->
-
-            <div>
-
-                <h4>Resources</h4>
-
-                <ul>
-
-                    <li><a href="#">Documentation</a></li>
-
-                    <li><a href="#">FAQ</a></li>
-
-                    <li><a href="#">Support</a></li>
-
-                    <li><a href="#">Status</a></li>
+                    <li><a onclick="scrollToSection('services')">Security</a></li>
 
                 </ul>
 
@@ -397,6 +375,19 @@
 
 </div>
 
+
+<script>
+    function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+</script>
 </body>
 
 </html>

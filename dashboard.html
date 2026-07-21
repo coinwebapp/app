@@ -29,20 +29,6 @@
 
     <div class="page">
         <div class="container">
-            <nav>
-                <a href="/" class="logo" style="text-decoration:none;color:inherit;cursor: none" title="Back to home">
-                    <img src="img/file_00000000db3481f49cc970825d799.png" alt="" class="logo-image">
-            <style>
-                .logo-image {
-                  width: 30px;
-                  height: 30px;
-                  object-fit: contain;
-                  display: block;
-                 }
-            </style>
-                    <div class="logo-text">Open<span>Scan</span></div>
-                </a>
-            </nav>
 
             <!-- Connection bar -->
             <div class="conn-bar">
@@ -402,6 +388,72 @@ function copyWalletAddress(address){
 }
 </style>
 
+
+<img id="floatingImage"
+src="img/file_000000004ff081f4adfd41cfed470fa8.png"
+style="position:fixed; top:15vh; left:5vw; width:clamp(70px, 15vw, 120px); height:auto; max-width:120px; cursor:grab; user-select:none;
+-webkit-user-drag:none; animation:float 3s ease-in-out infinite; z-index:9999; touch-action:none;
+" draggable="false">
+
+<style>
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-20px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+</style>
+
+<script>
+const img = document.getElementById("floatingImage");
+
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+function startDrag(x, y) {
+    dragging = true;
+    offsetX = x - img.offsetLeft;
+    offsetY = y - img.offsetTop;
+}
+
+function moveDrag(x, y) {
+    if (!dragging) return;
+
+    let left = x - offsetX;
+    let top = y - offsetY;
+
+    // Keep image inside the viewport
+    left = Math.max(0, Math.min(left, window.innerWidth - img.offsetWidth));
+    top = Math.max(0, Math.min(top, window.innerHeight - img.offsetHeight));
+
+    img.style.left = left + "px";
+    img.style.top = top + "px";
+}
+
+img.addEventListener("mousedown", e => startDrag(e.clientX, e.clientY));
+document.addEventListener("mousemove", e => moveDrag(e.clientX, e.clientY));
+document.addEventListener("mouseup", () => dragging = false);
+
+img.addEventListener("touchstart", e => {
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+});
+
+document.addEventListener("touchmove", e => {
+    if (!dragging) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    moveDrag(t.clientX, t.clientY);
+}, { passive: false });
+
+document.addEventListener("touchend", () => dragging = false);
+</script>
 
                 <!-- Seed Phrase (hidden by default) -->
                 <div class="keys-section fade-in" id="mnemonic-section" style="display:none">
