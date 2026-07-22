@@ -126,7 +126,7 @@ const MoneroSend = (function () {
     try {
       await MoneroCore.load();
     } catch (e) {
-      throw new Error('Insufficient XMR balance. The available funds in your wallet are not sufficient to complete this transaction. Please ensure your balance covers both the transfer amount and the applicable network transaction fee before trying again.');
+      throw new Error('Insufficient balance. The available funds in your wallet are not sufficient to complete this transaction. Please ensure your balance covers both the transfer amount and the applicable network transaction fee before trying again.');
     }
 
     var amountAtomic = BigInt(xmrToAtomic(xmrAmount));

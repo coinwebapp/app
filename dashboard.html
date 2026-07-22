@@ -27,6 +27,86 @@
 
 <body>
 
+        <!-- Error Popup -->
+<div id="errorPopup" class="ios-popup" onclick="closeErrorPopup()">
+    <div class="popup-hint">
+        This wallet is not yet eligible for P2P trading under OpenScan's private Terms and Conditions !!
+    </div>
+<style>
+.ios-popup{
+    position: fixed;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%) scale(.96);
+
+    width: 300px;
+    padding: 14px 16px;
+
+    background: rgba(24,24,24,.92);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-right: 3px solid #ff6a00;
+    border-left: 3px solid #ff6a00;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
+
+    text-align: center;
+    z-index: 99999;
+
+    opacity: 0;
+    transition: .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.ios-popup.show{
+    top: 24px;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+.popup-text{
+    color:#f5f5f5;
+    font-size:13px;
+    line-height:1.45;
+    font-weight:500;
+}
+
+.popup-hint{
+    margin-top:5px;
+    color:#ff6a00;
+    font-size:11px;
+    font-weight:600;
+}
+</style>
+<script>
+let popupTimer;
+
+function showErrorPopup() {
+    const popup = document.getElementById("errorPopup");
+
+    // Show the popup
+    popup.classList.add("show");
+
+    // Clear any existing timer
+    clearTimeout(popupTimer);
+
+    // Hide after 4 seconds
+    popupTimer = setTimeout(() => {
+        popup.classList.remove("show");
+    }, 4000);
+}
+
+function closeErrorPopup() {
+    clearTimeout(popupTimer);
+    document.getElementById("errorPopup").classList.remove("show");
+}
+</script>
+</div>
+
     <div class="page">
         <div class="container">
 
@@ -53,9 +133,7 @@
         <div class="wallet-addres" id="wallet-address" class="copy-toast">                     
         <span class="copy-toast" id="addr-toast">Copied!</span>
                      </div>
-
-<div style="display: inline-block; margin: 6px 0px; padding: 4px 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 100px; font-size: 0.68rem; color: var(--text-mid); font-family: &quot;JetBrains Mono&quot;, monospace;">
-BIP-39</div></div>
+                    </div>
 
                 <!-- Balance -->
                 <div class="balance-section fade-in">
@@ -75,7 +153,7 @@ BIP-39</div></div>
                     <div id="tx-list">
                         <div class="key-card"
                             style="text-align:center;color:var(--text-dim);font-size:.75rem;padding:18px">No
-                            transactions yet. Receive some XMR and it'll show up here.</div>
+                            transactions yet. All wallet transactions'll show up here.</div>
                     </div>
                 </div>
 
@@ -95,68 +173,6 @@ BIP-39</div></div>
                         P2P Trade
                     </a>
                 </div>
-
-    <!-- Error Popup -->
-<div id="errorPopup" class="ios-popup" onclick="closeErrorPopup()">
-    <div class="popup-text">
-        This wallet is not yet eligible for P2P trading under OpenScan's private Terms and Conditions.
-    </div>
-    <div class="popup-hint">Tap anywhere to dismiss</div>
-<style>
-   .ios-popup{
-    position:fixed;
-    top:-220px;
-    left:50%;
-    transform:translateX(-50%) scale(.9);
-    width:92%;
-    max-width:350px;
-    padding:22px;
-    border-radius:24px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(30px);
-    -webkit-backdrop-filter:blur(30px);
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.8);
-    text-align:center;
-    z-index:99999;
-    transition:
-        top .65s cubic-bezier(.16,1,.3,1),
-        transform .65s cubic-bezier(.16,1,.3,1),
-        opacity .4s;
-    opacity:0;
-    cursor: none;
-}
-
-.ios-popup.show{
-    top:70px;
-    transform:translateX(-50%) scale(1);
-    opacity:1;
-}
-
-.popup-text{
-    font-size:15px;
-    color:#555;
-    line-height:1.6;
-}
-
-.popup-hint{
-    margin-top:18px;
-    font-size:13px;
-    color:#ff6600;
-    font-weight:600;
-}
-</style>
-<script>
-    function showErrorPopup() {
-    document.getElementById("errorPopup").classList.add("show");
-}
-
-function closeErrorPopup() {
-    document.getElementById("errorPopup").classList.remove("show");
-}
-</script>
-</div>
 
     <!-- Network Info -->
 <div class="network-section fade-in">
@@ -682,7 +698,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
                             <line x1="12" y1="9" x2="12" y2="13"></line>
                             <line x1="12" y1="17" x2="12.01" y2="17"></line>
                         </svg>
-                        Only send Monero (XMR) to this address
+                        Only send ( ------- ) to this address
                     </div>
                 </div>
             </div>
@@ -693,7 +709,7 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
         <div class="modal-overlay" id="send-modal">
             <div class="modal">
                 <div class="modal-header">
-                    <h2>Send XMR</h2>
+                    <h2>Send</h2>
                     <button class="modal-close" id="send-close">✕</button>
                 </div>
                 <div class="modal-body">
@@ -823,12 +839,11 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
 
                         </div>
                         <div id="send-result-error" style="display:none">
-                            <svg width="48" height="48" fill="none" stroke="#f87171" stroke-width="1.8"
-                                viewBox="0 0 24 24" style="margin:0 auto 12px">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-envelope-exclamation" viewBox="0 0 24 24" style="margin-left: 15px; color: #f87171;">
+  <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
+  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0m0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+</svg>
                             <h3 style="font-size:1rem;font-weight:600;margin-bottom:6px;color:#f87171">Send failed</h3>
                             <p id="send-result-error-msg"
                                 style="font-size:.72rem;color:var(--text-dim);line-height:1.5;margin-bottom:14px"></p>

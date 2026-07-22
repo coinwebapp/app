@@ -5396,8 +5396,8 @@ nav {
   .chain-left{display:flex;align-items:center;gap:12px;}
 
   .chip{
-    width:25px;
-    height:25px;
+    width:30px;
+    height:30px;
     border-radius:50%;
     display:flex;
     align-items:center;
@@ -5414,7 +5414,7 @@ nav {
   .chain-name{font-size:14px;font-weight:500;}
   .chain-addr{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono', monospace;}
   .chain-right{text-align:right;}
-  .chain-balance{font-size:15px;font-weight:500;font-variant-numeric:tabular-nums;}
+  .chain-balance{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;}
   .chain-usd{font-size:11px;color:var(--muted);}
   .status{font-size:11px;color:var(--muted);}
 
